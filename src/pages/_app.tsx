@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 
 function InnerApp({ Component, pageProps }: AppProps) {
-  const { settings, setIsMobile } = useSettings()
+  const { setIsMobile } = useSettings()
 
   React.useEffect(() => {
     const handleResize = () => {

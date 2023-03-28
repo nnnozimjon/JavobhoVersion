@@ -1,14 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { useSettings } from '@/store'
-import { IndexMobile } from '@/mobile/index.mobile'
-import { IndexDesktop } from '@/desktop/index.desktop'
-
-const inter = Inter({ subsets: ['latin'] })
+import Nav from '@/components/Nav/Nav'
 
 export default function Home() {
-  const { settings } = useSettings()
   return (
     <>
       <Head>
@@ -17,7 +10,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>{settings.isMobile ? <IndexMobile /> : <IndexDesktop />}</main>
+      <main>
+        <Nav />
+      </main>
     </>
   )
 }
