@@ -1,6 +1,4 @@
 import Head from 'next/head'
-// import Nav from '@/components/Nav/Nav'
-import DesktopLayout from '@/components/layout'
 
 export default function Home() {
   return (
@@ -12,10 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <DesktopLayout title="Home">
-          <div className="w-full h-full flex justify-center"> Hello </div>
-        </DesktopLayout>
-        {/* <Nav /> */}
+        <div className="w-full h-full flex justify-center"> Hello </div>
       </main>
     </>
   )

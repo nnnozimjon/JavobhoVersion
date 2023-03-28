@@ -12,7 +12,9 @@ const DesktopLayout = ({ title, children }: ILayout) => {
         <div className="w-full h-14 px-[20px] flex items-center border-b">
           <h1 className="font-bold">{title}</h1>
         </div>
-        <div className="h-[calc(100vh_-_56px)]">{children}</div>
+        <div className="h-[calc(100vh_-_56px)] w-full min-w-[600px]">
+          {children}
+        </div>
       </div>
       <div className="w-[400px] min-w-[400px] border">Ads</div>
     </div>

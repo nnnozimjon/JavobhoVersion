@@ -3,12 +3,15 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store, { SettingsContextProvider, useSettings } from '@/store'
+import DesktopLayout from '@/components/layout'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <SettingsContextProvider>
-        <InnerApp {...{ Component, pageProps }} />
+        <DesktopLayout title="Home">
+          <InnerApp {...{ Component, pageProps }} />
+        </DesktopLayout>
       </SettingsContextProvider>
     </Provider>
   )
