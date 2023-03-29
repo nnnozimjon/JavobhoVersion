@@ -1,25 +1,46 @@
 import React from 'react'
-import Login from './login'
 import '@/styles/globals.css'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
-// import DesktopLayout from '@/components/layout'
+import DesktopLayout from '@/components/layout'
 import store, { SettingsContextProvider, useSettings } from '@/store'
+import Device from '@/components/device/Device'
+import MobiLayout from '@/components/layout/mobi'
+import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const loged = false
   return (
     <Provider store={store}>
       <SettingsContextProvider>
-        <Login />
-        {/* <DesktopLayout title="Home">
-          <InnerApp {...{ Component, pageProps }} />
-        </DesktopLayout> */}
+        {loged ? (
+          <InnerApp>
+            <Login />
+          </InnerApp>
+        ) : (
+          <Device
+            ds={
+              <DesktopLayout title="Home">
+                <InnerApp>
+                  <Component {...pageProps} />
+                </InnerApp>
+              </DesktopLayout>
+            }
+            mb={
+              <MobiLayout>
+                <InnerApp>
+                  <Component {...pageProps} />
+                </InnerApp>
+              </MobiLayout>
+            }
+          />
+        )}
       </SettingsContextProvider>
     </Provider>
   )
 }
 
-function InnerApp({ Component, pageProps }: AppProps) {
+const InnerApp: React.FC<any> = ({ children }) => {
   const { setIsMobile } = useSettings()
 
   React.useEffect(() => {
@@ -34,9 +55,5 @@ function InnerApp({ Component, pageProps }: AppProps) {
     }
   }, [])
 
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  )
+  return <>{children}</>
 }

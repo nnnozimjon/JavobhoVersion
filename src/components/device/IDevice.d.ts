@@ -1,5 +1,5 @@
 interface props {
-  mb: JSX.Element
-  ds: JSX.Element
+  mb: any
+  ds: any
 }
 export type IDevice = props
