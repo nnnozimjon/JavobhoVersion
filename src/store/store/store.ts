@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createStore, combineReducers } from 'redux'
 import { settingsReducer } from '../reducers/settings'
 

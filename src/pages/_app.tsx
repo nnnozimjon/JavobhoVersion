@@ -4,14 +4,16 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store, { SettingsContextProvider, useSettings } from '@/store'
 import DesktopLayout from '@/components/layout'
+import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <SettingsContextProvider>
-        <DesktopLayout title="Home">
+        <Login />
+        {/* <DesktopLayout title="Home">
           <InnerApp {...{ Component, pageProps }} />
-        </DesktopLayout>
+        </DesktopLayout> */}
       </SettingsContextProvider>
     </Provider>
   )
