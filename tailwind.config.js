@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false,
+  darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     colors: {
       main: '#4C9EEB',

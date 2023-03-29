@@ -6,6 +6,7 @@ import logo from '@/assets/img/svg-logo.png'
 import Input from '@/components/Input/Input'
 import { auth } from '@/api/auth'
 import { AxiosResponse } from 'axios'
+import Button from '@/components/Button'
 
 export default function Login() {
   const [username, setUserName] = React.useState<string>('')
@@ -34,7 +35,7 @@ export default function Login() {
           alt="background"
           className="w-full h-full absolute select-none"
         />
-        <div className="flex flex-col gap-[15px] text-black z-10 bg-[#fff] w-[420px] h-[435px] rounded-[20px] p-[20px] shadow-sm shadow-gray min-h-[435px] min-w-[420px]">
+        <div className="flex flex-col gap-[15px] text-black z-10 bg-[#fff] w-[420px] rounded-[20px] p-[20px] shadow-sm shadow-gray min-w-[420px]">
           <div className="flex items-center justify-center gap-[15px]">
             <Image src={logo} alt="Javobho logo" className="w-[50px]" />
             <h1 className={`text-center font-bold text-[25px] text-main`}>
@@ -63,6 +64,7 @@ export default function Login() {
           >
             Login
           </button>
+          <Button />
           <div>Remember me</div>
           <div>Registration</div>
         </div>
