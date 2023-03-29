@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 declare namespace IAuth {
   interface ILoginBody {
     username: string

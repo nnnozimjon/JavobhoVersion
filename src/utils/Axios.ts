@@ -1,4 +1,5 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { AxiosRequestConfig } from 'axios'
 import { cookies } from '@/utils/Cookies'
 import { baseUrl } from './baseUrl'
 
@@ -6,7 +7,7 @@ const instance = axios.create({
   baseURL: baseUrl,
 })
 
-instance.interceptors.request.use((config: AxiosRequestConfig) => {
+instance.interceptors.request.use((config: AxiosRequestConfig): any => {
   const token: string = cookies.get('token')
   const newConfig: AxiosRequestConfig = {
     ...config,
