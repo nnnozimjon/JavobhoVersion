@@ -1,15 +1,14 @@
-import { useSettings } from '@/store'
 import React from 'react'
+import IButton from './Button.interface'
 
-const Button: React.FC<any> = () => {
-  const { settings } = useSettings()
-
+const Button: React.FC<IButton.props> = ({ text, onClick }: IButton.props) => {
   return (
     <button
-      className={`p-[12px] rounded-lg bg-[#005effd7] text-[#ffffff]
+      onClick={onClick}
+      className={`p-[12px] rounded-lg bg-[#005effd7] hover:bg-[#005effaf] text-[#ffffff] transition duration-500
        font-bold text-[15px]`}
     >
-      Login
+      {text}
     </button>
   )
 }

@@ -64,7 +64,7 @@ export default function Login() {
           >
             Login
           </button>
-          <Button />
+          <Button text="Login" onClick={() => alert('Credentials needed')} />
           <div>Remember me</div>
           <div>Registration</div>
         </div>
