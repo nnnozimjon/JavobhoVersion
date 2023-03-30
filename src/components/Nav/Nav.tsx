@@ -7,6 +7,7 @@ import Logo from '@/assets/img/svg-logo.png'
 import Icon from '../icon'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+// import Modal from '../Modal'
 
 const Nav = () => {
   const router = useRouter().pathname
@@ -19,11 +20,11 @@ const Nav = () => {
           Javobho
         </h1>
       </div>
-      <div className="w-full h-full flex flex-col justify-evenly items-start gap-[20px] pl-[30px] py-[10px]">
+      <div className="w-full h-full pl-[30px] px-[20px]">
         {NavLinks.map((nav: INav.nav, i: number) => (
           <Link
             href={nav.path}
-            className={`flex items-center min-w-[100px] w-[252px] h-[48px] px-[16px] py-[14px] text-start ${
+            className={`flex items-center min-w-[100px] w-[252px] h-[48px] px-[16px] py-[14px] text-start m-[10px] ${
               router === nav.path && 'text-white'
             } cursor-pointer select-none rounded-[6px] ${
               router === nav.path && 'bg-[#3C87DF]'
@@ -36,9 +37,13 @@ const Nav = () => {
         ))}
       </div>
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
-        <Icon name="logout" />
-        LOGOUT
+        <div className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none">
+          <Icon name="logout" />
+          <span className="pl-[20px] font-medium">Logout</span>
+        </div>
       </div>
+
+      {/* <Modal type="handle" /> */}
     </div>
   )
 }

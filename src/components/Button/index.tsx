@@ -1,7 +1,7 @@
 import React from 'react'
 import IButton from './Button.interface'
 
-const Button: React.FC<any> = ({ onClick, text }: IButton.props) => {
+const Button: React.FC<IButton.props> = ({ onClick, text }: IButton.props) => {
   return (
     <button
       onClick={onClick}
