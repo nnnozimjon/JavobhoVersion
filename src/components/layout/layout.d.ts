@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 interface Props {
-  title: string
   children: React.ReactNode
 }
 

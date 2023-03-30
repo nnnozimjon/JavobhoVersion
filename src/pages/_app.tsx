@@ -16,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
         ) : (
           <DesktopLayout title="Home">
             <InnerApp>
-              <Component {...pageProps} />
+              <div className="h-full overflow-y-scroll scrollbar-hide ">
+                <Component {...pageProps} />
+              </div>
             </InnerApp>
           </DesktopLayout>
         )}

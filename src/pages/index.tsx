@@ -1,3 +1,4 @@
+import { Post } from '@/components/Post'
 import Head from 'next/head'
 
 export default function Home() {
@@ -10,7 +11,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-full h-full flex justify-center"> Hello </div>
+        <div className="w-full h-full flex justify-center p-[20px]">
+          <Post />
+        </div>
       </main>
     </>
   )
