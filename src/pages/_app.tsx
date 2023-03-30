@@ -4,8 +4,6 @@ import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import DesktopLayout from '@/components/layout'
 import store, { SettingsContextProvider, useSettings } from '@/store'
-import Device from '@/components/device/Device'
-import MobiLayout from '@/components/layout/mobi'
 import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,26 +12,13 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <SettingsContextProvider>
         {loged ? (
-          <InnerApp>
-            <Login />
-          </InnerApp>
+          <Login />
         ) : (
-          <Device
-            ds={
-              <DesktopLayout title="Home">
-                <InnerApp>
-                  <Component {...pageProps} />
-                </InnerApp>
-              </DesktopLayout>
-            }
-            mb={
-              <MobiLayout>
-                <InnerApp>
-                  <Component {...pageProps} />
-                </InnerApp>
-              </MobiLayout>
-            }
-          />
+          <DesktopLayout title="Home">
+            <InnerApp>
+              <Component {...pageProps} />
+            </InnerApp>
+          </DesktopLayout>
         )}
       </SettingsContextProvider>
     </Provider>
