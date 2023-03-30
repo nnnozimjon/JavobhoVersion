@@ -1,22 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import sky from '@/assets/img/back.jpg'
-import logo from '@/assets/img/svg-logo.png'
-import Input from '@/components/Input/Input'
-import { auth } from '@/api/auth'
-import { AxiosResponse } from 'axios'
-import Button from '@/components/Button'
+import AuthDesktop from '@/components/LoginPage/Auth.desktop'
+import Device from '@/components/device/Device'
+import AuthMobi from '@/components/LoginPage/Auth.mobile'
 
 export default function Login() {
-  const [username, setUserName] = React.useState<string>('')
-  const [password, setPassword] = React.useState<string>('')
-
-  const login = () =>
-    auth
-      .login({ username, password })
-      .then((res: AxiosResponse) => console.log(res))
-
   return (
     <>
       <Head>
@@ -29,6 +17,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
         <title>Log in</title>
       </Head>
+<<<<<<< HEAD
       <div className="flex justify-center items-center w-screen h-screen">
         <Image
           src={sky}
@@ -69,6 +58,9 @@ export default function Login() {
           <div>Registration</div>
         </div>
       </div>
+=======
+      <Device ds={<AuthDesktop />} mb={<AuthMobi />} />
+>>>>>>> 4d0d948cc3aea73c9ac1aa84c275553897dee45e
     </>
   )
 }
