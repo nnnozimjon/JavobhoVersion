@@ -2,7 +2,7 @@ import React from 'react'
 import '@/styles/globals.css'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
-import DesktopLayout from '@/components/layout'
+// import DesktopLayout from '@/components/layout'
 import store, { SettingsContextProvider, useSettings } from '@/store'
 import Login from './login'
 
@@ -14,13 +14,13 @@ export default function App({ Component, pageProps }: AppProps) {
         {loged ? (
           <Login />
         ) : (
-          <DesktopLayout title="Home">
-            <InnerApp>
-              <div className="h-full overflow-y-scroll scrollbar-hide ">
-                <Component {...pageProps} />
-              </div>
-            </InnerApp>
-          </DesktopLayout>
+          // <DesktopLayout title="Home">
+          <InnerApp>
+            <div className="h-full overflow-y-scroll scrollbar-hide ">
+              <Component {...pageProps} />
+            </div>
+          </InnerApp>
+          //* </DesktopLayout> */
         )}
       </SettingsContextProvider>
     </Provider>

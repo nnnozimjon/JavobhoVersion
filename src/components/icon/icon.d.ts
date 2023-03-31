@@ -80,6 +80,7 @@ declare namespace IIcon {
     shareActive: React.ReactNode
     postIcon: React.ReactNode
     changeImage: React.ReactNode
+    publish: React.ReactNode
   }
 
   type name = keyof svgList

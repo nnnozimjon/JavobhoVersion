@@ -2,41 +2,59 @@ import React from 'react'
 import Image from 'next/image'
 
 import image from '@/assets/img/darkSky.jpg'
+import ImagePost from '@/assets/img/back.jpg'
+import Icon from '@/components/icon'
 
-const Post: React.FC<any> = () => {
+const Post: React.FC<any> = ({ url }: any) => {
   return (
     <div className="w-[580px] h-fit m-[20px] rounded-[20px] border border-invisible">
-      <div className="rounded-t-[20px] p-[10px_20px] bg-white">
-        <div className="border rounded-full w-[40px] h-[40px] flex justify-center items-center">
-          I
+      <div className="rounded-t-[20px] p-[10px_20px] bg-white flex items-center border-b border-invisible">
+        <Image
+          src={image}
+          className="bg-black text-white rounded-full w-[40px] h-[40px] flex justify-center items-center object-cover"
+          alt="profile image"
+        />
+        <div className="flex justify-between w-full items-center">
+          <div className="flex pl-[10px] m-0 flex-col">
+            <div className="flex">
+              <div className="pr-[10px] font-semibold text-[14px]">
+                Nozimjon
+              </div>
+              <button className="font-semibold text-[14px] text-darkblue">
+                Follow
+              </button>
+            </div>
+            <div className="font-semibold text-[14px] text-invisible">
+              student {url}
+            </div>
+          </div>
+          <Icon name="moreHorizontal" className="cursor-pointer" />
         </div>
       </div>
-      <div className="h-[600px] bg-main">CONTENT</div>
-      <div className="rounded-b-[20px] p-[10px_20px] bg-white">FOOTER</div>
+      <div className="h-[360px] bg-white">
+        <Image src={ImagePost} alt="post" className="w-full h-full" />
+      </div>
+      <div className="flex justify-between items-center p-[15px]">
+        <div className="flex justify-center items-center pl-[10px] text-darkblue">
+          <Icon name="liked" className="cursor-pointer" size={20} />
+          <p className="px-[10px] text-black">like</p>
+          <Icon name="repost" className="cursor-pointer text-dGray" size={20} />
+          <p className="px-[10px] text-black">repost</p>
+          <Icon name="share" className="cursor-pointer text-dGray" size={20} />
+          <p className="px-[10px] text-black">repost</p>
+        </div>
+        <p className="text-gray">23 comments</p>
+      </div>
+      <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
+        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-darkblue rounded-[8px] items-center">
+          <input
+            placeholder="write a comment"
+            className="bg-transparent w-full outline-none placeholder:text-white"
+          ></input>
+          <Icon name="publish" className="cursor-pointer" size={30} />
+        </div>
+      </div>
     </div>
-
-    // <div className="max-w-sm rounded overflow-hidden shadow-lg">
-    //   <Image className="w-full" src={image} alt="Sunset in the mountains" />
-    //   <div className="px-6 py-4">
-    //     <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-    //     <p className="text-gray-700 text-base">
-    //       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-    //       quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-    //       nihil.
-    //     </p>
-    //   </div>
-    //   <div className="px-6 pt-4 pb-2">
-    //     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-    //       #photography
-    //     </span>
-    //     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-    //       #travel
-    //     </span>
-    //     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-    //       #winter
-    //     </span>
-    //   </div>
-    // </div>
   )
 }
 

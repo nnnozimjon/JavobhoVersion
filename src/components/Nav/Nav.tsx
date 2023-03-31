@@ -17,7 +17,7 @@ const Nav = () => {
       <div className="w-full h-[150px] flex items-center pt-[20px] pl-[40px]">
         <Image src={Logo} alt="Javobho logo" className="w-[50px]" />
         <h1 className="font-bold text-[20px] text-[#1D9BF0] pl-[20px]">
-          Javobho
+          Alif Javobho
         </h1>
       </div>
       <div className="w-full h-full pl-[30px] px-[20px]">

@@ -5,11 +5,12 @@ import IIcon from './icon'
 import list from './svg-list'
 
 const Icon: React.FC<IIcon.props> = React.memo(
-  ({ size = 24, name }): JSX.Element => (
+  ({ size = 24, name, className }: IIcon.props): JSX.Element => (
     <svg
       viewBox="0 0 24 24"
       style={{ width: size + 'px', height: size + 'px' }}
       fill="currentColor"
+      className={className}
     >
       {list[name]}
     </svg>

@@ -12,6 +12,7 @@ module.exports = {
       gray: '#94adc1',
       dGray: '#293E50',
       invisible: '#A3B6C2',
+      transparent: 'rgba(0,0,0,0)',
     },
   },
   variants: {},
