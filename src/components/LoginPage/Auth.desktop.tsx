@@ -51,8 +51,8 @@ const AuthDesktop = () => {
         >
           Login
         </button>
-        <div>Remember me</div>
-        <div>Registration</div>
+        {/* <div>Remember me</div>
+        <div>Registration</div> */}
       </div>
     </div>
   )

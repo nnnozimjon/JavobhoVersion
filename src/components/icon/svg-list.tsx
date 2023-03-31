@@ -1,4 +1,4 @@
-import IIcon from './icon'
+import IIcon from './IIcon.interface'
 
 const list: IIcon.svgList = {
   publish: (

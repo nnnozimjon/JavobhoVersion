@@ -7,7 +7,7 @@ import store, { SettingsContextProvider, useSettings } from '@/store'
 import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const loged = true
+  const loged = false
   return (
     <Provider store={store}>
       <SettingsContextProvider>
