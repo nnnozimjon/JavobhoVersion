@@ -3,17 +3,10 @@ import Image from 'next/image'
 import sky from '@/assets/img/back.jpg'
 import logo from '@/assets/img/svg-logo.png'
 import Input from '../Input/Input'
-import { auth } from '@/api/auth'
-import { AxiosResponse } from 'axios'
 
 const AuthDesktop = () => {
   const [username, setUserName] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
-
-  const login = () =>
-    auth
-      .login({ username, password })
-      .then((res: AxiosResponse) => console.log(res))
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
@@ -45,10 +38,7 @@ const AuthDesktop = () => {
           type={'password'}
           value={password}
         />
-        <button
-          onClick={login}
-          className="p-[10px] rounded-full bg-darkblue text-white hover:bg-main transition duration-500 font-bold"
-        >
+        <button className="p-[10px] rounded-full bg-darkblue text-white hover:bg-main transition duration-500 font-bold">
           Login
         </button>
         {/* <div>Remember me</div>

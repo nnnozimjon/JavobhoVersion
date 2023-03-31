@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import DesktopLayout from '@/components/layout'
-import store, { SettingsContextProvider, useSettings } from '@/store'
+import store, { SettingsContextProvider } from '@/store'
 import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -28,19 +28,19 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 
 const InnerApp: React.FC<any> = ({ children }) => {
-  const { setIsMobile } = useSettings()
+  // const { setIsMobile } = useSettings()
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 768
-      setIsMobile(isMobile)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  // React.useEffect(() => {
+  //   const handleResize = () => {
+  //     const isMobile = window.innerWidth < 768
+  //     setIsMobile(isMobile)
+  //   }
+  //   handleResize()
+  //   window.addEventListener('resize', handleResize)
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize)
+  //   }
+  // }, [isMobile])
 
   return <>{children}</>
 }

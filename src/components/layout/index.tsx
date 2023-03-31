@@ -105,7 +105,7 @@ const DesktopLayout = ({ children }: ILayout) => {
       <div className="w-full">
         <div className="w-full h-14 px-[20px] flex items-center border-b border-invisible">
           <h1 className="font-bold">
-            {NavLinks.filter(path => path.path == pathname)[0].label}
+            {NavLinks.filter(path => path.path == pathname)[0]?.label}
           </h1>
         </div>
         <div className="h-[calc(100vh_-_56px)] w-full min-w-[600px]">
