@@ -3,7 +3,6 @@ import Image from 'next/image'
 import sky from '@/assets/img/back.jpg'
 import logo from '@/assets/img/svg-logo.png'
 import Input from '../Input/Input'
-import Button from '../Button'
 import { auth } from '@/api/auth'
 import { AxiosResponse } from 'axios'
 
@@ -52,7 +51,6 @@ const AuthDesktop = () => {
         >
           Login
         </button>
-        <Button />
         <div>Remember me</div>
         <div>Registration</div>
       </div>

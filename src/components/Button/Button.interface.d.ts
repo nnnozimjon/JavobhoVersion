@@ -3,6 +3,8 @@ declare namespace IButton {
     onClick?: () => void
     text: string
   }
+
+  type props = props
 }
 
 export default IButton

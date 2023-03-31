@@ -7,14 +7,14 @@ import store, { SettingsContextProvider, useSettings } from '@/store'
 import Login from './login'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const loged = false
+  const loged = true
   return (
     <Provider store={store}>
       <SettingsContextProvider>
         {loged ? (
           <Login />
         ) : (
-          <DesktopLayout title="Home">
+          <DesktopLayout>
             <InnerApp>
               <div className="h-full overflow-y-scroll scrollbar-hide ">
                 <Component {...pageProps} />

@@ -34,9 +34,9 @@ const Profile = () => {
           </div>
           <p className="font-medium text-dGray">@nozimjon</p>
           <p className="text-[15px]">
-            Hey, it's Nozimjon Shamsulloev, Welcome. I'm fullstack developer.
+            {`Hey, it's Nozimjon Shamsulloev, Welcome. I'm fullstack developer.
             You know when I first started programming I didn't know that
-            programmers code in computers instead I was writing codes in papers.
+            programmers code in computers instead I was writing codes in papers.`}
           </p>
           <br />
           <div className="flex text-dGray items-center">

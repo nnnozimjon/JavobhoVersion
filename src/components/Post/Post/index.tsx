@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import image from '@/assets/img/darkSky.jpg'
 import ImagePost from '@/assets/img/back.jpg'
-import Icon from '@/components/icon'
+import Icon from '@/components/Icon'
 import Read from '@/components/Read'
 
 const Post: React.FC<any> = () => {
