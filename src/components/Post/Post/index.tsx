@@ -8,7 +8,7 @@ import Read from '@/components/Read'
 
 const Post: React.FC<any> = () => {
   return (
-    <div className="w-[580px] h-fit m-[20px] rounded-[20px] border border-invisible">
+    <div className="w-[580px] h-fit m-[20px] border border-invisible">
       <div className="rounded-t-[20px] p-[10px_20px] bg-white flex items-center border-b border-invisible">
         <Image
           src={image}
@@ -57,7 +57,7 @@ const Post: React.FC<any> = () => {
         <p className="text-gray">23 comments</p>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
-        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-dGray rounded-[8px] items-center">
+        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-main rounded-[8px] items-center">
           <input
             placeholder="write a comment"
             className="bg-transparent w-full outline-none placeholder:text-white"

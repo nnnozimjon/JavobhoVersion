@@ -3,6 +3,96 @@ import Nav from '../Nav/Nav'
 import { ILayout } from './layout'
 import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
+import Icon from '../Icon'
+
+const SearchComponent = () => {
+  const [search, setSearch] = React.useState<string>('')
+
+  return (
+    <div className="border-[2px] border-main p-[5px_20px] w-[280px] rounded-full flex items-center text-main">
+      <Icon name="searchNormal" size={25} />
+      <input
+        value={search}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearch(e.target.value)
+        }
+        placeholder="search Javobho"
+        className="px-[10px] w-full h-full p-[5px] outline-none"
+      />
+      {search && (
+        <Icon
+          name="closeSquare"
+          className="cursor-pointer"
+          onClick={() => setSearch('')}
+        />
+      )}
+    </div>
+  )
+}
+
+const WhoToFollow = () => {
+  return (
+    <div className="w-full p-[20px] flex flex-col gap-[30px]">
+      <div className="bg-silver rounded-lg h-[400px]">
+        <p className="font-bold text-[25px] p-[15px]">Trends for you</p>
+      </div>
+      <div className="bg-silver rounded-lg h-[400px]">
+        <p className="font-bold text-[25px] p-[15px]">Who To Follow</p>
+      </div>
+    </div>
+  )
+}
+
+const HomeAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
+const ExploreAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
+const NoteAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
+const ProfileAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
+
+const BookmarksAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
+
+const ListsAds = () => {
+  return (
+    <div className="p-[10px] flex flex-col items-center">
+      <SearchComponent />
+      <WhoToFollow />
+    </div>
+  )
+}
 
 const DesktopLayout = ({ children }: ILayout) => {
   const { pathname } = useRouter()
@@ -22,9 +112,16 @@ const DesktopLayout = ({ children }: ILayout) => {
           {children}
         </div>
       </div>
-      <div className="w-[400px] min-w-[400px] border-l border-invisible">
-        Ads
-      </div>
+      {pathname !== '/messages' && (
+        <div className="w-[400px] min-w-[400px] border-l border-invisible h-full overflow-y-scroll scrollbar-hide">
+          {pathname == '/' && <HomeAds />}
+          {pathname == '/explore' && <ExploreAds />}
+          {pathname == '/notifications' && <NoteAds />}
+          {pathname == '/bookmarks' && <BookmarksAds />}
+          {pathname == '/lists' && <ListsAds />}
+          {pathname == '/profile' && <ProfileAds />}
+        </div>
+      )}
     </div>
   )
 }

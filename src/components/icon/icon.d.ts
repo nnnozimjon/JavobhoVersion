@@ -89,7 +89,7 @@ declare namespace IIcon {
     name: name
     size?: number
     className?: string
-    onClick?: (event: React.SyntheticEvent<EventTarget>) => void
+    onClick?: () => void
   }
 }
 

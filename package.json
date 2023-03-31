@@ -12,6 +12,7 @@
     "tw:clean": "rm -rf ./public/tailwind.css"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "@types/axios": "^0.14.0",
     "@types/node": "^18.15.10",
     "@types/react": "^18.0.30",

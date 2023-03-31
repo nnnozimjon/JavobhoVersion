@@ -13,6 +13,7 @@ module.exports = {
       dGray: '#293E50',
       invisible: '#A3B6C2',
       transparent: 'rgba(0,0,0,0)',
+      silver: '#e9ecef',
     },
   },
   variants: {},
