@@ -41,12 +41,12 @@ const Post: React.FC<any> = ({ url }: any) => {
           <Icon name="repost" className="cursor-pointer text-dGray" size={20} />
           <p className="px-[10px] text-black">repost</p>
           <Icon name="share" className="cursor-pointer text-dGray" size={20} />
-          <p className="px-[10px] text-black">repost</p>
+          <p className="px-[10px] text-black">send</p>
         </div>
         <p className="text-gray">23 comments</p>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
-        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-darkblue rounded-[8px] items-center">
+        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-dGray rounded-[8px] items-center">
           <input
             placeholder="write a comment"
             className="bg-transparent w-full outline-none placeholder:text-white"

@@ -37,7 +37,7 @@ const Nav = () => {
         ))}
       </div>
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
-        <div className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none">
+        <div className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer">
           <Icon name="logout" />
           <span className="pl-[20px] font-medium">Logout</span>
         </div>

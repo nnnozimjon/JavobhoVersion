@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <Component {...pageProps} />
             </div>
           </InnerApp>
-          //* </DesktopLayout> */
+          //</DesktopLayout>
         )}
       </SettingsContextProvider>
     </Provider>

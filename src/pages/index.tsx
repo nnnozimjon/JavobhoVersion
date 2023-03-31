@@ -2,24 +2,7 @@ import React from 'react'
 import { Post } from '@/components/Post'
 import Head from 'next/head'
 
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/photos`)
-//   const data = await res.json()
-
-//   // Pass data to the page via props
-//   return { props: { data } }
-// }
-
-export async function getServerSideProps() {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/photos`)
-  const posts = await res.json()
-
-  // Props returned will be passed to the page component
-  return { props: { posts } }
-}
-
-export default function Home({ posts }: any) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -30,10 +13,8 @@ export default function Home({ posts }: any) {
       </Head>
       <main>
         <div className="w-full h-full flex justify-center items-center p-[20px] flex-col">
-          {/* <Post /> */}
-          {posts.map((post: any, i: number) => (
-            <Post key={i} url={post?.url} />
-          ))}
+          <Post />
+          <Post />
         </div>
       </main>
     </>
