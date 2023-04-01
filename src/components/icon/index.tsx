@@ -4,7 +4,7 @@ import React from 'react'
 import IIcon from './interface'
 import list from './svg-list'
 
-const Icon: React.FC<any> = ({
+const Icon: React.FC<IIcon.props> = ({
   size = 24,
   name,
   className,

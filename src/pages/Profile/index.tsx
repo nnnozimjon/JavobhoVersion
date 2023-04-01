@@ -93,6 +93,14 @@ const Profile = () => {
           >
             Likes
           </button>
+          <button
+            onClick={() => setView('bio')}
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+              view === 'bio' && 'border-b-[5px]'
+            } border-main`}
+          >
+            Bio
+          </button>
         </div>
         <div className="p-[10px] flex flex-col items-center">
           <Post />
