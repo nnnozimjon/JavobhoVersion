@@ -2,9 +2,41 @@ import React from 'react'
 import Image from 'next/image'
 import sky from '@/assets/img/1500x500.jpg'
 import profile from '@/assets/img/profile.jpg'
-
+import {
+  PostsView,
+  MediaView,
+  QuestionsView,
+  RepliesView,
+  LikesView,
+  BioView,
+} from '@/components/page/profile'
 import Icon from '@/components/Icon'
-import { Post } from '@/components/Post'
+
+export const ProfileView: React.FC<any> = ({ view }: any) => {
+  switch (view) {
+    case 'posts':
+      return <PostsView />
+    case 'questions':
+      return <QuestionsView />
+    case 'replies':
+      return <RepliesView />
+    case 'media':
+      return <MediaView />
+    case 'likes':
+      return <LikesView />
+    case 'bio':
+      return <BioView />
+    default:
+      return (
+        <h1
+          className="text-[20px] font-bold text-main
+      "
+        >
+          404 NO CONTENT
+        </h1>
+      )
+  }
+}
 
 const Profile = () => {
   const [view, setView] = React.useState<string>('posts')
@@ -103,7 +135,7 @@ const Profile = () => {
           </button>
         </div>
         <div className="p-[10px] flex flex-col items-center">
-          <Post />
+          <ProfileView view={view} />
         </div>
       </div>
     </div>
