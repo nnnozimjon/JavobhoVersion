@@ -41,6 +41,7 @@ const friendsList = [
 
 const Messages = () => {
   const [selectedFriend, setSelectedFriend] = React.useState<number>(0)
+  const [text, setText] = React.useState<string>('')
 
   useEffect(() => {
     setSelectedFriend(friendsList.length > 0 ? friendsList[0]?.id : 0)
@@ -48,8 +49,8 @@ const Messages = () => {
 
   console.log(selectedFriend)
   return (
-    <div className="h-full flex">
-      <div className="border-r border-invisible h-full w-[40%]">
+    <div className="h-full flex overflow-hidden">
+      <div className="border-r border-invisible h-full w-[40%] overflow-y-scroll scrollbar-hide">
         {friendsList.length > 0 ? (
           friendsList.map((friend: any, i: number) => (
             <MessageProfile
@@ -63,7 +64,45 @@ const Messages = () => {
           <h1>Welcome to Inbox</h1>
         )}
       </div>
-      <div className="h-full w-full"></div>
+      <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">
+        <div className="h-[calc(100%_-_65px)] border-b border-invisible"></div>
+        <div className="absolute bottom-0">
+          <div className="flex items-center px-3 py-2 rounded-[30px] bg-silver w-[600px] mb-[5px] ml-[10px]">
+            <button
+              type="button"
+              className="inline-flex justify-center p-2 text-main font-medium rounded-full cursor-pointer hover:bg-[#54cae785] duration-300"
+            >
+              <Icon name="post" size={20} />
+              <span className="sr-only">Upload image</span>
+            </button>
+            <button
+              type="button"
+              className={`p-2 text-main rounded-full cursor-pointer hover:bg-[#54cae785]`}
+            >
+              <Icon name="emoji" size={20} />
+              <span className="sr-only">Add emoji</span>
+            </button>
+            <textarea
+              onChange={e => setText(e.target.value)}
+              id="chat"
+              rows={1}
+              className={`block mx-4 p-[5px] w-full text-sm text-main font-medium outline-none placeholder:font-normal bg-transparent resize-none`}
+              placeholder="Start a new message..."
+            />
+            <button
+              type="submit"
+              className={`inline-flex justify-center ${
+                text.length > 0 ? 'text-main' : 'text-invisible'
+              } rounded-full ${
+                text.length > 0 ? 'cursor-pointer' : 'cursor-default'
+              }`}
+            >
+              <Icon name="publish" size={30} />
+              <span className="sr-only">Send message</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

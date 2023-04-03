@@ -4,7 +4,7 @@ module.exports = {
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     colors: {
-      main: '#2C78BA',
+      main: 'rgb(29, 155, 240)',
       white: '#FFFFFF',
       black: '#000000',
       darkblue: '#3C87DF',

@@ -18,6 +18,7 @@ declare namespace IIcon {
     verified: React.ReactNode
     ask: React.ReactNode
     post: React.ReactNode
+    emoji: React.ReactNode
     answer: React.ReactNode
     eye: React.ReactNode
     eyeSlash: React.ReactNode
