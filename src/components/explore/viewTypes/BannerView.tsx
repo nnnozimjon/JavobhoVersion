@@ -14,14 +14,40 @@ const BannerView: React.FC<any> = () => {
           alt="question Banner"
           className="w-full h-full object-cover absolute -z-[10]"
         />
-        <div className="flex gap-[20px] p-[10px]">
-          <Button name="ask" text="Ask a question" color="white" bg="main" />
-          <Button
-            text="Subscribe"
-            color="darkestCoral"
-            bg="white"
-            count={300}
-          />
+        <div className="flex flex-col">
+          <h1 className="p-[20px] font-semibold text-[30px] text-white absolute top-0">
+            How fast does the earth spins around the orbit of the sun in our
+            solar system?
+          </h1>
+          <div className="flex gap-[30px] p-[10px] w-fit">
+            <p className="font-bold text-white flex flex-col items-center">
+              178
+              <span className="text-[12px] font-medium text-darkestIndigo">
+                questions
+              </span>
+            </p>
+            <p className="font-bold text-white flex flex-col items-center">
+              205{' '}
+              <span className="text-[12px] font-medium text-darkestIndigo">
+                answers
+              </span>
+            </p>
+            <p className="font-bold text-white flex flex-col items-center">
+              90K{' '}
+              <span className="text-[12px] font-medium text-darkestIndigo">
+                views
+              </span>
+            </p>
+          </div>
+          <div className="flex gap-[20px] p-[10px]">
+            <Button name="ask" text="Ask a question" color="white" bg="main" />
+            <Button
+              text="Subscribe"
+              color="darkestCoral"
+              bg="white"
+              count={300}
+            />
+          </div>
         </div>
       </div>
 

@@ -14,7 +14,7 @@ const Button: React.FC<IButton.props> = ({
     <button
       onClick={onClick}
       className={`px-[15px] py-[10px]  rounded-lg bg-${bg} text-${color} transition duration-500
-       font-bold text-[14px] flex items-center gap-[10px]`}
+       font-medium text-[14px] flex items-center gap-[10px]`}
     >
       {name && <Icon name={name} />}
       {text}
