@@ -11,7 +11,7 @@ const Read: React.FC<IRead> = ({ text, className }: IRead) => {
         className="text-invisible cursor-pointer select-none font-medium"
         onClick={() => setShowMore(!showMore)}
       >
-        ... {!showMore ? 'read more' : 'show less'}
+        {text.length > 150 && `... ${!showMore ? 'read more' : 'show less'}`}
       </strong>
     </p>
   )

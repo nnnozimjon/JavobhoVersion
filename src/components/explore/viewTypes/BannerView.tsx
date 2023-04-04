@@ -2,6 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import image from '@/assets/img/burj.jpg'
 import Button from '@/components/Button'
+import Icon from '@/components/icon/Icon'
+import Link from 'next/link'
+import Read from '@/components/Read'
+import image2 from '@/assets/img/darkSky.jpg'
 
 const BannerView: React.FC<any> = () => {
   const [selected, setSelected] = React.useState<string>('questions')
@@ -42,6 +46,12 @@ const BannerView: React.FC<any> = () => {
           <div className="flex gap-[20px] p-[10px]">
             <Button name="ask" text="Ask a question" color="white" bg="main" />
             <Button
+              name="answer"
+              text="reply"
+              color="darkestCoral"
+              bg="white"
+            />
+            <Button
               text="Subscribe"
               color="darkestCoral"
               bg="white"
@@ -76,6 +86,51 @@ const BannerView: React.FC<any> = () => {
         >
           comments
         </button>
+      </div>
+      <div className="flex flex-col items-center justify-end">
+        <div className="w-full">
+          {/* comment */}
+          <div className="p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
+            <div className="flex w-[99%] gap-[10px]">
+              <Image
+                src={image2}
+                alt="comment image"
+                className="w-[50px] h-[50px] bg-coral rounded-full"
+              />
+              <div className="flex gap-[5px] flex-col">
+                <div className="flex">
+                  <p className="font-semibold text-[15px] select-none">
+                    Nozimjon Shamsulloev
+                  </p>
+                  <Icon name="verified" />
+                  <Link
+                    href={'/nnozimjon'}
+                    className="font-medium text-[14px] cursor-pointer hover:underline"
+                  >
+                    @nozimjon
+                  </Link>
+                </div>
+                <h1 className="font-semibold text-[16px]">
+                  <Read
+                    text="How i can connect brave wallet with http://space.id 2.0 ...?
+                  Tks sir How i can connect brave wallet with http://space.id
+                  2.0 ...? Tks sir How i can connect brave wallet with
+                  http://space.id 2.0 ...? Tks sir"
+                  />
+                </h1>
+              </div>
+            </div>
+            <Icon
+              name="moreHorizontal"
+              className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
+            />
+          </div>
+          {/* end of comment */}
+        </div>
+        <Icon
+          name="arrowBottom"
+          className="rounded-full hover:cursor-pointer"
+        />
       </div>
     </div>
   )
