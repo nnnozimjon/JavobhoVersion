@@ -10,7 +10,7 @@ import {
   LikesView,
   BioView,
 } from '@/components/page/profile'
-import Icon from '@/components/Icon'
+import Icon from '@/components/icon/Icon'
 
 export const ProfileView: React.FC<any> = ({ view }: any) => {
   switch (view) {

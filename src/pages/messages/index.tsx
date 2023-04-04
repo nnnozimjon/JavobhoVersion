@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon'
+import Icon from '@/components/icon/Icon'
 import User from '@/interfaces/user.interface'
 import Link from 'next/link'
 import React, { useEffect } from 'react'

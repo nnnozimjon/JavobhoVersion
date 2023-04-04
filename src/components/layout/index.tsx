@@ -3,7 +3,7 @@ import Nav from '../Nav/Nav'
 import { ILayout } from './layout'
 import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
-import Icon from '../Icon'
+import Icon from '../icon/Icon'
 
 const SearchComponent = () => {
   const [search, setSearch] = React.useState<string>('')
