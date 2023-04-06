@@ -1,7 +1,7 @@
 import React from 'react'
 import IRead from './IRead.interface'
 
-const Read: React.FC<IRead> = ({ text, className }: IRead) => {
+const Read: React.FC<IRead> = ({ text = '', className }: IRead) => {
   const [showMore, setShowMore] = React.useState<boolean>(false)
 
   return (

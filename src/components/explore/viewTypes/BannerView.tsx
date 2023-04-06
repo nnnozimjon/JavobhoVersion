@@ -3,9 +3,50 @@ import Image from 'next/image'
 import image from '@/assets/img/burj.jpg'
 import Button from '@/components/Button'
 import Icon from '@/components/icon/Icon'
-import Link from 'next/link'
-import Read from '@/components/Read'
-import image2 from '@/assets/img/darkSky.jpg'
+import BannerComment from '../components/comment'
+
+export const SwitchView: React.FC<any> = ({ view }: string) => {
+  const comments = [
+    {
+      createdAt: '2 weeks ago',
+      name: 'Qosimjon Rahimov',
+      text: 'Hey, what are you doing?',
+      username: 'qosimjon',
+      verified: false,
+    },
+  ]
+  switch (view) {
+    case 'questions':
+      return <h1>questions</h1>
+    case 'answers':
+      return <h1>answers</h1>
+    case 'comments':
+      return comments.map((comment, i) => (
+        <BannerComment
+          image=""
+          key={i}
+          data={{
+            createdAt: comment.createdAt,
+            name: comment.name,
+            text: comment.text,
+            username: comment.username,
+            verified: comment.verified,
+            liked: true,
+            likes: 1,
+          }}
+        />
+      ))
+    default:
+      return (
+        <h1
+          className="text-[20px] font-bold text-main
+      "
+        >
+          404 NO CONTENT
+        </h1>
+      )
+  }
+}
 
 const BannerView: React.FC<any> = () => {
   const [selected, setSelected] = React.useState<string>('questions')
@@ -79,9 +120,9 @@ const BannerView: React.FC<any> = () => {
           Questions
         </button>
         <button
-          onClick={() => setSelected('experts')}
+          onClick={() => setSelected('comments')}
           className={`p-[8px] border-darkblue font-medium hover:text-black transition-colors duration-300 select-none cursor-pointer ${
-            selected === 'experts' ? 'border-b-[3px] text-black' : 'text-gray'
+            selected === 'comments' ? 'border-b-[3px] text-black' : 'text-gray'
           }`}
         >
           comments
@@ -89,43 +130,7 @@ const BannerView: React.FC<any> = () => {
       </div>
       <div className="flex flex-col items-center justify-end">
         <div className="w-full">
-          {/* comment */}
-          <div className="p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
-            <div className="flex w-[99%] gap-[10px]">
-              <Image
-                src={image2}
-                alt="comment image"
-                className="w-[50px] h-[50px] bg-coral rounded-full"
-              />
-              <div className="flex gap-[5px] flex-col">
-                <div className="flex">
-                  <p className="font-semibold text-[15px] select-none">
-                    Nozimjon Shamsulloev
-                  </p>
-                  <Icon name="verified" />
-                  <Link
-                    href={'/nnozimjon'}
-                    className="font-medium text-[14px] cursor-pointer hover:underline"
-                  >
-                    @nozimjon
-                  </Link>
-                </div>
-                <h1 className="font-semibold text-[16px]">
-                  <Read
-                    text="How i can connect brave wallet with http://space.id 2.0 ...?
-                  Tks sir How i can connect brave wallet with http://space.id
-                  2.0 ...? Tks sir How i can connect brave wallet with
-                  http://space.id 2.0 ...? Tks sir"
-                  />
-                </h1>
-              </div>
-            </div>
-            <Icon
-              name="moreHorizontal"
-              className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
-            />
-          </div>
-          {/* end of comment */}
+          <SwitchView view={selected} />
         </div>
         <Icon
           name="arrowBottom"

@@ -409,7 +409,7 @@ c0 886 2 1609 4 1607 2 -2 227 -719 500 -1594z m-1614 1480 l0 -95 -410 0
       >
         <g
           transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-          fill="#e31b23"
+          fill="currentColor"
           stroke=""
         >
           <path
