@@ -3,6 +3,7 @@ declare namespace IAuth {
   interface ILoginBody {
     username: string
     password: string
+    robot: boolean
   }
 
   interface IRegistrationBody {}

@@ -1,7 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Image from 'next/image'
-import sky from '@/assets/img/1500x500.jpg'
-import profile from '@/assets/img/profile.jpg'
+
 import {
   PostsView,
   MediaView,
@@ -11,6 +10,7 @@ import {
   BioView,
 } from '@/components/page/profile'
 import Icon from '@/components/icon/Icon'
+import { useUser } from '@/store/contexts/UserContect'
 
 export const ProfileView: React.FC<any> = ({ view }: any) => {
   switch (view) {
@@ -38,19 +38,20 @@ export const ProfileView: React.FC<any> = ({ view }: any) => {
   }
 }
 
-const Profile = () => {
+const DynamicPage = () => {
   const [view, setView] = React.useState<string>('posts')
+  const { user } = useUser()
 
   return (
     <div className="h-full relative">
-      <Image
-        src={sky}
+      <img
+        src={user.splashImage}
         alt="profile_cover_image"
         className="w-full h-[200px] border-b border-invisible object-cover"
       />
       <div className="h-[200px]">
-        <Image
-          src={profile}
+        <img
+          src={user.avatar}
           alt="profile_photo"
           className="w-[150px] h-[150px] rounded-full absolute top-[120px] left-[40px] object-cover border-[3px] border-white"
         />
@@ -59,21 +60,21 @@ const Profile = () => {
         </button>
         <div className="pt-[80px] p-[10px]">
           <div className=" flex items-center">
-            <p className="font-bold text-[20px] pr-[10px]">
-              Nozimjon Shamsulloev
-            </p>
-            <Icon name="verified" />
+            <p className="font-bold text-[20px] pr-[10px]">{user.fullname}</p>
+            {Boolean(user.verified) && <Icon name="verified" />}
           </div>
-          <p className="font-medium text-dGray">@nozimjon</p>
-          <p className="text-[15px]">
-            {`Hey, it's Nozimjon Shamsulloev, Welcome. I'm fullstack developer.
-            You know when I first started programming I didn't know that
-            programmers code in computers instead I was writing codes in papers.`}
-          </p>
+          <p className="font-medium text-dGray">@{user.username}</p>
+          <p className="text-[15px]">{user.description}</p>
           <br />
           <div className="flex text-dGray items-center">
             <Icon name="calendar" size={20} />
-            <p className="font-medium pl-[10px]">Joined December 2022</p>
+            <p className="font-medium pl-[10px]">
+              Joined{' '}
+              {new Date(user.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+              })}
+            </p>
           </div>
           <div>
             <p>
@@ -142,4 +143,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default DynamicPage

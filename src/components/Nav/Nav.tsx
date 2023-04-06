@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import NavLinks from './NavLinks'
 import INav from './interface'
@@ -8,12 +8,16 @@ import Icon from '../icon/Icon'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
+import Cookies from 'js-cookie'
 
 const Nav = () => {
   const router = useRouter().pathname
   const [showMore, setShowMore] = useState<boolean>(false)
 
-  useEffect(() => {}, [])
+  const handleLogout = async () => {
+    Cookies.remove('access_token')
+    window.location.reload()
+  }
 
   return (
     <div className="w-full h-screen flex justify-between flex-col border-r-[1px] border-invisible">
@@ -91,7 +95,12 @@ const Nav = () => {
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
         <div className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer">
           <Icon name="logout" />
-          <span className="pl-[20px] font-medium">Logout</span>
+          <button
+            className="pl-[20px] font-medium"
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
