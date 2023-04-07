@@ -6,6 +6,7 @@ interface user {
   verified: boolean
   createdAt: string
   avatar: string
+  splashImage: string
 }
 
 type User = user

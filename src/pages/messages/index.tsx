@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 
 const MessageProfile = ({ selectedContact, select, onClick }: any) => {
-  const { verified, name, username, id } = selectedContact
+  const { verified, fullname, username, id } = selectedContact
   return (
     <div
       onClick={onClick}
@@ -14,7 +14,7 @@ const MessageProfile = ({ selectedContact, select, onClick }: any) => {
     >
       <div className="w-[50px] h-[50px] rounded-full bg-main" />
       <div className="flex">
-        <p className="font-bold text-[14px] pr-[5px]">{name} </p>
+        <p className="font-bold text-[14px] pr-[5px]">{fullname} </p>
         {verified && <Icon name="verified" size={20} />}
         <p className="text-[14px] pl-[3px]">@{username}</p>
       </div>
@@ -50,6 +50,7 @@ const friendsList: User[] = [
     verified: true,
     description: '',
     createdAt: '',
+    splashImage: '',
   },
   {
     userId: 2,
@@ -59,6 +60,7 @@ const friendsList: User[] = [
     verified: false,
     description: '',
     createdAt: '',
+    splashImage: '',
   },
 ]
 
@@ -93,13 +95,13 @@ const Messages = () => {
       <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">
         <div className="h-[calc(100%_-_65px)] border-b border-invisible">
           <ChatRoom
-            avatar={chatRoomProps.avatar}
-            description={chatRoomProps.description}
-            userId={chatRoomProps.userId}
-            createdAt={chatRoomProps.createdAt}
-            fullname={chatRoomProps.fullname}
-            username={chatRoomProps.username}
-            verified={chatRoomProps.verified}
+            avatar={chatRoomProps?.avatar}
+            description={chatRoomProps?.description}
+            userId={chatRoomProps?.userId}
+            createdAt={chatRoomProps?.createdAt}
+            fullname={chatRoomProps?.fullname}
+            username={chatRoomProps?.username}
+            verified={chatRoomProps?.verified}
           />
         </div>
         <div className="absolute bottom-0">
