@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import IIcon from '../Icon/interface'
+import IIcon from '../icon/Icon'
 declare namespace INav {
   interface nav {
     icon: IIcon.name

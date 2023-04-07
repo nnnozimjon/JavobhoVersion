@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable no-undef */
 import React from 'react'
-import IIcon from './interface'
+import IIcon from './IIcon'
 import list from './svg-list'
 
 const Icon: React.FC<IIcon.props> = ({

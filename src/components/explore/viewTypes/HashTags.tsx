@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '@/components/icon/Icon'
 import Link from 'next/link'
 
-const HashTag: React.FC<any> = ({ hash, size, category }: string) => {
+const HashTag: React.FC<any> = ({ hash, size, category }: any) => {
   return (
     <div className="px-[10px] py-[5px] flex select-none hover:bg-hover">
       <Link href={hash} className="w-[99%]">

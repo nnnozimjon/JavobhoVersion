@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
@@ -71,7 +72,7 @@ export function UserContextProvider({ children }: Props) {
     if (token) {
       handleSetUser(token)
     }
-  }, [])
+  }, [token])
 
   return (
     <UserContext.Provider value={{ user, setUser: updateUser }}>

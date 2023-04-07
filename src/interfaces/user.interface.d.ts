@@ -1,10 +1,10 @@
 interface user {
-  id: number
-  name: string
+  userId: number
+  fullname: string
   username: string
   description: string
   verified: boolean
-  joined: string
+  createdAt: string
   avatar: string
 }
 

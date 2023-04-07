@@ -5,7 +5,7 @@ import Button from '@/components/Button'
 import Icon from '@/components/icon/Icon'
 import BannerComment from '../components/comment'
 
-export const SwitchView: React.FC<any> = ({ view }: string) => {
+export const SwitchView: React.FC<any> = ({ view }: any): any => {
   const comments = [
     {
       createdAt: '2 weeks ago',

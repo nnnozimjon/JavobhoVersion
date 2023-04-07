@@ -46,7 +46,7 @@ const Nav = () => {
             data_dropdown_toggle={'dropdown'}
             icon={'moreHorizontalScale'}
             label={'More'}
-            onClick={() => setShowMore(true)}
+            onClick={() => setShowMore(!showMore)}
           />
           <div
             id="dropdown"

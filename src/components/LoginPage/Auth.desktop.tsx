@@ -68,6 +68,8 @@ const AuthDesktop = () => {
           >
             Login
           </button>
+
+          <input type="checkbox" onChange={() => setRobot(!robot)} />
         </div>
       </div>
     </>

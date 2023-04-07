@@ -22,14 +22,7 @@ const MessageProfile = ({ selectedContact, select, onClick }: any) => {
   )
 }
 
-const ChatRoom: React.FC<User> = ({
-  verified,
-  name,
-  username,
-  id,
-  description,
-  joined,
-}: User) => {
+const ChatRoom: React.FC<User> = ({ verified, username, fullname }: User) => {
   return (
     <div>
       <Link
@@ -38,7 +31,8 @@ const ChatRoom: React.FC<User> = ({
       >
         <div className="w-[80px] h-[80px] bg-main rounded-full" />
         <h1 className="flex font-bold">
-          {name} {verified && <Icon name="verified" className="ml-[10px]" />}
+          {fullname}{' '}
+          {verified && <Icon name="verified" className="ml-[10px]" />}
         </h1>
         <p className="font-medium text-dGray"> @{username}</p>
       </Link>
@@ -49,22 +43,22 @@ const ChatRoom: React.FC<User> = ({
 
 const friendsList: User[] = [
   {
-    id: 1,
-    name: 'Qosimjon Rahimov',
+    userId: 1,
+    fullname: 'Qosimjon Rahimov',
     username: 'qosimjon',
     avatar: '/static/images/avatars/avatar_1.png',
     verified: true,
     description: '',
-    joined: '',
+    createdAt: '',
   },
   {
-    id: 2,
-    name: 'Shamsulloev Nozimjon',
+    userId: 2,
+    fullname: 'Shamsulloev Nozimjon',
     username: 'nnnozimjon',
     avatar: '/static/images/avatars/avatar_1.png',
     verified: false,
     description: '',
-    joined: '',
+    createdAt: '',
   },
 ]
 
@@ -73,12 +67,12 @@ const Messages = () => {
   const [text, setText] = React.useState<string>('')
 
   useEffect(() => {
-    setSelectedFriend(friendsList.length > 0 ? friendsList[0]?.id : 0)
+    setSelectedFriend(friendsList.length > 0 ? friendsList[0]?.userId : 0)
   }, [])
 
-  const chatRoomProps = friendsList
-    .filter((friend: User) => friend.id == selectedFriend)
-    .find((friend: User) => friend.id == selectedFriend)
+  const chatRoomProps: any = friendsList
+    .filter((friend: User) => friend.userId == selectedFriend)
+    .find((friend: User) => friend.userId == selectedFriend)
 
   return (
     <div className="h-full flex overflow-hidden">
@@ -99,13 +93,13 @@ const Messages = () => {
       <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">
         <div className="h-[calc(100%_-_65px)] border-b border-invisible">
           <ChatRoom
-            avatar={chatRoomProps?.avatar}
-            description={chatRoomProps?.description}
-            id={chatRoomProps?.id}
-            joined={chatRoomProps?.joined}
-            name={chatRoomProps?.name}
-            username={chatRoomProps?.username}
-            verified={chatRoomProps?.verified}
+            avatar={chatRoomProps.avatar}
+            description={chatRoomProps.description}
+            userId={chatRoomProps.userId}
+            createdAt={chatRoomProps.createdAt}
+            fullname={chatRoomProps.fullname}
+            username={chatRoomProps.username}
+            verified={chatRoomProps.verified}
           />
         </div>
         <div className="absolute bottom-0">
