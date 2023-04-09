@@ -1,4 +1,4 @@
-import Icon from '@/components/icon/Icon'
+import Icon from '@/components/Icon'
 import User from '@/interfaces/user.interface'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
@@ -96,6 +96,7 @@ const Messages = () => {
         <div className="h-[calc(100%_-_65px)] border-b border-invisible">
           <ChatRoom
             avatar={chatRoomProps?.avatar}
+            splashImage={chatRoomProps?.splashImage}
             description={chatRoomProps?.description}
             userId={chatRoomProps?.userId}
             createdAt={chatRoomProps?.createdAt}

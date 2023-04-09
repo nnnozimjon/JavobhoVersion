@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { parseCookies } from 'nookies'
 // import apiPaths from '@/constants/apiRoutes'
 
 import jwtDecode, { JwtPayload } from 'jwt-decode'
 import { getUnixTime } from 'date-fns'
 // const authRoutes = Object.values(appRoutes.auth)
 
-export async function middleware(req: NextRequest) {
-  const { cookies, nextUrl } = req
-  const token = cookies.get('access_token') || ''
+export async function middleware(req: NextRequest, context: any) {
+  const { nextUrl } = req
+  const cookies = parseCookies(context)
+  const token = cookies.access_token
   const newUrl = nextUrl.clone()
-  console.log('here')
 
   const checkToken = (token: string) => {
     try {

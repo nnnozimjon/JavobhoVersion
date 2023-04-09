@@ -4,7 +4,7 @@ import Nav from '../Nav/Nav'
 import { ILayout } from './layout'
 import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
-import Icon from '../icon/Icon'
+import Icon from '../Icon'
 import TrendsToFollow from '../trends'
 
 const SearchComponent = () => {

@@ -12,7 +12,7 @@ import {
   LikesView,
   BioView,
 } from '@/components/page/profile'
-import Icon from '@/components/icon/Icon'
+import Icon from '@/components/Icon'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiProfile } from '@/api/profile'
 import { NextPage } from 'next'

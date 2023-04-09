@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from 'react'
-import Icon from '../icon/Icon'
+import Icon from '../Icon'
 
 interface Props {
   isFollowing?: boolean

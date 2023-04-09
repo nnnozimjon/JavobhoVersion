@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '@/components/icon/Icon'
+import Icon from '@/components/Icon'
 import Link from 'next/link'
 
 const HashTag: React.FC<any> = ({ hash, size, category }: any) => {

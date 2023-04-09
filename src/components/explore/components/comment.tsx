@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Icon from '@/components/icon/Icon'
+import Icon from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import user from '@/assets/img/user.png'
