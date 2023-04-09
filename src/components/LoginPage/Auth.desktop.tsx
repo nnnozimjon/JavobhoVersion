@@ -4,8 +4,8 @@ import sky from '@/assets/img/back.jpg'
 import logo from '@/assets/img/svg-logo.png'
 import Input from '../Input/Input'
 import { useUser } from '@/store/contexts/UserContect'
-import { auth } from '@/api/auth'
-import Cookies from 'js-cookie'
+import { ApiAuth } from '@/api/auth'
+import { cookies } from '@/utils/Cookies'
 import jwtDecode from 'jwt-decode'
 import { useRouter } from 'next/router'
 
@@ -22,13 +22,13 @@ const AuthDesktop = () => {
   const [robot, setRobot] = React.useState<boolean>(true)
 
   const handleLogin = async () => {
-    await auth
-      .login({ username, password, robot })
-      .then((res: UserPayloadRespone) => {
+    await ApiAuth.login({ username, password, robot }).then(
+      (res: UserPayloadRespone) => {
         setUser(jwtDecode(res.token))
-        Cookies.set('access_token', res.token)
-        router.replace(router.asPath)
-      })
+        cookies.set('access_token', res.token)
+      }
+    )
+    router.replace('/')
   }
 
   return (

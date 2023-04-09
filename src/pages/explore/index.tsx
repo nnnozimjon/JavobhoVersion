@@ -1,28 +1,49 @@
+/* eslint-disable no-extra-semi */
+import { ApiExplore } from '@/api/explore'
 import { BannerView } from '@/components/explore'
 import HashTag from '@/components/explore/viewTypes/HashTags'
-import React from 'react'
+import IExplore from '@/interfaces/tags.interface'
+import { Loading } from '@/components/loading'
+import { parseCookies } from 'nookies'
 
-const Explore = () => {
-  const tags = [
-    { id: 1, hash: '#coding', category: 'IT Technologies', size: [{}, {}] },
-    { id: 2, hash: '#finance', category: 'Business', size: [] },
-    { id: 3, hash: '#education', category: 'Education', size: [{}] },
-    { id: 4, hash: '#health', category: 'Health', size: [{}] },
-    { id: 5, hash: '#business', category: 'Business', size: [{}, {}, {}] },
-  ]
+const Explore = ({ hashTags, loading }: any) => {
   return (
     <div>
       <BannerView />
-      {tags.map((hash: any, i: number) => (
-        <HashTag
-          key={i}
-          size={hash.size.length}
-          hash={hash.hash}
-          category={hash.category}
-        />
-      ))}
+      {loading ? (
+        <Loading />
+      ) : (
+        hashTags[0]?.map((hash: IExplore.tags, i: number) => (
+          <HashTag
+            key={i}
+            size={hash.postCount}
+            hash={hash.name}
+            category={hash.category}
+          />
+        ))
+      )}
     </div>
   )
+}
+
+export const getServerSideProps = async (context: any) => {
+  const cookies = parseCookies(context)
+  const token = cookies.access_token
+
+  const hashTags: any = await Promise.all([
+    ApiExplore.getAllTags(token).then(res => {
+      return res.payload
+    }),
+  ])
+
+  const loading = !hashTags
+
+  return {
+    props: {
+      hashTags,
+      loading,
+    },
+  }
 }
 
 export default Explore

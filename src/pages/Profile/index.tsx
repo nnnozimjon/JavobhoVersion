@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import jwtDecode from 'jwt-decode'
+import { parseCookies } from 'nookies'
 
 import {
   PostsView,
@@ -11,6 +14,8 @@ import {
 } from '@/components/page/profile'
 import Icon from '@/components/icon/Icon'
 import { useUser } from '@/store/contexts/UserContect'
+import { ApiProfile } from '@/api/profile'
+import { NextPage } from 'next'
 
 export const ProfileView: React.FC<any> = ({ view }: any) => {
   switch (view) {
@@ -38,7 +43,7 @@ export const ProfileView: React.FC<any> = ({ view }: any) => {
   }
 }
 
-const DynamicPage = () => {
+const ProfilePage: NextPage<any> = ({ following }) => {
   const [view, setView] = React.useState<string>('posts')
   const { user } = useUser()
 
@@ -78,8 +83,13 @@ const DynamicPage = () => {
           </div>
           <div>
             <p>
-              <b className="pl-[5px] pr-[10px]">62</b>Following{' '}
-              <b className="pl-[5px] pr-[10px]">13</b>
+              <b className="pl-[5px] pr-[10px]">
+                {following[0].following.length}
+              </b>
+              Following{' '}
+              <b className="pl-[5px] pr-[10px]">
+                {following[0].followers.length}
+              </b>
               Followers
             </p>
           </div>
@@ -143,4 +153,22 @@ const DynamicPage = () => {
   )
 }
 
-export default DynamicPage
+export const getServerSideProps = async (context: any) => {
+  const cookies = parseCookies(context)
+  const token = cookies.access_token
+
+  const { userId }: any = await jwtDecode(token)
+  const following: any = await Promise.all([
+    ApiProfile.getFollwingAndFollowers(token, userId).then(res => {
+      return res.payload
+    }),
+  ])
+
+  return {
+    props: {
+      following,
+    },
+  }
+}
+
+export default ProfilePage

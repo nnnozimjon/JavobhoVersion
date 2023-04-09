@@ -17,7 +17,7 @@ const checkToken = (params: any) => {
   return Axios.get(apiPaths.auth.checkToken, params)
 }
 
-export const auth = {
+export const ApiAuth = {
   login,
   registration,
   verifyEmail,

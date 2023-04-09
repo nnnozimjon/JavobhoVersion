@@ -5,6 +5,12 @@ const apiPaths = {
     verifyEmail: '',
     checkToken: '',
   },
+  explore: {
+    tags: '/api/user/explore/tags',
+  },
+  profile: {
+    getAllFollowersAndFollowing: '/api/user/profile/follow/',
+  },
 }
 
 export default apiPaths

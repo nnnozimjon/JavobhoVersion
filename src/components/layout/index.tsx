@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Nav from '../Nav/Nav'
 import { ILayout } from './layout'
 import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
 import Icon from '../icon/Icon'
+import TrendsToFollow from '../trends'
 
 const SearchComponent = () => {
   const [search, setSearch] = React.useState<string>('')
@@ -38,6 +40,30 @@ const WhoToFollow = () => {
       </div>
       <div className="bg-silver rounded-lg h-[400px]">
         <p className="font-bold text-[25px] p-[15px]">Who To Follow</p>
+        <TrendsToFollow
+          verified={true}
+          avatar={
+            'http://localhost:8000/api/user/profile/img/avatar/default.png'
+          }
+          fullname={'Shamsulloev Nozimjon'}
+          username={'nnnozimjon'}
+        />
+        <TrendsToFollow
+          verified={false}
+          avatar={
+            'http://localhost:8000/api/user/profile/img/avatar/default.png'
+          }
+          fullname={'Bilol Sharipov'}
+          username={'bilol'}
+        />
+        <TrendsToFollow
+          verified={false}
+          avatar={
+            'http://localhost:8000/api/user/profile/img/avatar/default.png'
+          }
+          fullname={'Sh.I'}
+          username={'ibragimjanee'}
+        />
       </div>
     </div>
   )

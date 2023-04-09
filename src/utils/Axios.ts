@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import { AxiosRequestConfig } from 'axios'
-import { cookies } from '@/utils/Cookies'
+import Cookies from 'js-cookie'
 import { baseUrl } from './baseUrl'
 
 const instance = axios.create({
@@ -8,13 +8,14 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config: AxiosRequestConfig): any => {
-  const token: string = cookies.get('token')
+  const token = Cookies.get('access_token')
+
   const newConfig: AxiosRequestConfig = {
     ...config,
     headers: {
       ...config.headers,
       ...(!config?.headers?.Authorization && {
-        Authorization: `${token}`,
+        Authorization: token,
       }),
       'Access-Control-Allow-Origin': '*',
     },
@@ -27,7 +28,13 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     return response
   },
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => {
+    if (error.response && error.response.status === 401) {
+      Cookies.remove('access_token')
+      window.location.href = '/login'
+    }
+    return Promise.reject(error)
+  }
 )
 
 const responseBody = (response: AxiosResponse): any => {
@@ -50,7 +57,7 @@ const del = (url: string) => instance.delete(url).then(responseBody)
 export const headerWithToken = (token: string) => {
   return {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     },
   }
 }

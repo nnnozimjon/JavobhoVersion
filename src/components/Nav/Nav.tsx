@@ -16,7 +16,7 @@ const Nav = () => {
 
   const handleLogout = async () => {
     Cookies.remove('access_token')
-    window.location.reload()
+    window.location.replace('/login')
   }
 
   return (
@@ -93,14 +93,12 @@ const Nav = () => {
         </div>
       </div>
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
-        <div className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer">
+        <div
+          onClick={() => handleLogout()}
+          className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"
+        >
           <Icon name="logout" />
-          <button
-            className="pl-[20px] font-medium"
-            onClick={() => handleLogout()}
-          >
-            Logout
-          </button>
+          <button className="pl-[20px] font-medium">Logout</button>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import User from '@/interfaces/user.interface'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
+
 const defaultState = {
   userId: 0,
   username: '',
@@ -24,5 +25,6 @@ export const useUser = () => {
     const token = Cookies.get('access_token') || ''
     handleSetUser(token)
   }, [])
+
   return { user }
 }
