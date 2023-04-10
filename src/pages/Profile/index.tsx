@@ -17,10 +17,10 @@ import { useUser } from '@/store/contexts/UserContect'
 import { ApiProfile } from '@/api/profile'
 import { NextPage } from 'next'
 
-export const ProfileView: React.FC<any> = ({ view }: any) => {
+export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
   switch (view) {
     case 'posts':
-      return <PostsView />
+      return <PostsView posts={AllUserPosts} />
     case 'questions':
       return <QuestionsView />
     case 'replies':
@@ -43,7 +43,7 @@ export const ProfileView: React.FC<any> = ({ view }: any) => {
   }
 }
 
-const ProfilePage: NextPage<any> = ({ following }) => {
+const ProfilePage: NextPage<any> = ({ following, AllUserPosts }) => {
   const [view, setView] = React.useState<string>('posts')
   const { user } = useUser()
 
@@ -146,7 +146,7 @@ const ProfilePage: NextPage<any> = ({ following }) => {
           </button>
         </div>
         <div className="p-[10px] flex flex-col items-center">
-          <ProfileView view={view} />
+          <ProfileView view={view} AllUserPosts={AllUserPosts} />
         </div>
       </div>
     </div>
@@ -164,9 +164,16 @@ export const getServerSideProps = async (context: any) => {
     }),
   ])
 
+  const AllUserPosts: any = await Promise.all([
+    ApiProfile.getAllUserPosts(userId).then(res => {
+      return res.payload
+    }),
+  ])
+
   return {
     props: {
       following,
+      AllUserPosts,
     },
   }
 }

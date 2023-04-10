@@ -41,6 +41,7 @@ const WhoToFollow = () => {
       <div className="bg-silver rounded-lg h-[400px]">
         <p className="font-bold text-[25px] p-[15px]">Who To Follow</p>
         <TrendsToFollow
+          id={4}
           verified={true}
           avatar={
             'http://localhost:8000/api/user/profile/img/avatar/default.png'
@@ -49,6 +50,7 @@ const WhoToFollow = () => {
           username={'nnnozimjon'}
         />
         <TrendsToFollow
+          id={5}
           verified={false}
           avatar={
             'http://localhost:8000/api/user/profile/img/avatar/default.png'
@@ -57,6 +59,7 @@ const WhoToFollow = () => {
           username={'bilol'}
         />
         <TrendsToFollow
+          id={6}
           verified={false}
           avatar={
             'http://localhost:8000/api/user/profile/img/avatar/default.png'

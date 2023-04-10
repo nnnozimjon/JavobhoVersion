@@ -8,6 +8,11 @@ const getFollwingAndFollowers = async (token: string, userId: number) => {
   )
 }
 
+const getAllUserPosts = async (userId: number) => {
+  return Axios.get(apiPaths.profile.getAllUserPosts + userId)
+}
+
 export const ApiProfile = {
   getFollwingAndFollowers,
+  getAllUserPosts,
 }
