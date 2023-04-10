@@ -15,7 +15,7 @@ instance.interceptors.request.use((config: AxiosRequestConfig): any => {
     headers: {
       ...config.headers,
       ...(!config?.headers?.Authorization && {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       }),
       'Access-Control-Allow-Origin': '*',
     },
@@ -57,7 +57,7 @@ const del = (url: string) => instance.delete(url).then(responseBody)
 export const headerWithToken = (token: string) => {
   return {
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     },
   }
 }
