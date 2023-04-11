@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Icon from '@/components/Icon'
 import Read from '@/components/Read'
 import { PostProps } from '@/components/page/profile/posts'
 import { useUser } from '@/store/contexts/UserContect'
+import BannerComment from '@/components/explore/components/comment'
 
 const Post: React.FC<PostProps> = ({
   postId,
@@ -105,6 +107,22 @@ const Post: React.FC<PostProps> = ({
           <Icon name="publish" className="cursor-pointer" size={30} />
         </div>
       </div>
+      {comments.map((comment, i: number) => (
+        <BannerComment
+          key={i}
+          data={{
+            createdAt: comment.createdAt,
+            liked: comment.commentLikeByUser,
+            likes: comment.commentLikeCount,
+            name: comment.commenterUsername,
+            text: comment.text,
+            fullname: comment.commenterFullname,
+            username: comment.commenterUsername,
+            verified: comment.commenterVerified,
+            avatar: comment.commenterAvatar,
+          }}
+        />
+      ))}
     </div>
   )
 }

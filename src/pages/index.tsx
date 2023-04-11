@@ -13,8 +13,8 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-full h-full flex justify-center items-center p-[20px] flex-col">
-          <Post />
-          <Post />
+          {/* <Post />
+          <Post /> */}
         </div>
       </main>
     </>

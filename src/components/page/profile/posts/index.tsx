@@ -18,12 +18,18 @@ export interface PostProps {
   likedByUsers: LikedUser[]
 }
 
-interface Comment {
+export interface Comment {
   commentId: number
   userId: number
   text: string
   createdAt: string
-  postId: number
+
+  commenterUsername: string
+  commenterVerified: boolean
+  commenterFullname: string
+  commenterAvatar: string
+  commentLikeCount: number
+  commentLikeByUser: boolean
 }
 
 interface LikedUser {
@@ -34,7 +40,6 @@ interface LikedUser {
 }
 
 const PostsView: React.FC<any> = ({ posts }: any) => {
-  console.log(posts[0])
   return (
     <div className="w-full">
       {posts[0]?.map((post: PostProps, i: number) => (
