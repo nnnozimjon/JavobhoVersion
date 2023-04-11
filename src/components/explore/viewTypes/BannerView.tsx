@@ -13,6 +13,10 @@ export const SwitchView: React.FC<any> = ({ view }: any): any => {
       text: 'Hey, what are you doing?',
       username: 'qosimjon',
       verified: false,
+      avatar: '',
+      fullname: '',
+      liked: true,
+      likes: 25,
     },
   ]
   switch (view) {
@@ -23,7 +27,6 @@ export const SwitchView: React.FC<any> = ({ view }: any): any => {
     case 'comments':
       return comments.map((comment, i) => (
         <BannerComment
-          image=""
           key={i}
           data={{
             createdAt: comment.createdAt,
@@ -33,6 +36,8 @@ export const SwitchView: React.FC<any> = ({ view }: any): any => {
             verified: comment.verified,
             liked: true,
             likes: 1,
+            avatar: comment.avatar,
+            fullname: comment.fullname,
           }}
         />
       ))

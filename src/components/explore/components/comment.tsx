@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Icon from '@/components/Icon'
@@ -5,9 +6,6 @@ import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
 
-interface props {
-  data: data
-}
 interface data {
   createdAt: string
   username: string
@@ -20,17 +18,16 @@ interface data {
   avatar: string
 }
 
-const BannerComment = ({ data }: props) => {
-  const {
-    createdAt,
-    username,
-    fullname,
-    text,
-    verified,
-    liked,
-    likes,
-    avatar,
-  } = data
+const BannerComment = ({
+  createdAt,
+  username,
+  fullname,
+  text,
+  verified,
+  liked,
+  likes,
+  avatar,
+}: any) => {
   const distanceString = formatDistanceToNowStrict(new Date(createdAt), {
     addSuffix: true,
   })
