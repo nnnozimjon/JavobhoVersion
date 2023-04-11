@@ -25,6 +25,7 @@ const Post: React.FC<PostProps> = ({
 }) => {
   const [following, setFollow] = React.useState(false)
   const [liked, setLiked] = React.useState(false)
+  const [showComments, setShowComments] = React.useState<boolean>(false)
 
   const { user } = useUser()
 
@@ -34,7 +35,7 @@ const Post: React.FC<PostProps> = ({
 
   return (
     <div className="h-fit m-[20px] border border-invisible">
-      <div className="rounded-t-[20px] p-[10px_20px] bg-white flex items-center border-b border-invisible">
+      <div className="rounded-t-[20px] p-[5px_15px] bg-white flex items-center border-b border-invisible">
         <img
           src={avatar}
           className="bg-black text-white rounded-full w-[40px] h-[40px] flex justify-center items-center object-cover"
@@ -49,18 +50,20 @@ const Post: React.FC<PostProps> = ({
                 </p>
                 {verified && <Icon name="verified" size={20} />}
               </div>
-              {/* {following ? (
-                <button className="font-semibold text-[14px] text-darkblue">
-                  Following
-                </button>
-              ) : (
-                <button className="font-semibold text-[14px] text-darkblue">
-                  Follow
-                </button>
-              )} */}
+              {following
+                ? user.userId != userId && (
+                    <button className="font-semibold text-[14px] text-darkblue">
+                      Following
+                    </button>
+                  )
+                : user.userId != userId && (
+                    <button className="font-semibold text-[14px] text-darkblue">
+                      Follow
+                    </button>
+                  )}
             </div>
             <div className="font-semibold text-[14px] text-invisible">
-              {fullname ? fullname : createdAt}
+              {fullname && fullname}
             </div>
           </div>
           <Icon name="moreHorizontal" className="cursor-pointer" />
@@ -69,12 +72,16 @@ const Post: React.FC<PostProps> = ({
       <div className="d-flex flex-col">
         {text && (
           <Read
-            className="px-[15px] pt-[20px] font-semibold text-[14px]"
+            className="px-[15px] pt-[4px] pb-[4px] font-medium text-[14px]"
             text={text}
           />
         )}
         {image && (
-          <div className="h-[460px] bg-white">
+          <div
+            className={`w-full h-[460px] bg-white flex justify-center border-b ${
+              text && 'border-t'
+            } border-invisible`}
+          >
             <img
               src={image}
               alt="post"
@@ -83,20 +90,26 @@ const Post: React.FC<PostProps> = ({
           </div>
         )}
       </div>
-      <div className="flex justify-between items-center p-[15px]">
-        <div className="flex justify-center items-center pl-[10px] text-darkblue">
+      <div className="flex justify-between items-center p-[5px_15px]">
+        <div className="flex justify-center items-center pl-[10px] text-darkblue ">
+          <p className="">{likedByUsers.length}</p>
           <Icon
             name={likedByUser ? 'liked' : 'like'}
             className="cursor-pointer"
-            size={20}
+            size={18}
           />
-          <p className="px-[10px] text-black">like</p>
-          <Icon name="repost" className="cursor-pointer text-dGray" size={20} />
-          <p className="px-[10px] text-black">repost</p>
-          <Icon name="share" className="cursor-pointer text-dGray" size={20} />
+          <p className="px-[10px] text-black">Like</p>
+          <Icon name="repost" className="cursor-pointer text-dGray" size={18} />
+          <p className="px-[10px] text-black">Repost</p>
+          <Icon name="share" className="cursor-pointer text-dGray" size={18} />
           <p className="px-[10px] text-black">send</p>
         </div>
-        <p className="text-gray">{comments?.length} comments</p>
+        <button
+          className="text-gray"
+          onClick={() => setShowComments(!showComments)}
+        >
+          {comments?.length} comments
+        </button>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
         <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-main rounded-[8px] items-center">
@@ -107,22 +120,23 @@ const Post: React.FC<PostProps> = ({
           <Icon name="publish" className="cursor-pointer" size={30} />
         </div>
       </div>
-      {comments.map((comment, i: number) => (
-        <BannerComment
-          key={i}
-          data={{
-            createdAt: comment.createdAt,
-            liked: comment.commentLikeByUser,
-            likes: comment.commentLikeCount,
-            name: comment.commenterUsername,
-            text: comment.text,
-            fullname: comment.commenterFullname,
-            username: comment.commenterUsername,
-            verified: comment.commenterVerified,
-            avatar: comment.commenterAvatar,
-          }}
-        />
-      ))}
+      {showComments &&
+        comments.map((comment, i: number) => (
+          <BannerComment
+            key={i}
+            data={{
+              createdAt: comment.createdAt,
+              liked: comment.commentLikeByUser,
+              likes: comment.commentLikeCount,
+              name: comment.commenterUsername,
+              text: comment.text,
+              fullname: comment.commenterFullname,
+              username: comment.commenterUsername,
+              verified: comment.commenterVerified,
+              avatar: comment.commenterAvatar,
+            }}
+          />
+        ))}
     </div>
   )
 }

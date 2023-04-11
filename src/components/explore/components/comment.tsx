@@ -40,28 +40,28 @@ const BannerComment = ({ data }: props) => {
         <img
           src={avatar}
           alt="comment image"
-          className="w-[45px] h-[45px] rounded-full object-cover"
+          className="w-[40px] h-[40px] rounded-full object-cover"
         />
         <div className="flex gap-[5px] flex-col">
           <div className="flex flex-col">
             <div className="flex">
-              <p className="font-semibold text-[15px] select-none pr-[5px]">
+              <p className="font-semibold text-[13px] select-none pr-[3px]">
                 {fullname}
               </p>
               {verified ? <Icon name="verified" size={20} /> : ''}
               <Link
                 href={`/${username}`}
-                className="font-medium text-[14px] cursor-pointer hover:underline pl-[5px]"
+                className="font-medium text-[13px] cursor-pointer hover:underline pl-[5px]"
               >
                 @{username}
               </Link>
             </div>
-            <p className="font-medium text-[12px] text-indigo">
+            <p className="font-semibold text-[10px] text-indigo">
               {distanceString}
             </p>
           </div>
-          <div className="font-semibold text-[16px]">
-            <Read text={text} className="text-[14px] font-medium " />
+          <div className="font-semibold">
+            <Read text={text} className="text-[13px] font-medium " />
           </div>
         </div>
       </div>

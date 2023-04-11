@@ -1,20 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { parseCookies } from 'nookies'
-// import apiPaths from '@/constants/apiRoutes'
 
-import jwtDecode, { JwtPayload } from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 import { getUnixTime } from 'date-fns'
-// const authRoutes = Object.values(appRoutes.auth)
 
-export async function middleware(req: NextRequest, context: any) {
-  const { nextUrl } = req
-  const cookies = parseCookies(context)
-  const token = cookies.access_token
+export async function middleware(req: NextRequest) {
+  const { nextUrl, cookies } = req
   const newUrl = nextUrl.clone()
+  const token = cookies.get('access_token')?.value || ''
 
   const checkToken = (token: string) => {
     try {
-      const { exp } = jwtDecode(token) as JwtPayload
+      const decode: any = jwtDecode(token || '')
+      const exp = decode?.exp
       return getUnixTime(new Date()) < exp!
     } catch (error) {
       return false
@@ -22,7 +19,18 @@ export async function middleware(req: NextRequest, context: any) {
   }
 
   const tokenValid = checkToken(token)
-  if (!tokenValid && ['/explore'].includes(nextUrl.pathname)) {
+  if (
+    !tokenValid &&
+    [
+      '/',
+      '/explore',
+      '/notifications',
+      '/messages',
+      '/bookmarks',
+      '/lists',
+      '/profile',
+    ].includes(nextUrl.pathname)
+  ) {
     newUrl.pathname = '/login'
     return NextResponse.redirect(newUrl)
   } else if (tokenValid && ['/login'].includes(nextUrl.pathname)) {
@@ -33,5 +41,13 @@ export async function middleware(req: NextRequest, context: any) {
 }
 
 export const config = {
+  api: {
+    bodyParser: false,
+  },
+  middleware: async (req: NextRequest) => {
+    await middleware(req)
+  },
+  // Add any additional routes to be handled by the middleware matcher
+  // Example: matcher: ['/login', '/explore', '/profile']
   matcher: [],
 }

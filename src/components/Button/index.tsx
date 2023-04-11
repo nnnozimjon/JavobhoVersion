@@ -9,12 +9,13 @@ const Button: React.FC<IButton.props> = ({
   name,
   bg,
   count,
+  className,
 }: IButton.props) => {
   return (
     <button
       onClick={onClick}
       className={`px-[15px] py-[10px]  rounded-lg bg-${bg} text-${color} hover:bg-[rgba(0,0,0,0.4)] hover:text-white   transition duration-500
-       font-medium text-[14px] flex items-center gap-[10px]`}
+       font-medium text-[14px] flex items-center gap-[10px] ${className}`}
     >
       {name && <Icon name={name} size={20} />}
       {text}

@@ -7,6 +7,7 @@ declare namespace IButton {
     name?: IIcon.name
     color?: 'white' | 'black' | 'darkestRuby' | 'darkestIndigo' | 'darkestCoral'
     count?: number
+    className?: string
   }
 
   type props = props
