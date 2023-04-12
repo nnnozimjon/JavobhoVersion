@@ -1,15 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRef, useState } from 'react'
 import { useUser } from '@/store/contexts/UserContect'
 import Icon from '../Icon'
 import html2canvas from 'html2canvas'
+import { ApiProfile } from '@/api/profile'
 
 const PostModal = () => {
   const { user } = useUser()
   const [text, setText] = useState<string>('')
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [bufferImage, setBufferImage] = React.useState<ArrayBuffer>()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const ImageRef = useRef<HTMLInputElement>(null)
 
@@ -24,6 +26,18 @@ const PostModal = () => {
       })
     }
   }
+
+  useEffect(() => {
+    if (selectedFile) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setBufferImage(reader.result as ArrayBuffer)
+      }
+      reader.readAsDataURL(selectedFile as Blob)
+    } else {
+      setSelectedFile(null)
+    }
+  }, [selectedFile])
 
   const handleTextChange = (event: any) => {
     setText(event.target.value)
@@ -58,6 +72,14 @@ const PostModal = () => {
       textAreaRef.current.style.height = 'auto'
       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
     }
+  }
+
+  const UploadPost = async () => {
+    await ApiProfile.UploadPost(user.userId, text, bufferImage, 'post').then(
+      res => {
+        console.log(bufferImage)
+      }
+    )
   }
   return (
     <div>
@@ -125,6 +147,7 @@ const PostModal = () => {
         </div>
       </form>
       <button
+        onClick={selectedFile || text ? UploadPost : () => {}}
         className={`mt-[10px] rounded-full w-full p-[5px]  text-white ${
           selectedFile || text ? 'bg-main' : 'bg-invisible'
         }`}

@@ -11,6 +11,7 @@ const apiPaths = {
   profile: {
     getAllFollowersAndFollowing: '/api/user/profile/follow/',
     getAllUserPosts: '/check/',
+    UploadPost: '/api/user/upload/post',
   },
 }
 
