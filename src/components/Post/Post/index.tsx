@@ -34,7 +34,7 @@ const Post: React.FC<PostProps> = ({
   }, [])
 
   return (
-    <div className="h-fit m-[20px] border border-invisible">
+    <div className="h-fit mt-[10px] border border-invisible w-full">
       <div className="rounded-t-[20px] p-[5px_15px] bg-white flex items-center border-b border-invisible">
         <img
           src={avatar}
@@ -92,17 +92,16 @@ const Post: React.FC<PostProps> = ({
       </div>
       <div className="flex justify-between items-center p-[5px_15px]">
         <div className="flex justify-center items-center pl-[10px] text-darkblue ">
-          <p className="">{likedByUsers.length}</p>
           <Icon
             name={likedByUser ? 'liked' : 'like'}
             className="cursor-pointer"
             size={18}
           />
-          <p className="px-[10px] text-black">Like</p>
+          <p className="px-[10px] text-black">{likedByUsers?.length}</p>
           <Icon name="repost" className="cursor-pointer text-dGray" size={18} />
-          <p className="px-[10px] text-black">Repost</p>
+          <p className="px-[10px] text-black">0</p>
           <Icon name="share" className="cursor-pointer text-dGray" size={18} />
-          <p className="px-[10px] text-black">send</p>
+          <p className="px-[10px] text-black">Share</p>
         </div>
         <button
           className="text-gray"
@@ -112,10 +111,10 @@ const Post: React.FC<PostProps> = ({
         </button>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
-        <div className="text-white flex justify-between w-[410px] p-[10px] h-[34px] bg-main rounded-[8px] items-center">
+        <div className="flex justify-between w-[410px] p-[10px] h-[34px] border border-invisible text-lighterIndigo rounded-[8px] items-center">
           <input
             placeholder="write a comment"
-            className="bg-transparent w-full outline-none placeholder:text-white"
+            className="bg-transparent w-full outline-none placeholder:text-lighterIndigo"
           ></input>
           <Icon name="publish" className="cursor-pointer" size={30} />
         </div>
@@ -124,17 +123,15 @@ const Post: React.FC<PostProps> = ({
         comments.map((comment, i: number) => (
           <BannerComment
             key={i}
-            data={{
-              createdAt: comment.createdAt,
-              liked: comment.commentLikeByUser,
-              likes: comment.commentLikeCount,
-              name: comment.commenterUsername,
-              text: comment.text,
-              fullname: comment.commenterFullname,
-              username: comment.commenterUsername,
-              verified: comment.commenterVerified,
-              avatar: comment.commenterAvatar,
-            }}
+            createdAt={comment.createdAt}
+            liked={comment.commentLikeByUser}
+            likes={comment.commentLikeCount}
+            name={comment.commenterUsername}
+            text={comment.text}
+            fullname={comment.commenterFullname}
+            username={comment.commenterUsername}
+            verified={comment.commenterVerified}
+            avatar={comment.commenterAvatar}
           />
         ))}
     </div>

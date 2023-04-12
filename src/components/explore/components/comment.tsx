@@ -27,7 +27,7 @@ const BannerComment = ({
   liked,
   likes,
   avatar,
-}: any) => {
+}: data) => {
   const distanceString =
     createdAt &&
     formatDistanceToNowStrict(new Date(createdAt), {

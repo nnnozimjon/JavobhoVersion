@@ -166,7 +166,10 @@ export const getServerSideProps = async (context: any) => {
 
   const AllUserPosts: any = await Promise.all([
     ApiProfile.getAllUserPosts(userId).then(res => {
-      return res.payload
+      if (res.message === 'success') {
+        return res.payload
+      }
+      return []
     }),
   ])
 

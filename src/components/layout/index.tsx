@@ -127,7 +127,7 @@ const DesktopLayout = ({ children }: ILayout) => {
   const { pathname } = useRouter()
 
   return (
-    <div className="w-screen h-screen flex justify-between invisible lg:visible xl:visible">
+    <div className="w-screen h-screen flex justify-between">
       <div className="w-[300px] min-w-[300px]">
         <Nav />
       </div>

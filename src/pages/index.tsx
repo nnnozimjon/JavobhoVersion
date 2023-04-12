@@ -1,10 +1,33 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Head from 'next/head'
 import { useUser } from '@/store/contexts/UserContect'
+import Icon from '@/components/Icon'
+import Modal from '@/components/useModal/Modal'
+import PostModal from '@/components/Modals/PostModal'
 
 export default function Home() {
   const { user } = useUser()
+
+  const [askQuestionModalOpen, setAskQuestionModalOpen] =
+    React.useState<boolean>(false)
+  const [postContentModalOpen, setPostContentModalOpen] =
+    React.useState<boolean>(false)
+
+  const openAskQuestionModal = () => {
+    setAskQuestionModalOpen(true)
+  }
+  const closeAskQuestionModal = () => {
+    setAskQuestionModalOpen(false)
+  }
+  const openPostContentModal = () => {
+    setPostContentModalOpen(true)
+  }
+  const closePostContentModal = () => {
+    setPostContentModalOpen(false)
+  }
+
   return (
     <>
       <Head>
@@ -15,17 +38,51 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-full h-full flex justify-center items-center px-[20px] flex-col">
-          <div className="border p-[10px_15px] flex gap-[10px]">
-            <img
-              src={user.avatar}
-              alt="profile"
-              className="w-[35px] h-[35px] rounded"
-            />
-            <input placeholder="What do you want to ask or share?" />
-            <p>Ask</p>
-            <p>Answer</p>
-            <p>Post</p>
+          <div className="border border-invisible border-t-0 p-[10px_15px] flex flex-col gap-[15px]">
+            <div className="flex gap-[10px]">
+              <img
+                src={user.avatar}
+                alt="profile"
+                className="w-[40px] h-[40px] rounded-full object-cover"
+              />
+              <input
+                placeholder="What do you want to ask or share?"
+                className="border outline-none p-[5px] rounded-lg border-invisible w-[350px]"
+              />
+            </div>
+            <div className="flex justify-between">
+              <button
+                onClick={openAskQuestionModal}
+                className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
+              >
+                <Icon name="ask" />
+                Ask
+              </button>
+              <button className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500">
+                <Icon name="answer" />
+                Answer
+              </button>
+              <button
+                onClick={openPostContentModal}
+                className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
+              >
+                <Icon name="post" />
+                Post
+              </button>
+            </div>
           </div>
+          <Modal
+            isOpen={askQuestionModalOpen}
+            closeModal={closeAskQuestionModal}
+            children={<h1 />}
+            title="Ask Question"
+          />
+          <Modal
+            isOpen={postContentModalOpen}
+            closeModal={closePostContentModal}
+            children={<PostModal />}
+            title="Post Content"
+          />
         </div>
       </main>
     </>
