@@ -20,7 +20,7 @@ const Input = ({
       <input
         autoComplete={type === 'password' ? 'current-password' : ''}
         ref={InputRef}
-        className={`border-[0.1px] border-border rounded pl-[20px] p-[10px] w-full ${className} outline-none 
+        className={`${className} border-[0.1px] border-border rounded pl-[20px] p-[10px] w-full  outline-none 
         `}
         placeholder={placeholder}
         onChange={onChange}

@@ -28,9 +28,11 @@ const BannerComment = ({
   likes,
   avatar,
 }: any) => {
-  const distanceString = formatDistanceToNowStrict(new Date(createdAt), {
-    addSuffix: true,
-  })
+  const distanceString =
+    createdAt &&
+    formatDistanceToNowStrict(new Date(createdAt), {
+      addSuffix: true,
+    })
   return (
     <div className="p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
       <div className="flex w-[99%] gap-[10px]">

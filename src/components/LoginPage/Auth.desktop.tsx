@@ -7,7 +7,6 @@ import { useUser } from '@/store/contexts/UserContect'
 import { ApiAuth } from '@/api/auth'
 import { cookies } from '@/utils/Cookies'
 import jwtDecode from 'jwt-decode'
-import { useRouter } from 'next/router'
 
 interface UserPayloadRespone {
   message: string
@@ -15,7 +14,6 @@ interface UserPayloadRespone {
 }
 
 const AuthDesktop = () => {
-  const router = useRouter()
   const { setUser } = useUser()
   const [username, setUserName] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
@@ -30,15 +28,14 @@ const AuthDesktop = () => {
       password.length >= 8 &&
       (await ApiAuth.login({ username, password, robot }).then(
         (res: UserPayloadRespone) => {
-          console.log(res)
           if (res?.message !== 'Success') {
             setError(res.message)
           }
           setUser(jwtDecode(res.token))
           cookies.set('access_token', res.token)
+          window.location.replace('/')
         }
       ))
-    router.replace('/')
   }
 
   return (

@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { Post } from '@/components/Post'
 import Head from 'next/head'
+import { useUser } from '@/store/contexts/UserContect'
 
 export default function Home() {
+  const { user } = useUser()
   return (
     <>
       <Head>
@@ -12,9 +14,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-full h-full flex justify-center items-center p-[20px] flex-col">
-          {/* <Post />
-          <Post /> */}
+        <div className="w-full h-full flex justify-center items-center px-[20px] flex-col">
+          <div className="border p-[10px_15px] flex gap-[10px]">
+            <img
+              src={user.avatar}
+              alt="profile"
+              className="w-[35px] h-[35px] rounded"
+            />
+            <input placeholder="What do you want to ask or share?" />
+            <p>Ask</p>
+            <p>Answer</p>
+            <p>Post</p>
+          </div>
         </div>
       </main>
     </>
