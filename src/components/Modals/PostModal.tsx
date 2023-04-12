@@ -75,11 +75,17 @@ const PostModal = () => {
   }
 
   const UploadPost = async () => {
-    await ApiProfile.UploadPost(user.userId, text, bufferImage, 'post').then(
-      res => {
-        console.log(bufferImage)
+    await setCropedImage()
+    await ApiProfile.UploadPost(
+      user.userId,
+      text,
+      bufferImage || '',
+      'post'
+    ).then(res => {
+      if (res.message === 'success') {
+        window.location.reload()
       }
-    )
+    })
   }
   return (
     <div>

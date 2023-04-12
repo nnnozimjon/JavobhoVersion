@@ -6,6 +6,7 @@ import Read from '@/components/Read'
 import { PostProps } from '@/components/page/profile/posts'
 import { useUser } from '@/store/contexts/UserContect'
 import BannerComment from '@/components/explore/components/comment'
+import { formatDistanceToNowStrict } from 'date-fns'
 
 const Post: React.FC<PostProps> = ({
   postId,
@@ -27,6 +28,11 @@ const Post: React.FC<PostProps> = ({
   const [liked, setLiked] = React.useState(false)
   const [showComments, setShowComments] = React.useState<boolean>(false)
 
+  const distanceString =
+    createdAt &&
+    formatDistanceToNowStrict(new Date(createdAt), {
+      addSuffix: true,
+    })
   const { user } = useUser()
 
   React.useEffect(() => {
@@ -34,7 +40,7 @@ const Post: React.FC<PostProps> = ({
   }, [])
 
   return (
-    <div className="h-fit mt-[10px] border border-invisible w-full">
+    <div className="w-[580px] h-fit mt-[10px] border border-invisible">
       <div className="rounded-t-[20px] p-[5px_15px] bg-white flex items-center border-b border-invisible">
         <img
           src={avatar}
@@ -62,8 +68,8 @@ const Post: React.FC<PostProps> = ({
                     </button>
                   )}
             </div>
-            <div className="font-semibold text-[14px] text-invisible">
-              {fullname && fullname}
+            <div className="font-semibold text-[12px] text-lighterIndigo">
+              {distanceString}
             </div>
           </div>
           <Icon name="moreHorizontal" className="cursor-pointer" />
@@ -126,7 +132,6 @@ const Post: React.FC<PostProps> = ({
             createdAt={comment.createdAt}
             liked={comment.commentLikeByUser}
             likes={comment.commentLikeCount}
-            name={comment.commenterUsername}
             text={comment.text}
             fullname={comment.commenterFullname}
             username={comment.commenterUsername}

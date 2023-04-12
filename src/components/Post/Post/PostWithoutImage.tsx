@@ -17,7 +17,7 @@ interface data {
   avatar: string
 }
 
-const BannerComment = ({
+const PostWithoutImage = ({
   createdAt,
   username,
   fullname,
@@ -32,8 +32,9 @@ const BannerComment = ({
     formatDistanceToNowStrict(new Date(createdAt), {
       addSuffix: true,
     })
+
   return (
-    <div className="p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
+    <div className="w-[580px] border my-[10px] border-invisible p-[10px] flex gap-[10px] duration-500">
       <div className="flex w-[99%] gap-[10px]">
         <img
           src={avatar}
@@ -59,7 +60,7 @@ const BannerComment = ({
             </p>
           </div>
           <div className="font-semibold">
-            <Read text={text} className="text-[13px] font-medium " />
+            <Read text={text} className="text-[16px] font-medium " />
           </div>
         </div>
       </div>
@@ -72,13 +73,13 @@ const BannerComment = ({
           {liked ? (
             <Icon
               size={15}
-              name="loved"
+              name="liked"
               className="text-main cursor-pointer duration-500"
             />
           ) : (
             <Icon
               size={15}
-              name="love"
+              name="like"
               className="text-main cursor-pointer duration-500"
             />
           )}
@@ -89,4 +90,4 @@ const BannerComment = ({
   )
 }
 
-export default BannerComment
+export default PostWithoutImage

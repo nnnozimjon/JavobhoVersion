@@ -1,5 +1,6 @@
 import React from 'react'
 import { Post } from '@/components/Post'
+import PostWithoutImage from '@/components/Post/Post/PostWithoutImage'
 
 export interface PostProps {
   postId: number
@@ -41,26 +42,40 @@ interface LikedUser {
 
 const PostsView: React.FC<any> = ({ posts }: any) => {
   return (
-    <div className="w-full">
-      {posts[0]?.map((post: PostProps, i: number) => (
-        <Post
-          key={i}
-          postId={post.postId}
-          text={post.text}
-          image={post.image}
-          type={post.type}
-          status={post.status}
-          createdAt={post.createdAt}
-          userId={post.userId}
-          username={post.username}
-          fullname={post.fullname}
-          verified={post.verified}
-          avatar={post.avatar}
-          likedByUser={post.likedByUser}
-          comments={post.comments}
-          likedByUsers={post.likedByUsers}
-        />
-      ))}
+    <div className="w-full flex items-center flex-col">
+      {posts[0]?.map((post: PostProps, i: number) =>
+        post.image ? (
+          <Post
+            key={i}
+            postId={post.postId}
+            text={post.text}
+            image={post.image}
+            type={post.type}
+            status={post.status}
+            createdAt={post.createdAt}
+            userId={post.userId}
+            username={post.username}
+            fullname={post.fullname}
+            verified={post.verified}
+            avatar={post.avatar}
+            likedByUser={post.likedByUser}
+            comments={post.comments}
+            likedByUsers={post.likedByUsers}
+          />
+        ) : (
+          <PostWithoutImage
+            key={i}
+            avatar={post.avatar}
+            createdAt={post.createdAt}
+            fullname={post.fullname || ''}
+            username={post.username}
+            liked={post.likedByUser}
+            likes={post.likedByUsers.length}
+            text={post.text || ''}
+            verified={post.verified}
+          />
+        )
+      )}
     </div>
   )
 }
