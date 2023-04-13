@@ -27,9 +27,10 @@ const BannerComment = ({
   likes,
   avatar,
 }: data) => {
+  const time = createdAt.replace('Z', '+03:00')
   const distanceString =
     createdAt &&
-    formatDistanceToNowStrict(new Date(createdAt), {
+    formatDistanceToNowStrict(new Date(time), {
       addSuffix: true,
     })
   return (

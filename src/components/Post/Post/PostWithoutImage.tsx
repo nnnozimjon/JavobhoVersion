@@ -5,17 +5,7 @@ import Icon from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
-
-interface data {
-  createdAt: string
-  username: string
-  text: string
-  verified: boolean
-  fullname: string
-  liked: boolean
-  likes: number
-  avatar: string
-}
+import { PostProps } from '@/components/page/profile/posts'
 
 const PostWithoutImage = ({
   createdAt,
@@ -23,15 +13,28 @@ const PostWithoutImage = ({
   fullname,
   text,
   verified,
-  liked,
-  likes,
+  likedByUser,
+  likedByUsers,
+  comments,
+  postId,
+  userId,
   avatar,
-}: data) => {
-  const distanceString =
-    createdAt &&
-    formatDistanceToNowStrict(new Date(createdAt), {
-      addSuffix: true,
-    })
+}: PostProps) => {
+  const time = createdAt.replace('Z', '+03:00')
+  const [distanceString, setDistanceString] = React.useState(() =>
+    formatDistanceToNowStrict(new Date(time), { addSuffix: true })
+  )
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const distanceString = formatDistanceToNowStrict(new Date(time), {
+        addSuffix: true,
+      })
+      setDistanceString(distanceString)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [distanceString, time])
 
   return (
     <div className="w-[580px] border my-[10px] border-invisible p-[10px] flex gap-[10px] duration-500">
@@ -44,23 +47,52 @@ const PostWithoutImage = ({
         <div className="flex gap-[5px] flex-col">
           <div className="flex flex-col">
             <div className="flex">
-              <p className="font-semibold text-[13px] select-none pr-[3px]">
-                {fullname}
-              </p>
-              {verified ? <Icon name="verified" size={20} /> : ''}
               <Link
                 href={`/${username}`}
-                className="font-medium text-[13px] cursor-pointer hover:underline pl-[5px]"
+                className="font-medium text-[13px] cursor-pointer hover:underline pr-[3px]"
               >
-                @{username}
+                {fullname || '@' + username}
               </Link>
+              {verified ? <Icon name="verified" size={20} /> : ''}
+              <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
+                {'Follow'}
+              </p>
             </div>
-            <p className="font-semibold text-[10px] text-indigo">
+            <p className=" font-semibold text-[10px] text-indigo">
               {distanceString}
             </p>
           </div>
           <div className="font-semibold">
-            <Read text={text} className="text-[16px] font-medium " />
+            <Read text={text || ''} className="text-[16px] font-medium " />
+          </div>
+          <div className="flex items-center gap-[10px] mt-[5px]">
+            {likedByUser ? (
+              <Icon
+                size={15}
+                name="liked"
+                className="text-dGray cursor-pointer duration-500"
+              />
+            ) : (
+              <Icon
+                size={15}
+                name="like"
+                className="text-dGray cursor-pointer duration-500"
+              />
+            )}
+            <p className="text-[12px] font-medium">
+              {likedByUsers.length || 0}
+            </p>
+            <Icon
+              name="repost"
+              className="cursor-pointer text-dGray"
+              size={17}
+            />
+            <p className="text-[12px] font-medium">0</p>
+            <Icon
+              name="share"
+              className="cursor-pointer text-dGray"
+              size={17}
+            />
           </div>
         </div>
       </div>
@@ -70,20 +102,12 @@ const PostWithoutImage = ({
           className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
         />
         <div className="flex flex-col items-center">
-          {liked ? (
-            <Icon
-              size={15}
-              name="liked"
-              className="text-main cursor-pointer duration-500"
-            />
-          ) : (
-            <Icon
-              size={15}
-              name="like"
-              className="text-main cursor-pointer duration-500"
-            />
-          )}
-          <p className="text-[12px] font-medium">{likes || 0}</p>
+          <Icon
+            name="comment"
+            className="cursor-pointer text-dGray"
+            size={17}
+          />
+          <p className="text-[12px] font-medium">{comments?.length}</p>
         </div>
       </div>
     </div>

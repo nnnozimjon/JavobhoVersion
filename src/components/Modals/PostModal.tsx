@@ -11,7 +11,7 @@ const PostModal = () => {
   const [text, setText] = useState<string>('')
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [bufferImage, setBufferImage] = React.useState<ArrayBuffer>()
+  const [bufferImage, setBufferImage] = React.useState<ArrayBuffer | null>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const ImageRef = useRef<HTMLInputElement>(null)
 
@@ -44,6 +44,7 @@ const PostModal = () => {
   }
   const handleClear = () => {
     setSelectedFile(null)
+    setBufferImage(null)
     const form: any = document.getElementById('form')
 
     if (form) {
@@ -111,7 +112,7 @@ const PostModal = () => {
           onChange={handleTextChange}
           onInput={adjustTextAreaHeight}
           placeholder="Start your question with What , Why , When etc. "
-          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px]"
+          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[200px]"
         />
         {selectedFile && (
           <div

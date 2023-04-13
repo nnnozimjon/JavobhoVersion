@@ -6,8 +6,8 @@ export interface PostProps {
   postId: number
   text?: string
   image?: string
-  type: string
-  status: string
+  type?: string
+  status?: string
   createdAt: string
   userId: number
   username: string
@@ -33,7 +33,7 @@ export interface Comment {
   commentLikeByUser: boolean
 }
 
-interface LikedUser {
+export interface LikedUser {
   userId: number
   username: string
   verified: boolean
@@ -69,10 +69,13 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
             createdAt={post.createdAt}
             fullname={post.fullname || ''}
             username={post.username}
-            liked={post.likedByUser}
-            likes={post.likedByUsers.length}
+            likedByUser={post.likedByUser}
+            likedByUsers={post.likedByUsers}
             text={post.text || ''}
             verified={post.verified}
+            comments={post.comments}
+            postId={post.postId}
+            userId={post.userId}
           />
         )
       )}

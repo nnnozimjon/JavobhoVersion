@@ -27,17 +27,22 @@ const Post: React.FC<PostProps> = ({
   const [following, setFollow] = React.useState(false)
   const [liked, setLiked] = React.useState(false)
   const [showComments, setShowComments] = React.useState<boolean>(false)
-
-  const distanceString =
-    createdAt &&
-    formatDistanceToNowStrict(new Date(createdAt), {
-      addSuffix: true,
-    })
   const { user } = useUser()
+  const time = createdAt.replace('Z', '+03:00')
+  const [distanceString, setDistanceString] = React.useState(() =>
+    formatDistanceToNowStrict(new Date(time), { addSuffix: true })
+  )
 
   React.useEffect(() => {
-    setLiked(likedByUser)
-  }, [])
+    const interval = setInterval(() => {
+      const distanceString = formatDistanceToNowStrict(new Date(time), {
+        addSuffix: true,
+      })
+      setDistanceString(distanceString)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [distanceString, time])
 
   return (
     <div className="w-[580px] h-fit mt-[10px] border border-invisible">
