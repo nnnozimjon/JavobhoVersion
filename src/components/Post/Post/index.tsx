@@ -57,9 +57,9 @@ const Post: React.FC<PostProps> = ({
             <div className="flex">
               <div className="pr-[10px] font-semibold text-[14px] flex gap-[5px]">
                 <p className="font-semibold text-[14px] text-darkestIndigo cursor-pointer">
-                  @{username}
+                  {fullname || '@' + username}
                 </p>
-                {verified && <Icon name="verified" size={20} />}
+                {verified ? <Icon name="verified" size={20} /> : ''}
               </div>
               {following
                 ? user.userId != userId && (

@@ -11,6 +11,7 @@ import jwtDecode from 'jwt-decode'
 interface UserPayloadRespone {
   message: string
   token: string
+  status?: string
 }
 
 const AuthDesktop = () => {
