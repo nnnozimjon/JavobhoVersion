@@ -28,13 +28,22 @@ const BannerComment = ({
   avatar,
 }: data) => {
   const time = createdAt.replace('Z', '+03:00')
-  const distanceString =
-    createdAt &&
-    formatDistanceToNowStrict(new Date(time), {
-      addSuffix: true,
-    })
+  const [distanceString, setDistanceString] = React.useState(() =>
+    formatDistanceToNowStrict(new Date(time), { addSuffix: true })
+  )
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const distanceString = formatDistanceToNowStrict(new Date(time), {
+        addSuffix: true,
+      })
+      setDistanceString(distanceString)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [distanceString, time])
   return (
-    <div className="p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
+    <div className="w-[500px] p-[10px] flex gap-[10px] ">
       <div className="flex w-[99%] gap-[10px]">
         <img
           src={avatar}
@@ -44,16 +53,17 @@ const BannerComment = ({
         <div className="flex gap-[5px] flex-col">
           <div className="flex flex-col">
             <div className="flex">
-              <p className="font-semibold text-[13px] select-none pr-[3px]">
-                {fullname}
-              </p>
-              {verified ? <Icon name="verified" size={20} /> : ''}
               <Link
                 href={`/${username}`}
-                className="font-medium text-[13px] cursor-pointer hover:underline pl-[5px]"
+                className="font-medium text-[13px] cursor-pointer hover:underline"
               >
-                @{username}
+                {fullname || '@' + username}
               </Link>
+              {verified ? (
+                <Icon name="verified" className="pl-[5px]" size={20} />
+              ) : (
+                ''
+              )}
             </div>
             <p className="font-semibold text-[10px] text-indigo">
               {distanceString}
