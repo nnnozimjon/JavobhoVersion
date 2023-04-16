@@ -12,7 +12,7 @@ import Cookies from 'js-cookie'
 
 const Nav = () => {
   const router = useRouter().pathname
-  const [showMore, setShowMore] = useState<boolean>(false)
+  // const [showMore, setShowMore] = useState<boolean>(false)
 
   const handleLogout = async () => {
     Cookies.remove('access_token')
@@ -40,7 +40,7 @@ const Nav = () => {
           </Link>
         ))}
 
-        <div className="relative">
+        {/* <div className="relative">
           <NavButton
             id="dropdownDefaultButton"
             data_dropdown_toggle={'dropdown'}
@@ -48,49 +48,7 @@ const Nav = () => {
             label={'More'}
             onClick={() => setShowMore(!showMore)}
           />
-          <div
-            id="dropdown"
-            className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-          >
-            <ul
-              className="py-2 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownDefaultButton"
-            >
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Earnings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Sign out
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        </div> */}
       </div>
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
         <div

@@ -31,12 +31,12 @@ const NavLinks: INav.nav[] = [
     activeIcon: 'bookmarksFilled',
     path: '/bookmarks',
   },
-  {
-    icon: 'lists',
-    label: 'Lists',
-    activeIcon: 'listsFilled',
-    path: '/lists',
-  },
+  // {
+  //   icon: 'lists',
+  //   label: 'Lists',
+  //   activeIcon: 'listsFilled',
+  //   path: '/lists',
+  // },
   {
     icon: 'profile',
     label: 'Profile',
