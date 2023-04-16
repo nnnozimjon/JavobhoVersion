@@ -42,26 +42,26 @@ const ChatRoom: React.FC<User> = ({ verified, username, fullname }: User) => {
 }
 
 const friendsList: User[] = [
-  {
-    userId: 1,
-    fullname: 'Qosimjon Rahimov',
-    username: 'qosimjon',
-    avatar: '/static/images/avatars/avatar_1.png',
-    verified: true,
-    description: '',
-    createdAt: '',
-    splashImage: '',
-  },
-  {
-    userId: 2,
-    fullname: 'Shamsulloev Nozimjon',
-    username: 'nnnozimjon',
-    avatar: '/static/images/avatars/avatar_1.png',
-    verified: false,
-    description: '',
-    createdAt: '',
-    splashImage: '',
-  },
+  // {
+  //   userId: 1,
+  //   fullname: 'Qosimjon Rahimov',
+  //   username: 'qosimjon',
+  //   avatar: '/static/images/avatars/avatar_1.png',
+  //   verified: true,
+  //   description: '',
+  //   createdAt: '',
+  //   splashImage: '',
+  // },
+  // {
+  //   userId: 2,
+  //   fullname: 'Shamsulloev Nozimjon',
+  //   username: 'nnnozimjon',
+  //   avatar: '/static/images/avatars/avatar_1.png',
+  //   verified: false,
+  //   description: '',
+  //   createdAt: '',
+  //   splashImage: '',
+  // },
 ]
 
 const Messages = () => {
@@ -89,7 +89,15 @@ const Messages = () => {
             />
           ))
         ) : (
-          <h1>Welcome to Inbox</h1>
+          <div>
+            <h1 className="font-bold text-[30px] p-[10px] text-darkestIndigo">
+              Welcome to your inbox!
+            </h1>
+            <p className="text-dGray p-[10px]">
+              Chat, share posts and more with private conversations between you
+              and your friends on Javobho.{' '}
+            </p>
+          </div>
         )}
       </div>
       <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">

@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from '@/components/Icon'
 import Read from '@/components/Read'
 import { PostProps } from '@/components/page/profile/posts'
 import { useUser } from '@/store/contexts/UserContect'
 import BannerComment from '@/components/explore/components/comment'
 import { formatDistanceToNowStrict } from 'date-fns'
+import Cookies from 'js-cookie'
+import { ApiPost } from '@/api/post'
 
 const Post: React.FC<PostProps> = ({
   postId,
@@ -24,10 +26,72 @@ const Post: React.FC<PostProps> = ({
   comments,
   likedByUsers,
 }) => {
-  const [following, setFollow] = React.useState(false)
-  const [liked, setLiked] = React.useState(false)
-  const [showComments, setShowComments] = React.useState<boolean>(false)
   const { user } = useUser()
+
+  const [showComments, setShowComments] = useState<boolean>(false)
+  const [commentState, setCommentState] = useState<any[]>([])
+  const [commentText, setCommentText] = useState<string>('')
+  const [likedByUserState, setLikedByUserState] = useState<boolean>(false)
+  const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
+
+  React.useEffect(() => {
+    setCommentState(comments)
+    setLikedByUserState(likedByUser)
+    setLikedByUsersState(likedByUsers)
+  }, [])
+
+  const handleComment = () => {
+    const token = Cookies.get('access_token') || ''
+    commentText &&
+      ApiPost.commentPost(token, {
+        userId: user.userId,
+        postId,
+        text: commentText,
+      }).then(res => {
+        if (res.message === 'success') {
+          setCommentState((prev: any) => {
+            const updatedList = [
+              {
+                commentLikeByUser: false,
+                commentLikeCount: 0,
+                createdAt: new Date(
+                  new Date().getTime() + 180 * 60 * 1000
+                ).toISOString(),
+                commenterUsername: user.username,
+                commenterAvatar: user.avatar,
+                commenterVerified: user.verified,
+                commenterFullname: user.fullname,
+                text: commentText,
+              },
+              ...prev,
+            ]
+            return updatedList
+          })
+        }
+      })
+    setCommentText('')
+  }
+
+  const handleLikePost = () => {
+    if (likedByUserState) {
+      // Remove like
+      setLikedByUserState(false)
+      setLikedByUsersState((prev: any) => {
+        const updatedList = prev.filter(
+          (item: any) => item.userId !== user.userId
+        )
+        return updatedList
+      })
+    } else {
+      // Add like
+      setLikedByUserState(true)
+      setLikedByUsersState((prev: any) => {
+        const updatedList = [...prev, { userId: user.userId }]
+        return updatedList
+      })
+    }
+  }
+
   const time = createdAt.replace('Z', '+03:00')
   const [distanceString, setDistanceString] = React.useState(() =>
     formatDistanceToNowStrict(new Date(time), { addSuffix: true })
@@ -61,7 +125,7 @@ const Post: React.FC<PostProps> = ({
                 </p>
                 {verified ? <Icon name="verified" size={20} /> : ''}
               </div>
-              {following
+              {!true
                 ? user.userId != userId && (
                     <button className="font-semibold text-[14px] text-darkblue">
                       Following
@@ -104,11 +168,14 @@ const Post: React.FC<PostProps> = ({
       <div className="flex justify-between items-center p-[5px_15px]">
         <div className="flex justify-center items-center pl-[10px] text-darkblue ">
           <Icon
-            name={likedByUser ? 'liked' : 'like'}
-            className="cursor-pointer"
+            onClick={handleLikePost}
+            name={likedByUserState ? 'liked' : 'like'}
+            className={`${
+              likedByUserState ? 'text-darkblue' : 'text-dGray'
+            } cursor-pointer duration-500`}
             size={18}
           />
-          <p className="px-[10px] text-black">{likedByUsers?.length}</p>
+          <p className="px-[10px] text-black">{likedByUsersState?.length}</p>
           <Icon name="repost" className="cursor-pointer text-dGray" size={18} />
           <p className="px-[10px] text-black">0</p>
           <Icon name="share" className="cursor-pointer text-dGray" size={18} />
@@ -118,20 +185,27 @@ const Post: React.FC<PostProps> = ({
           className="text-gray"
           onClick={() => setShowComments(!showComments)}
         >
-          {comments?.length} comments
+          {commentState?.length} comments
         </button>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
         <div className="flex justify-between w-[410px] p-[10px] h-[34px] border border-invisible text-lighterIndigo rounded-[8px] items-center">
           <input
+            value={commentText}
+            onChange={e => setCommentText(e.target.value)}
             placeholder="write a comment"
             className="bg-transparent w-full outline-none placeholder:text-lighterIndigo"
-          ></input>
-          <Icon name="publish" className="cursor-pointer" size={30} />
+          />
+          <Icon
+            name="publish"
+            className="cursor-pointer"
+            size={30}
+            onClick={handleComment}
+          />
         </div>
       </div>
       {showComments &&
-        comments.map((comment, i: number) => (
+        commentState.map((comment, i: number) => (
           <BannerComment
             key={i}
             createdAt={comment.createdAt}

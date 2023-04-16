@@ -9,6 +9,7 @@ import { PostProps } from '@/components/page/profile/posts'
 import BannerComment from '@/components/explore/components/comment'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiPost } from '@/api/post'
+import Cookies from 'js-cookie'
 
 const PostWithoutImage = ({
   createdAt,
@@ -38,25 +39,33 @@ const PostWithoutImage = ({
   }, [])
 
   const handleComment = () => {
-    ApiPost.commentPost('', {}).then(res => {})
+    const token = Cookies.get('access_token') || ''
     commentText &&
-      setCommentState((prev: any) => {
-        const updatedList = [
-          ...prev,
-          {
-            commentLikeByUser: false,
-            commentLikeCount: 0,
-            createdAt: new Date(
-              new Date().getTime() + 180 * 60 * 1000
-            ).toISOString(),
-            commenterUsername: user.username,
-            commenterAvatar: user.avatar,
-            commenterVerified: user.verified,
-            commenterFullname: user.fullname,
-            text: commentText,
-          },
-        ]
-        return updatedList
+      ApiPost.commentPost(token, {
+        userId: user.userId,
+        postId,
+        text: commentText,
+      }).then(res => {
+        if (res.message === 'success') {
+          setCommentState((prev: any) => {
+            const updatedList = [
+              {
+                commentLikeByUser: false,
+                commentLikeCount: 0,
+                createdAt: new Date(
+                  new Date().getTime() + 180 * 60 * 1000
+                ).toISOString(),
+                commenterUsername: user.username,
+                commenterAvatar: user.avatar,
+                commenterVerified: user.verified,
+                commenterFullname: user.fullname,
+                text: commentText,
+              },
+              ...prev,
+            ]
+            return updatedList
+          })
+        }
       })
     setCommentText('')
   }
