@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import NavLinks from './NavLinks'
 import INav from './interface'
