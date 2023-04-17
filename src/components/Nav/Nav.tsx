@@ -9,10 +9,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
 import Cookies from 'js-cookie'
+import { CustomSelect } from '@/pages/notifications'
 
 const Nav = () => {
   const router = useRouter().pathname
-  // const [showMore, setShowMore] = useState<boolean>(false)
 
   const handleLogout = async () => {
     Cookies.remove('access_token')
@@ -39,16 +39,16 @@ const Nav = () => {
             />
           </Link>
         ))}
-
-        {/* <div className="relative">
-          <NavButton
-            id="dropdownDefaultButton"
-            data_dropdown_toggle={'dropdown'}
-            icon={'moreHorizontalScale'}
-            label={'More'}
-            onClick={() => setShowMore(!showMore)}
-          />
-        </div> */}
+        <CustomSelect
+          placeholder="More"
+          selectedOpts="Nozimjon"
+          options={[
+            { id: 1, name: 'bookshelf', label: 'Bookshelf' },
+            { id: 1, name: 'courses', label: 'Courses' },
+            { id: 1, name: 'topics', label: 'Topics' },
+            { id: 1, name: 'jobfinder', label: 'Jobs' },
+          ]}
+        />
       </div>
       <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
         <div
