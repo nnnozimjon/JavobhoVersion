@@ -17,6 +17,7 @@ export interface PostProps {
   likedByUser: boolean
   comments: Comment[]
   likedByUsers: LikedUser[]
+  repostCount: number
 }
 
 export interface Comment {
@@ -61,6 +62,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
             likedByUser={post.likedByUser}
             comments={post.comments}
             likedByUsers={post.likedByUsers}
+            repostCount={post.repostCount}
           />
         ) : (
           <PostWithoutImage
@@ -76,6 +78,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
             comments={post.comments}
             postId={post.postId}
             userId={post.userId}
+            repostCount={post.repostCount}
           />
         )
       )}

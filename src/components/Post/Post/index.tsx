@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable no-constant-condition */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
@@ -9,6 +11,8 @@ import BannerComment from '@/components/explore/components/comment'
 import { formatDistanceToNowStrict } from 'date-fns'
 import Cookies from 'js-cookie'
 import { ApiPost } from '@/api/post'
+import Modal from '@/components/useModal/Modal'
+import RepostModal from '@/components/Modals/RepostModal'
 
 const Post: React.FC<PostProps> = ({
   postId,
@@ -25,23 +29,28 @@ const Post: React.FC<PostProps> = ({
   likedByUser,
   comments,
   likedByUsers,
+  repostCount,
 }) => {
   const { user } = useUser()
+  const token = Cookies.get('access_token') || ''
 
   const [showComments, setShowComments] = useState<boolean>(false)
   const [commentState, setCommentState] = useState<any[]>([])
   const [commentText, setCommentText] = useState<string>('')
   const [likedByUserState, setLikedByUserState] = useState<boolean>(false)
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
+  const [repostCountState, setRepostCountState] = useState<number>(0)
+
+  const [repostModalState, setRepostModalState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
+    setRepostCountState(repostCount)
   }, [])
 
   const handleComment = () => {
-    const token = Cookies.get('access_token') || ''
     commentText &&
       ApiPost.commentPost(token, {
         userId: user.userId,
@@ -82,6 +91,18 @@ const Post: React.FC<PostProps> = ({
         )
         return updatedList
       })
+      ApiPost.unlikePost(token, {
+        userId: user.userId,
+        postId,
+      }).then(res => {
+        if (res.message !== 'success') {
+          setLikedByUserState(true)
+          setLikedByUsersState((prev: any) => {
+            const updatedList = [...prev, { userId: user.userId }]
+            return updatedList
+          })
+        }
+      })
     } else {
       // Add like
       setLikedByUserState(true)
@@ -89,7 +110,28 @@ const Post: React.FC<PostProps> = ({
         const updatedList = [...prev, { userId: user.userId }]
         return updatedList
       })
+      ApiPost.likePost(token, {
+        userId: user.userId,
+        postId,
+      }).then(res => {
+        if (res.message !== 'success') {
+          setLikedByUserState(false)
+          setLikedByUsersState((prev: any) => {
+            const updatedList = prev.filter(
+              (item: any) => item.userId !== user.userId
+            )
+            return updatedList
+          })
+        }
+      })
     }
+  }
+
+  const openRepostModal = () => {
+    setRepostModalState(true)
+  }
+  const closeRepostModal = () => {
+    setRepostModalState(false)
   }
 
   const time = createdAt.replace('Z', '+03:00')
@@ -125,7 +167,7 @@ const Post: React.FC<PostProps> = ({
                 </p>
                 {verified ? <Icon name="verified" size={20} /> : ''}
               </div>
-              {!true
+              {true
                 ? user.userId != userId && (
                     <button className="font-semibold text-[14px] text-darkblue">
                       Following
@@ -175,11 +217,20 @@ const Post: React.FC<PostProps> = ({
             } cursor-pointer duration-500`}
             size={18}
           />
-          <p className="px-[10px] text-black">{likedByUsersState?.length}</p>
-          <Icon name="repost" className="cursor-pointer text-dGray" size={18} />
-          <p className="px-[10px] text-black">0</p>
+          <p className="pl-[5px] pr-[10px] text-black">
+            {likedByUsersState?.length}
+          </p>
+          <Icon
+            name="repost"
+            className="cursor-pointer text-dGray"
+            size={18}
+            onClick={openRepostModal}
+          />
+          <p className="pl-[5px] pr-[10px] text-black">
+            {repostCountState || '0'}
+          </p>
           <Icon name="share" className="cursor-pointer text-dGray" size={18} />
-          <p className="px-[10px] text-black">Share</p>
+          <p className="pl-[5px] pr-[10px] text-black">Share</p>
         </div>
         <button
           className="text-gray"
@@ -218,6 +269,13 @@ const Post: React.FC<PostProps> = ({
             avatar={comment.commenterAvatar}
           />
         ))}
+
+      <Modal
+        isOpen={repostModalState}
+        closeModal={closeRepostModal}
+        children={<RepostModal />}
+        title="Repost"
+      />
     </div>
   )
 }

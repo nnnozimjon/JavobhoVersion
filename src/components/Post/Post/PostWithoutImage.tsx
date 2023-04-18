@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
@@ -10,6 +11,8 @@ import BannerComment from '@/components/explore/components/comment'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiPost } from '@/api/post'
 import Cookies from 'js-cookie'
+import Modal from '@/components/useModal/Modal'
+import RepostModal from '@/components/Modals/RepostModal'
 
 const PostWithoutImage = ({
   createdAt,
@@ -23,19 +26,25 @@ const PostWithoutImage = ({
   postId,
   userId,
   avatar,
+  repostCount,
 }: PostProps) => {
   const { user } = useUser()
+  const token = Cookies.get('access_token') || ''
 
   const [showComments, setShowComments] = useState<boolean>(false)
   const [commentState, setCommentState] = useState<any[]>([])
   const [commentText, setCommentText] = useState<string>('')
   const [likedByUserState, setLikedByUserState] = useState<boolean>(false)
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
+  const [repostCountState, setRepostCountState] = useState<number>(0)
+
+  const [repostModalState, setRepostModalState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
+    setRepostCountState(repostCount)
   }, [])
 
   const handleComment = () => {
@@ -80,6 +89,18 @@ const PostWithoutImage = ({
         )
         return updatedList
       })
+      ApiPost.unlikePost(token, {
+        userId: user.userId,
+        postId,
+      }).then(res => {
+        if (res.message !== 'success') {
+          setLikedByUserState(true)
+          setLikedByUsersState((prev: any) => {
+            const updatedList = [...prev, { userId: user.userId }]
+            return updatedList
+          })
+        }
+      })
     } else {
       // Add like
       setLikedByUserState(true)
@@ -87,7 +108,28 @@ const PostWithoutImage = ({
         const updatedList = [...prev, { userId: user.userId }]
         return updatedList
       })
+      ApiPost.likePost(token, {
+        postId,
+        userId: user.userId,
+      }).then(res => {
+        if (res.message !== 'success') {
+          setLikedByUserState(false)
+          setLikedByUsersState((prev: any) => {
+            const updatedList = prev.filter(
+              (item: any) => item.userId !== user.userId
+            )
+            return updatedList
+          })
+        }
+      })
     }
+  }
+
+  const openRepostModal = () => {
+    setRepostModalState(true)
+  }
+  const closeRepostModal = () => {
+    setRepostModalState(false)
   }
 
   const time = createdAt.replace('Z', '+03:00')
@@ -140,7 +182,7 @@ const PostWithoutImage = ({
             <div className="font-semibold">
               <Read text={text || ''} className="text-[16px] font-medium " />
             </div>
-            <div className="flex items-center gap-[10px] mt-[5px]">
+            <div className="flex items-center gap-[5px] mt-[5px]">
               <Icon
                 onClick={handleLikePost}
                 size={15}
@@ -150,16 +192,17 @@ const PostWithoutImage = ({
                 } cursor-pointer duration-500`}
               />
 
-              <p className="text-[12px] font-medium text-dGray select-none">
+              <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {likedByUsersState.length || 0}
               </p>
               <Icon
                 name="repost"
                 className="cursor-pointer text-dGray"
                 size={17}
+                onClick={openRepostModal}
               />
-              <p className="text-[12px] font-medium text-dGray select-none">
-                0
+              <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
+                {repostCountState || '0'}
               </p>
               <Icon
                 onClick={() => setShowComments(!showComments)}
@@ -167,7 +210,7 @@ const PostWithoutImage = ({
                 className="cursor-pointer text-dGray"
                 size={17}
               />
-              <p className="text-[12px] font-medium text-dGray select-none">
+              <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {commentState?.length}
               </p>
             </div>
@@ -227,6 +270,12 @@ const PostWithoutImage = ({
           </div>
         </div>
       )}
+      <Modal
+        isOpen={repostModalState}
+        closeModal={closeRepostModal}
+        children={<RepostModal />}
+        title="Repost"
+      />
     </div>
   )
 }
