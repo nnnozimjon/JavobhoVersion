@@ -25,20 +25,17 @@ export const SwitchView: React.FC<any> = ({ view }: any): any => {
     case 'answers':
       return <h1>answers</h1>
     case 'comments':
-      return comments.map((comment, i) => (
+      return comments.map((comment: any, i) => (
         <BannerComment
           key={i}
-          data={{
-            createdAt: comment.createdAt,
-            name: comment.name,
-            text: comment.text,
-            username: comment.username,
-            verified: comment.verified,
-            liked: true,
-            likes: 1,
-            avatar: comment.avatar,
-            fullname: comment.fullname,
-          }}
+          createdAt={comment.createdAt}
+          text={comment.text}
+          username={comment.username}
+          verified={comment.verified}
+          liked={true}
+          likes={1}
+          avatar={comment.avatar}
+          fullname={comment.fullname}
         />
       ))
     default:

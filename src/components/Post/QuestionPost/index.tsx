@@ -5,7 +5,7 @@ import Icon from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
-import { PostProps } from '@/components/page/profile/posts'
+import { QuestionPostProps } from '@/components/page/profile/posts'
 
 const QuestionPost = ({
   createdAt,
@@ -15,11 +15,10 @@ const QuestionPost = ({
   verified,
   likedByUser,
   likedByUsers,
-  comments,
   postId,
   userId,
   avatar,
-}: PostProps) => {
+}: QuestionPostProps) => {
   const time = createdAt.replace('Z', '+03:00')
   const [distanceString, setDistanceString] = React.useState(() =>
     formatDistanceToNowStrict(new Date(time), { addSuffix: true })
@@ -42,7 +41,7 @@ const QuestionPost = ({
         <img
           src={avatar}
           alt="comment image"
-          className="w-[40px] h-[40px] rounded-full object-cover"
+          className="w-[36px] h-[36px] rounded-full object-cover"
         />
         <div className="flex gap-[5px] flex-col">
           <div className="flex flex-col">
@@ -63,7 +62,20 @@ const QuestionPost = ({
             </p>
           </div>
           <div className="font-semibold">
-            <Read text={text || ''} className="text-[16px] font-medium " />
+            <Link
+              href={
+                '/ex/' +
+                text
+                  ?.toLowerCase()
+                  .replace(/_/g, '-')
+                  .replace(/[^\p{L}\p{N}\s-]/gu, '')
+                  .replace(/\s+/g, '-')
+                  .replace(/^-+|-+$/g, '')
+              }
+              className="hover:underline"
+            >
+              <Read text={text || ''} className="text-[16px] font-medium " />
+            </Link>
           </div>
           <div className="flex items-center gap-[10px] mt-[5px]">
             {likedByUser ? (
@@ -98,12 +110,7 @@ const QuestionPost = ({
           className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
         />
         <div className="flex flex-col items-center">
-          <Icon
-            name="comment"
-            className="cursor-pointer text-dGray"
-            size={17}
-          />
-          <p className="text-[12px] font-medium">{comments?.length}</p>
+          <Icon name="share" className="cursor-pointer text-dGray" size={17} />
         </div>
       </div>
     </div>

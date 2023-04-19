@@ -20,6 +20,23 @@ export interface PostProps {
   repostCount: number
 }
 
+export interface QuestionPostProps {
+  postId: number
+  text?: string
+  image?: string
+  type?: string
+  status?: string
+  createdAt: string
+  userId: number
+  username: string
+  fullname?: string
+  verified: boolean
+  avatar: string
+  likedByUser: boolean
+  likedByUsers: LikedUser[]
+  repostCount: number
+}
+
 export interface Comment {
   commentId: number
   userId: number

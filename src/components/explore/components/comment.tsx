@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
 
-interface data {
+interface Props {
   createdAt: string
   username: string
   text: string
@@ -26,7 +26,7 @@ const BannerComment = ({
   liked,
   likes,
   avatar,
-}: data) => {
+}: Props) => {
   const time = createdAt.replace('Z', '+03:00')
   const [distanceString, setDistanceString] = React.useState(() =>
     formatDistanceToNowStrict(new Date(time), { addSuffix: true })
@@ -43,12 +43,12 @@ const BannerComment = ({
     return () => clearInterval(interval)
   }, [distanceString, time])
   return (
-    <div className="w-[500px] p-[10px] flex gap-[10px] ">
+    <div className="w-full p-[10px] flex gap-[10px]">
       <div className="flex w-[99%] gap-[10px]">
         <img
           src={avatar}
           alt="comment image"
-          className="w-[40px] h-[40px] rounded-full object-cover"
+          className="w-[36px] h-[36px] rounded-full object-cover"
         />
         <div className="flex gap-[5px] flex-col">
           <div className="flex flex-col">

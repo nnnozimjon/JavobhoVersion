@@ -6,6 +6,7 @@ import { useUser } from '@/store/contexts/UserContect'
 import Icon from '@/components/Icon'
 import Modal from '@/components/useModal/Modal'
 import PostModal from '@/components/Modals/PostModal'
+import { QuestionPost } from '@/components/Post'
 
 export default function Home() {
   const { user } = useUser()
@@ -71,6 +72,21 @@ export default function Home() {
               </button>
             </div>
           </div>
+
+          <QuestionPost
+            avatar={user.avatar}
+            createdAt={new Date().toISOString()}
+            likedByUser
+            likedByUsers={[]}
+            postId={19}
+            repostCount={0}
+            userId={8}
+            username="Bilol"
+            verified
+            fullname="Bilol Sharipov"
+            image=""
+            text="How to speak english?"
+          />
           <Modal
             isOpen={askQuestionModalOpen}
             closeModal={closeAskQuestionModal}

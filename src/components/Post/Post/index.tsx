@@ -155,7 +155,7 @@ const Post: React.FC<PostProps> = ({
       <div className="rounded-t-[20px] p-[5px_15px] bg-white flex items-center border-b border-invisible">
         <img
           src={avatar}
-          className="bg-black text-white rounded-full w-[40px] h-[40px] flex justify-center items-center object-cover"
+          className="bg-black text-white rounded-full w-[36px] h-[36px] flex justify-center items-center object-cover"
           alt="profile image"
         />
         <div className="flex justify-between w-full items-center">

@@ -159,7 +159,7 @@ const PostWithoutImage = ({
           <img
             src={avatar}
             alt="comment image"
-            className="w-[40px] h-[40px] rounded-full object-cover"
+            className="w-[36px] h-[36px] rounded-full object-cover"
           />
           <div className="flex gap-[5px] flex-col">
             <div className="flex flex-col">
