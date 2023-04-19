@@ -1,6 +1,6 @@
 import React from 'react'
 import IButton from './Button.interface'
-import Icon from '@/components/Icon'
+import Icon from '@/components/Icon/index'
 
 const Button: React.FC<IButton.props> = ({
   onClick,

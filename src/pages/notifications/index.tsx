@@ -3,7 +3,7 @@ import Image from 'next/image'
 import logo from '@/assets/img/circleLogo.png'
 import notificationsImage from '@/assets/img/notifications.png'
 import Icon from '@/components/Icon'
-import IIcon from '@/components/icon/IIcon'
+import IIcon from '@/components/Icon/IIcon'
 
 interface Props {
   options: Option[]
