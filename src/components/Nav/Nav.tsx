@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
 import Cookies from 'js-cookie'
-import { CustomSelect } from '@/pages/notifications'
+import NavDropdownSelect from '../NavDropdownSelect'
 
 const Nav = () => {
   const router = useRouter().pathname
@@ -39,9 +39,8 @@ const Nav = () => {
             />
           </Link>
         ))}
-        <CustomSelect
+        <NavDropdownSelect
           placeholder="More"
-          selectedOpts="Nozimjon"
           options={[
             { id: 1, name: 'bookshelf', label: 'Bookshelf' },
             { id: 1, name: 'courses', label: 'Courses' },

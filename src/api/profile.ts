@@ -8,8 +8,11 @@ const getFollwingAndFollowers = async (token: string, userId: number) => {
   )
 }
 
-const getAllUserPosts = async (userId: number) => {
-  return Axios.get(apiPaths.profile.getAllUserPosts + userId)
+const getAllUserPosts = async (token: string, userId: number) => {
+  return Axios.get(
+    apiPaths.profile.getAllUserPosts + userId,
+    headerWithToken(token)
+  )
 }
 
 const UploadPost = async (
@@ -21,7 +24,15 @@ const UploadPost = async (
   return Axios.post(apiPaths.profile.UploadPost, { userId, text, image, type })
 }
 
+const userProfile = async (token: string, username: string) => {
+  return Axios.get(
+    apiPaths.profile.userProfile + username,
+    headerWithToken(token)
+  )
+}
+
 export const ApiProfile = {
+  userProfile,
   getFollwingAndFollowers,
   getAllUserPosts,
   UploadPost,

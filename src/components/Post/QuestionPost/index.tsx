@@ -184,7 +184,7 @@ const QuestionPost = ({
               }
               className="hover:underline"
             >
-              <Read text={text || ''} className="text-[16px] font-medium " />
+              <Read text={text || ''} className="text-[16px] font-normal " />
             </Link>
           </div>
           <div className="flex items-center gap-[10px] mt-[5px]">

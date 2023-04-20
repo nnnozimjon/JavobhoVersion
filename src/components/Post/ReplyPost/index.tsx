@@ -14,9 +14,8 @@ import Read from '@/components/Read'
 import Modal from '@/components/useModal/Modal'
 
 import RepostModal from '@/components/Modals/RepostModal'
-import { PostProps } from '@/components/page/profile/posts'
 
-const ReplyPost: React.FC<PostProps> = ({
+const ReplyPost: React.FC<any> = ({
   createdAt,
   username,
   fullname,
@@ -29,7 +28,8 @@ const ReplyPost: React.FC<PostProps> = ({
   userId,
   avatar,
   repostCount,
-}: PostProps) => {
+  answer,
+}: any) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
 
@@ -149,7 +149,7 @@ const ReplyPost: React.FC<PostProps> = ({
         !showComments && 'border-b'
       } my-[10px] border-invisible`}
     >
-      <div className="w-[580px] p-[10px] flex gap-[10px]">
+      <div className="w-full p-[10px] flex gap-[10px]">
         <div className="flex w-[99%] gap-[10px]">
           <img
             src={avatar}
@@ -177,40 +177,28 @@ const ReplyPost: React.FC<PostProps> = ({
 
             {/* The questioner profile  */}
             <div className="w-full px-[10px]">
-              <div className="flex gap-[10px]">
-                <img
-                  src={avatar}
-                  alt="comment image"
-                  className="w-[20px] h-[20px] rounded-full object-cover"
-                />
+              <div className="flex gap-[10px] bg-silver rounded-2xl p-[3px_10px]">
                 <div className="flex flex-col">
                   <div className="flex">
                     <Link
                       href={`/${username}`}
-                      className="font-medium text-[12px] cursor-pointer hover:underline pr-[3px]"
+                      className="font-semibold text-[14px] cursor-pointer hover:underline pr-[3px] text-main"
                     >
                       {fullname || '@' + username}
                     </Link>
                     {verified ? <Icon name="verified" size={20} /> : ''}
                   </div>
-                  <p className=" font-semibold text-[10px] text-indigo">
-                    {distanceString}
-                  </p>
+                  <Read
+                    text={text || ''}
+                    className="text-[14px] font-normal  pl-[10px] pb-[8px]"
+                  />
                 </div>
               </div>
               {/* End of questioner profile */}
-              <div className="pl-[20px]">
-                <Read text={text || ''} className="text-[15px] font-normal " />
-                {!true && (
-                  <img
-                    src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80"
-                    className="pt-[10px] h-[400px] w-full object-cover"
-                  />
-                )}
-              </div>
+              <div className="pl-[20px]"></div>
             </div>
             <div className="pl-[20px] ">
-              <Read text={text || ''} className="text-[16px] font-medium " />
+              <Read text={answer || ''} className="text-[16px] font-normal " />
             </div>
             <div className="flex items-center gap-[5px] mt-[5px]">
               <Icon

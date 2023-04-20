@@ -85,7 +85,7 @@ export default function Home() {
             verified
             fullname="Bilol Sharipov"
             image=""
-            text="How to speak english?"
+            text="Ты когда-нибудь влюбился?"
           />
           <ReplyPost
             avatar={user.avatar}
@@ -100,8 +100,9 @@ export default function Home() {
             verified
             fullname="Bilol Sharipov"
             image=""
-            text="Hey what's bro"
+            text="Ты когда-нибудь влюбился?"
             type="reply"
+            answer="Yes, please"
           />
           <Modal
             isOpen={askQuestionModalOpen}

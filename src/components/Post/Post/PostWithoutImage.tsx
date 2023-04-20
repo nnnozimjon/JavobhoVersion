@@ -180,7 +180,7 @@ const PostWithoutImage = ({
               </p>
             </div>
             <div className="font-semibold">
-              <Read text={text || ''} className="text-[16px] font-medium " />
+              <Read text={text || ''} className="text-[16px] font-normal " />
             </div>
             <div className="flex items-center gap-[5px] mt-[5px]">
               <Icon
@@ -246,7 +246,7 @@ const PostWithoutImage = ({
               onClick={handleComment}
             />
           </div>
-          <div className="w-full flex flex-col items-end">
+          <div className="w-full flex flex-col items-end pt-[10px] ">
             {commentState.map((comment, i: number) => (
               <BannerComment
                 key={i}

@@ -46,24 +46,24 @@ export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
   }
 }
 
-const UsersProfile: NextPage<any> = ({ params }) => {
+const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
   const [view, setView] = React.useState<string>('posts')
   const { user } = useUser()
 
   return (
     <div className="h-full relative">
       <img
-        src={user.splashImage}
+        src={params.splashImage}
         alt="profile_cover_image"
         className="w-full h-[200px] border-b border-invisible object-cover"
       />
       <div className="h-[200px]">
         <img
-          src={user.avatar}
+          src={params.avatar}
           alt="profile_photo"
           className="w-[150px] h-[150px] rounded-full absolute top-[120px] left-[40px] object-cover border-[3px] border-white"
         />
-        {params === user.username ? (
+        {params.username === user.username ? (
           <button className="absolute border border-invisible p-[5px_10px] rounded-full right-[30px] mt-[20px] select-none hover:bg-[rgba(0,0,0,0.1)] font-medium duration-300">
             Edit Profile
           </button>
@@ -76,17 +76,17 @@ const UsersProfile: NextPage<any> = ({ params }) => {
         )}
         <div className="pt-[80px] p-[10px]">
           <div className=" flex items-center">
-            <p className="font-bold text-[20px] pr-[10px]">{user.fullname}</p>
-            {Boolean(user.verified) && <Icon name="verified" />}
+            <p className="font-bold text-[20px] pr-[10px]">{params.fullname}</p>
+            {Boolean(params.verified) && <Icon name="verified" />}
           </div>
-          <p className="font-medium text-dGray">@{user.username}</p>
-          <p className="text-[15px]">{user.description}</p>
+          <p className="font-medium text-dGray">@{params.username}</p>
+          <p className="text-[15px]">{params.description}</p>
           <br />
           <div className="flex text-dGray items-center">
             <Icon name="calendar" size={20} />
             <p className="font-medium pl-[10px]">
               Joined{' '}
-              {new Date(user.createdAt).toLocaleDateString('en-US', {
+              {new Date(params.createdAt).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
               })}
@@ -94,8 +94,13 @@ const UsersProfile: NextPage<any> = ({ params }) => {
           </div>
           <div>
             <p>
-              <b className="pl-[5px] pr-[10px]">0</b>
-              Following <b className="pl-[5px] pr-[10px]">0</b>
+              <b className="pl-[5px] pr-[10px]">
+                {following[0].following.length}
+              </b>
+              Following{' '}
+              <b className="pl-[5px] pr-[10px]">
+                {following[0].followers.length}
+              </b>
               Followers
             </p>
           </div>
@@ -134,7 +139,7 @@ const UsersProfile: NextPage<any> = ({ params }) => {
           >
             Media
           </button> */}
-          {params === user.username && (
+          {params.username === user.username && (
             <button
               onClick={() => setView('likes')}
               className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
@@ -154,7 +159,7 @@ const UsersProfile: NextPage<any> = ({ params }) => {
           </button>
         </div>
         <div className="p-[10px] flex flex-col items-center">
-          <ProfileView view={view} AllUserPosts={[]} />
+          <ProfileView view={view} AllUserPosts={AllUserPosts} />
         </div>
       </div>
     </div>
@@ -162,12 +167,38 @@ const UsersProfile: NextPage<any> = ({ params }) => {
 }
 
 export const getServerSideProps = async (context: any) => {
+  const cookies = parseCookies(context)
+  const token = cookies.access_token
+
   const { params } = context
   const username = params.profile
 
+  const userProfile = await ApiProfile.userProfile(token, username).then(
+    res => {
+      return res.payload
+    }
+  )
+
+  const following: any = await Promise.all([
+    ApiProfile.getFollwingAndFollowers(token, userProfile.userId).then(res => {
+      return res.payload
+    }),
+  ])
+
+  const AllUserPosts: any = await Promise.all([
+    ApiProfile.getAllUserPosts(token, userProfile.userId).then(res => {
+      if (res.message === 'success') {
+        return res.payload
+      }
+      return []
+    }),
+  ])
+
   return {
     props: {
-      params: username,
+      following,
+      params: userProfile,
+      AllUserPosts,
     },
   }
 }

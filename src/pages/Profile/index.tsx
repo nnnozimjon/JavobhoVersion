@@ -165,7 +165,7 @@ export const getServerSideProps = async (context: any) => {
   ])
 
   const AllUserPosts: any = await Promise.all([
-    ApiProfile.getAllUserPosts(userId).then(res => {
+    ApiProfile.getAllUserPosts(token, userId).then(res => {
       if (res.message === 'success') {
         return res.payload
       }

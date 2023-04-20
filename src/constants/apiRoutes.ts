@@ -10,8 +10,9 @@ const apiPaths = {
   },
   profile: {
     getAllFollowersAndFollowing: '/api/user/profile/follow/',
-    getAllUserPosts: '/check/',
+    getAllUserPosts: '/api/user/get/posts/',
     UploadPost: '/api/user/upload/post',
+    userProfile: '/api/user/get/profile/',
   },
   post: {
     commentPost: '/api/user/comment/post',

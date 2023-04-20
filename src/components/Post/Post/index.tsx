@@ -189,7 +189,7 @@ const Post: React.FC<PostProps> = ({
       <div className="d-flex flex-col">
         {text && (
           <Read
-            className="px-[15px] pt-[4px] pb-[4px] font-medium text-[14px]"
+            className="px-[15px] pt-[4px] pb-[4px] font-normal text-[14px]"
             text={text}
           />
         )}

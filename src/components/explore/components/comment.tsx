@@ -43,8 +43,8 @@ const BannerComment = ({
     return () => clearInterval(interval)
   }, [distanceString, time])
   return (
-    <div className="w-full p-[10px] flex gap-[10px]">
-      <div className="flex w-[99%] gap-[10px]">
+    <div className="w-full p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
+      <div className="flex w-[99%] gap-[10px] ">
         <img
           src={avatar}
           alt="comment image"
@@ -70,7 +70,7 @@ const BannerComment = ({
             </p>
           </div>
           <div className="font-semibold">
-            <Read text={text} className="text-[13px] font-medium " />
+            <Read text={text} className="text-[13px] font-normal " />
           </div>
         </div>
       </div>
