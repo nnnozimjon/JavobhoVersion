@@ -37,12 +37,12 @@ const NavLinks: INav.nav[] = [
   //   activeIcon: 'listsFilled',
   //   path: '/lists',
   // },
-  {
-    icon: 'profile',
-    label: 'Profile',
-    activeIcon: 'profileFilled',
-    path: '/profile',
-  },
+  // {
+  //   icon: 'profile',
+  //   label: 'Profile',
+  //   activeIcon: 'profileFilled',
+  //   path: `/profile`,
+  // },
 ]
 
 export default NavLinks

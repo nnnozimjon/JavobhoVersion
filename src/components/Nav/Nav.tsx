@@ -10,9 +10,12 @@ import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
 import Cookies from 'js-cookie'
 import NavDropdownSelect from '../NavDropdownSelect'
+import { useUser } from '@/store/contexts/UserContect'
 
 const Nav = () => {
   const router = useRouter().pathname
+  const { user } = useUser()
+  const profilePath = '/[profile]'
 
   const handleLogout = async () => {
     Cookies.remove('access_token')
@@ -39,6 +42,15 @@ const Nav = () => {
             />
           </Link>
         ))}
+        <Link href={`/${user.username}`}>
+          <NavButton
+            className={`${router === profilePath && 'text-white'} ${
+              router === profilePath && 'bg-[#3C87DF]'
+            } `}
+            icon={router === profilePath ? 'profileFilled' : 'profile'}
+            label={'Profile'}
+          />
+        </Link>
         <NavDropdownSelect
           placeholder="More"
           options={[
