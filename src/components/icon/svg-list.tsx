@@ -235,7 +235,6 @@ c0 886 2 1609 4 1607 2 -2 227 -719 500 -1594z m-1614 1480 l0 -95 -410 0
   ),
   changeImage: (
     <svg
-      version="1.0"
       viewBox="0 0 512.000000 512.000000"
       preserveAspectRatio="xMidYMid meet"
     >
