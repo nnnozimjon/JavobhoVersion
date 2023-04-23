@@ -194,6 +194,12 @@ export const getServerSideProps = async (context: any) => {
     }),
   ])
 
+  if (AllUserPosts[0].length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       following,
