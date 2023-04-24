@@ -3,11 +3,19 @@ import IRead from './IRead.interface'
 
 const HashtagText: React.FC<any> = ({ text }) => {
   const hashtagRegex = /#(\w+)/g
-  const coloredText = text.replace(
-    hashtagRegex,
-    // `<a href='/explore/tags?=$&' class="text-main">$&</a>`
-    `<span class="text-darkblue">$&</span>`
-  )
+  const usernameRegex = /@(\w+)/g
+
+  const coloredText = text
+    .trim() // Remove leading/trailing spaces
+    .replace(/\n/g, '<br />') // Replace newline with <br />
+    .replace(
+      hashtagRegex,
+      `<span class="text-darkblue"><a href="/explore/tags?tag=$1">#$1</a></span>`
+    )
+    .replace(
+      usernameRegex,
+      `<span class="text-darkblue"><a href="/$1">@$1</a></span>`
+    )
 
   return <p dangerouslySetInnerHTML={{ __html: coloredText }} />
 }

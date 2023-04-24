@@ -15,7 +15,30 @@ import Modal from '@/components/useModal/Modal'
 
 import RepostModal from '@/components/Modals/RepostModal'
 
-const ReplyPost: React.FC<any> = ({
+export interface Props {
+  postId?: number
+  text: string
+  image: string
+  type?: string
+  status?: string
+  createdAt: string
+  userId: number
+  username: string
+  fullname: string
+  verified: boolean
+  avatar: string
+  likedByUser: boolean
+  repostCount: number
+  comments: any
+  likedByUsers: any
+  reposterId: number
+  reposterText: string
+  reposterUsername: string
+  reposterFullname: string
+  reposterVerified: boolean
+}
+
+const ReplyPost: React.FC<Props> = ({
   createdAt,
   username,
   fullname,
@@ -41,6 +64,13 @@ const ReplyPost: React.FC<any> = ({
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
   const [repostModalState, setRepostModalState] = useState<boolean>(false)
+
+  React.useEffect(() => {
+    setCommentState(comments)
+    setLikedByUserState(likedByUser)
+    setLikedByUsersState(likedByUsers)
+    setRepostCountState(repostCount)
+  }, [])
 
   const handleComment = () => {
     const token = Cookies.get('access_token') || ''
@@ -229,7 +259,7 @@ const ReplyPost: React.FC<any> = ({
                 size={17}
               />
               <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
-                {commentState?.length}
+                {commentState?.length || 0}
               </p>
             </div>
           </div>
@@ -264,7 +294,7 @@ const ReplyPost: React.FC<any> = ({
               onClick={handleComment}
             />
           </div>
-          <div className="w-full flex flex-col items-end">
+          <div className="w-full flex flex-col items-end pt-[10px]">
             {commentState.map((comment, i: number) => (
               <BannerComment
                 key={i}

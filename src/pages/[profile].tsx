@@ -21,15 +21,13 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Modal from '@/components/useModal/Modal'
 import EditProfileModal from '@/components/Modals/EditProfileModal'
-import EditProfileImageModal from '@/components/Modals/EditProfileImageModal'
-import EditProfileHeaderModal from '@/components/Modals/EditProfileHeaderModal'
 
 export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
   switch (view) {
     case 'posts':
       return <PostsView posts={AllUserPosts} />
     case 'questions':
-      return <QuestionsView />
+      return <QuestionsView posts={AllUserPosts} />
     case 'replies':
       return <RepliesView />
     case 'media':
@@ -56,25 +54,6 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
 
   const [editProfileModalState, setEditProfileModalState] =
     React.useState<boolean>(false)
-  const [editProfileImageState, setEditProfileImageState] =
-    React.useState<boolean>(false)
-
-  const [editProfileHeaderImageState, setEditProfileHeaderImageState] =
-    React.useState<boolean>(false)
-
-  const openEditProfileHeaderState = () => {
-    setEditProfileHeaderImageState(true)
-  }
-  const closeEditProfileHeaderState = () => {
-    setEditProfileHeaderImageState(false)
-  }
-  const openEditProfileImageState = () => {
-    setEditProfileImageState(true)
-  }
-
-  const closeEditProfileImageState = () => {
-    setEditProfileImageState(false)
-  }
 
   const openEditModalState = () => {
     setEditProfileModalState(true)
@@ -95,18 +74,6 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           src={params.avatar}
           alt="profile_photo"
           className="w-[150px] h-[150px] rounded-full absolute top-[120px] left-[40px] object-cover border-[3px] border-white"
-        />
-        <Icon
-          name="changeImage"
-          className="absolute top-[185px] left-[100px] cursor-pointer  text-darkblue"
-          size={30}
-          onClick={openEditProfileImageState}
-        />
-        <Icon
-          name="changeImage"
-          className="absolute top-[100px] left-[400px] cursor-pointer  text-darkblue"
-          size={30}
-          onClick={openEditProfileHeaderState}
         />
         {params.username === user.username ? (
           <button
@@ -215,18 +182,6 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
         closeModal={closeEditModalState}
         children={<EditProfileModal />}
         title="Edit Profile"
-      />
-      <Modal
-        isOpen={editProfileImageState}
-        closeModal={closeEditProfileImageState}
-        children={<EditProfileImageModal />}
-        title="Change Profile Image"
-      />
-      <Modal
-        isOpen={editProfileHeaderImageState}
-        closeModal={closeEditProfileHeaderState}
-        children={<EditProfileHeaderModal />}
-        title="Change Header Image"
       />
     </div>
   )

@@ -197,10 +197,10 @@ const QuestionPost = ({
               } cursor-pointer duration-500`}
             />
             <p className="text-[12px] font-medium">
-              {likedByUsers.length || 0}
+              {likedByUsersState.length || 0}
             </p>
             <Icon name="edit" className="cursor-pointer text-dGray" size={17} />
-            <p className="text-[12px] font-medium">0</p>
+            <p className="text-[12px] font-medium">{answerState.length || 0}</p>
             <Icon
               name="repost"
               className="cursor-pointer text-dGray"

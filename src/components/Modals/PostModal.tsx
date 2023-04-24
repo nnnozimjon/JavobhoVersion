@@ -40,8 +40,18 @@ const PostModal = () => {
   }, [selectedFile])
 
   const handleTextChange = (event: any) => {
-    setText(event.target.value)
+    const newText = event.target.value
+    const isEnterKey = event.keyCode === 13
+
+    if (isEnterKey) {
+      setText(prevText => prevText + '<br/>')
+    } else {
+      setText(newText)
+    }
+
+    console.log(text)
   }
+
   const handleClear = () => {
     setSelectedFile(null)
     setBufferImage(null)

@@ -246,7 +246,7 @@ const PostWithoutImage = ({
               onClick={handleComment}
             />
           </div>
-          <div className="w-full flex flex-col items-end pt-[10px] ">
+          <div className="w-full flex flex-col items-end pt-[10px]">
             {commentState.map((comment, i: number) => (
               <BannerComment
                 key={i}

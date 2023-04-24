@@ -7,6 +7,7 @@ import Icon from '@/components/Icon'
 import Modal from '@/components/useModal/Modal'
 import PostModal from '@/components/Modals/PostModal'
 import { QuestionPost, ReplyPost } from '@/components/Post'
+import AskModal from '@/components/Modals/AskModal'
 
 export default function Home() {
   const { user } = useUser()
@@ -102,12 +103,16 @@ export default function Home() {
             image=""
             text="Ты когда-нибудь влюбился?"
             type="reply"
-            answer={`Yes every body in the world falls in love with someone. And we can deal with our hearts because the heart can not keep our brain in order to be calm as always because the love so something very hard. Trust me I know what I'm talking about, It's very very hard to fall in love. But once it get to be halal I mean when we Nikah with the person will Alhamdullilah everything, every moments will become our happiness. For boys there is som happiness that can just make the man really happy. Firstly when we look to our parents smiling and when we marry the girl we love and the second we buy the car we want we our own sallary.`}
+            answer={`Yes every body in the world falls in #love with someone.And we can @deal with our hearts because the heart can not keep our brain in order
+             to be calm as always because the love so something very hard. <br/>Trust me I know what I'm talking about, It's very very hard to fall in love.
+              But once it get to be halal I mean when we Nikah with the person will Alhamdullilah everything, #every moments will become our happiness.
+               For boys there is som happiness that can just make the man really happy.Firstly when we look to our parents smiling and when we marry 
+               the girl we love and the second we buy the car we want we our own #sallary.`}
           />
           <Modal
             isOpen={askQuestionModalOpen}
             closeModal={closeAskQuestionModal}
-            children={<h1 />}
+            children={<AskModal />}
             title="Ask Question"
           />
           <Modal
