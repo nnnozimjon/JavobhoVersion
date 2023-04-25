@@ -48,8 +48,6 @@ const PostModal = () => {
     } else {
       setText(newText)
     }
-
-    console.log(text)
   }
 
   const handleClear = () => {

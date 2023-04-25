@@ -51,7 +51,11 @@ const ReplyPost: React.FC<Props> = ({
   userId,
   avatar,
   repostCount,
-  answer,
+  reposterText,
+  reposterId,
+  reposterUsername,
+  reposterFullname,
+  reposterVerified,
 }: any) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -211,15 +215,15 @@ const ReplyPost: React.FC<Props> = ({
                 <div className="flex flex-col">
                   <div className="flex">
                     <Link
-                      href={`/${username}`}
+                      href={`/${reposterUsername}`}
                       className="font-semibold text-[14px] cursor-pointer hover:underline pr-[3px] text-main"
                     >
-                      {fullname || '@' + username}
+                      {reposterFullname || '@' + reposterUsername}
                     </Link>
-                    {verified ? <Icon name="verified" size={20} /> : ''}
+                    {reposterVerified ? <Icon name="verified" size={20} /> : ''}
                   </div>
                   <Read
-                    text={text || ''}
+                    text={reposterText || ''}
                     className="text-[14px] font-normal  pl-[10px] pb-[8px]"
                   />
                 </div>
@@ -228,7 +232,7 @@ const ReplyPost: React.FC<Props> = ({
               <div className="pl-[20px]"></div>
             </div>
             <div className="pl-[20px] ">
-              <Read text={answer || ''} className="text-[16px] font-normal " />
+              <Read text={text || ''} className="text-[16px] font-normal " />
             </div>
             <div className="flex items-center gap-[5px] mt-[5px]">
               <Icon
