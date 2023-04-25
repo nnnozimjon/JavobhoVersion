@@ -31,8 +31,19 @@ const userProfile = async (token: string, username: string) => {
   )
 }
 
-const checkUsername = async (token: string) => {
-  return Axios.get(apiPaths.profile.checkUsername, headerWithToken(token))
+const checkUsername = async (
+  token: string,
+  username: string,
+  userId: number
+) => {
+  return Axios.post(
+    apiPaths.profile.checkUsername,
+    {
+      userId,
+      username,
+    },
+    headerWithToken(token)
+  )
 }
 
 const updateProfile = async (

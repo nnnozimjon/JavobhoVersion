@@ -43,23 +43,29 @@ const EditProfileModal: React.FC<any> = () => {
 
   function handleChangeProfile() {
     const token = Cookies.get('access_token') || ''
-    ApiProfile.updateProfile(
-      token,
-      user.userId,
-      username,
-      fullname,
-      description
-    ).then(res => {
-      if (res.message === 'success') {
-        Cookies.set('access_token', res.token)
-        const decode: any = jwtDecode(res.token)
-        const { username } = decode
-        window.location.replace(`/${username}`)
-      } else if (res.message === 'logout') {
-        Cookies.remove('access_token')
-        window.location.replace('/login')
+    ApiProfile.checkUsername(token, username, user.userId).then(res => {
+      if (res.message == false) {
+        setError('Username Exists!')
       } else {
-        setError('Try again!')
+        ApiProfile.updateProfile(
+          token,
+          user.userId,
+          username.toLowerCase(),
+          fullname,
+          description
+        ).then(res => {
+          if (res.message === 'success') {
+            Cookies.set('access_token', res.token)
+            const decode: any = jwtDecode(res.token)
+            const { username } = decode
+            window.location.replace(`/${username}`)
+          } else if (res.message === 'logout') {
+            Cookies.remove('access_token')
+            window.location.replace('/login')
+          } else {
+            setError('Try again!')
+          }
+        })
       }
     })
   }
@@ -120,21 +126,6 @@ const EditProfileModal: React.FC<any> = () => {
           onChange={e => {
             setUsername(e.target.value)
             setError('')
-            setInterval(() => {
-              const token = Cookies.get('access_token') || ''
-              ApiProfile.checkUsername(token)
-                .then(res => {
-                  if (res.message === true) {
-                    setError('')
-                  } else {
-                    setError('Username already exists')
-                  }
-                })
-                .catch(error => console.error(error))
-            }, 3000)
-
-            // clear the interval on every change
-            // clearInterval(intervalId)
           }}
           value={username}
         />
