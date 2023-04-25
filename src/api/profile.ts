@@ -31,9 +31,34 @@ const userProfile = async (token: string, username: string) => {
   )
 }
 
+const checkUsername = async (token: string) => {
+  return Axios.get(apiPaths.profile.checkUsername, headerWithToken(token))
+}
+
+const updateProfile = async (
+  token: string,
+  userId: number,
+  username: string,
+  fullname: string,
+  description: string
+) => {
+  return Axios.post(
+    apiPaths.profile.updateProfile,
+    {
+      userId,
+      username,
+      fullname,
+      description,
+    },
+    headerWithToken(token)
+  )
+}
+
 export const ApiProfile = {
   userProfile,
   getFollwingAndFollowers,
   getAllUserPosts,
   UploadPost,
+  updateProfile,
+  checkUsername,
 }

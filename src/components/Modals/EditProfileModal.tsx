@@ -3,9 +3,13 @@ import React from 'react'
 import Input from '../Input/Input'
 import Button from '../Button'
 import { useUser } from '@/store/contexts/UserContect'
+import { ApiProfile } from '@/api/profile'
+import Cookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
 
 const EditProfileModal: React.FC<any> = () => {
   const { user } = useUser()
+  const [error, setError] = React.useState('')
   const [description, setDescription] = React.useState<string>('')
   const [username, setUsername] = React.useState<string>('')
   const [fullname, setFullname] = React.useState<string>('')
@@ -19,6 +23,7 @@ const EditProfileModal: React.FC<any> = () => {
   }, [])
 
   const handleTextChange = (event: any) => {
+    setError('')
     const newText = event.target.value
     const isEnterKey = event.keyCode === 13
 
@@ -35,6 +40,30 @@ const EditProfileModal: React.FC<any> = () => {
       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
     }
   }
+
+  function handleChangeProfile() {
+    const token = Cookies.get('access_token') || ''
+    ApiProfile.updateProfile(
+      token,
+      user.userId,
+      username,
+      fullname,
+      description
+    ).then(res => {
+      if (res.message === 'success') {
+        Cookies.set('access_token', res.token)
+        const decode: any = jwtDecode(res.token)
+        const { username } = decode
+        window.location.replace(`/${username}`)
+      } else if (res.message === 'logout') {
+        Cookies.remove('access_token')
+        window.location.replace('/login')
+      } else {
+        setError('Try again!')
+      }
+    })
+  }
+
   return (
     <>
       <div className="flex flex-col gap-[15px] my-[30px]">
@@ -48,13 +77,15 @@ const EditProfileModal: React.FC<any> = () => {
               className="font-normal text-[10px] h-[32px] hover:bg-dGray"
               name="changeImage"
             />
-            <Button
-              bg="main"
-              text=""
-              color="white"
-              className="font-normal text-[10px] h-[32px] hover:bg-ruby"
-              name="trash"
-            />
+            {!RegExp('\\b' + 'default' + '\\b').test(user.avatar) && (
+              <Button
+                bg="main"
+                text=""
+                color="white"
+                className="font-normal text-[10px] h-[32px] hover:bg-ruby"
+                name="trash"
+              />
+            )}
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
@@ -72,25 +103,48 @@ const EditProfileModal: React.FC<any> = () => {
             className="font-normal text-[10px] h-[32px] hover:bg-dGray"
             name="changeImage"
           />
-          <Button
-            bg="main"
-            text=""
-            color="white"
-            className="font-normal text-[10px] h-[32px] hover:bg-ruby"
-            name="trash"
-          />
+          {!RegExp('\\b' + 'default' + '\\b').test(user.avatar) && (
+            <Button
+              bg="main"
+              text=""
+              color="white"
+              className="font-normal text-[10px] h-[32px] hover:bg-ruby"
+              name="trash"
+            />
+          )}
         </div>
 
         <Input
           type="text"
           placeholder="Username"
-          onChange={e => setUsername(e.target.value)}
+          onChange={e => {
+            setUsername(e.target.value)
+            setError('')
+            setInterval(() => {
+              const token = Cookies.get('access_token') || ''
+              ApiProfile.checkUsername(token)
+                .then(res => {
+                  if (res.message === true) {
+                    setError('')
+                  } else {
+                    setError('Username already exists')
+                  }
+                })
+                .catch(error => console.error(error))
+            }, 3000)
+
+            // clear the interval on every change
+            // clearInterval(intervalId)
+          }}
           value={username}
         />
         <Input
           type="text"
           placeholder="Fullname"
-          onChange={e => setFullname(e.target.value)}
+          onChange={e => {
+            setFullname(e.target.value)
+            setError('')
+          }}
           value={fullname}
         />
         <textarea
@@ -102,7 +156,18 @@ const EditProfileModal: React.FC<any> = () => {
           className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[100px]"
         />
 
-        <Button bg="main" text="Submit" color="white" />
+        <Button
+          bg={error ? 'invisible' : 'main'}
+          text="Submit changes"
+          color="white"
+          onClick={error ? () => {} : handleChangeProfile}
+          className={`${
+            !error ? 'hover:bg-dGray' : 'hover:bg-none cursor-default'
+          } text-center`}
+        />
+        <p className="text-darkerRuby text-[12px] p-[0] m-[0] leading-[0px]">
+          {error}
+        </p>
       </div>
     </>
   )

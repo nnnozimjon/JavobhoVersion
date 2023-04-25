@@ -13,6 +13,8 @@ const apiPaths = {
     getAllUserPosts: '/api/user/get/posts/',
     UploadPost: '/api/user/upload/post',
     userProfile: '/api/user/get/profile/',
+    updateProfile: '/api/user/update/profile',
+    checkUsername: '/api/user/check/username/availability',
   },
   post: {
     commentPost: '/api/user/comment/post',
