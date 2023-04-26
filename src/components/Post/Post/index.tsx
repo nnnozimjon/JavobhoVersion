@@ -11,8 +11,6 @@ import BannerComment from '@/components/explore/components/comment'
 import { formatDistanceToNowStrict } from 'date-fns'
 import Cookies from 'js-cookie'
 import { ApiPost } from '@/api/post'
-import Modal from '@/components/useModal/Modal'
-import RepostModal from '@/components/Modals/RepostModal'
 
 const Post: React.FC<PostProps> = ({
   postId,
@@ -41,14 +39,19 @@ const Post: React.FC<PostProps> = ({
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
-  const [repostModalState, setRepostModalState] = useState<boolean>(false)
-
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
   }, [])
+
+  const handleRepost = () => {
+    const token = Cookies.get('access_token') || ''
+    ApiPost.repostPost(token, { userId, postId }).then(res => {
+      alert(res.message)
+    })
+  }
 
   const handleComment = () => {
     commentText &&
@@ -125,13 +128,6 @@ const Post: React.FC<PostProps> = ({
         }
       })
     }
-  }
-
-  const openRepostModal = () => {
-    setRepostModalState(true)
-  }
-  const closeRepostModal = () => {
-    setRepostModalState(false)
   }
 
   const time = createdAt.replace('Z', '+03:00')
@@ -224,13 +220,17 @@ const Post: React.FC<PostProps> = ({
             name="repost"
             className="cursor-pointer text-dGray"
             size={18}
-            onClick={openRepostModal}
+            onClick={handleRepost}
           />
           <p className="pl-[5px] pr-[10px] text-black">
             {repostCountState || '0'}
           </p>
-          <Icon name="share" className="cursor-pointer text-dGray" size={18} />
-          <p className="pl-[5px] pr-[10px] text-black">Share</p>
+          <Icon
+            name="bookmarks"
+            className="cursor-pointer text-dGray"
+            size={18}
+          />
+          <p className="pl-[5px] pr-[10px] text-black">save</p>
         </div>
         <button
           className="text-gray"
@@ -269,13 +269,6 @@ const Post: React.FC<PostProps> = ({
             avatar={comment.commenterAvatar}
           />
         ))}
-
-      <Modal
-        isOpen={repostModalState}
-        closeModal={closeRepostModal}
-        children={<RepostModal />}
-        title="Repost"
-      />
     </div>
   )
 }

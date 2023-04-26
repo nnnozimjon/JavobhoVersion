@@ -11,9 +11,6 @@ import { ApiPost } from '@/api/post'
 import Cookies from 'js-cookie'
 import BannerComment from '@/components/explore/components/comment'
 import Read from '@/components/Read'
-import Modal from '@/components/useModal/Modal'
-
-import RepostModal from '@/components/Modals/RepostModal'
 
 export interface Props {
   postId?: number
@@ -42,6 +39,7 @@ const ReplyPost: React.FC<Props> = ({
   createdAt,
   username,
   fullname,
+  image,
   text,
   verified,
   likedByUser,
@@ -56,6 +54,7 @@ const ReplyPost: React.FC<Props> = ({
   reposterUsername,
   reposterFullname,
   reposterVerified,
+  type,
 }: any) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -67,8 +66,6 @@ const ReplyPost: React.FC<Props> = ({
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
-  const [repostModalState, setRepostModalState] = useState<boolean>(false)
-
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
@@ -76,6 +73,12 @@ const ReplyPost: React.FC<Props> = ({
     setRepostCountState(repostCount)
   }, [])
 
+  const handleRepost = () => {
+    const token = Cookies.get('access_token') || ''
+    ApiPost.repostPost(token, { userId, postId }).then(res => {
+      alert(res.message)
+    })
+  }
   const handleComment = () => {
     const token = Cookies.get('access_token') || ''
     commentText &&
@@ -154,13 +157,6 @@ const ReplyPost: React.FC<Props> = ({
     }
   }
 
-  const openRepostModal = () => {
-    setRepostModalState(true)
-  }
-  const closeRepostModal = () => {
-    setRepostModalState(false)
-  }
-
   const time = createdAt.replace('Z', '+03:00')
   const [distanceString, setDistanceString] = React.useState(() =>
     formatDistanceToNowStrict(new Date(time), { addSuffix: true })
@@ -226,6 +222,13 @@ const ReplyPost: React.FC<Props> = ({
                     text={reposterText || ''}
                     className="text-[14px] font-normal  pl-[10px] pb-[8px]"
                   />
+                  {image && (
+                    <img
+                      src={image}
+                      alt="post image"
+                      className="h-[400px] w-full object-cover rounded-2xl p-[10px]"
+                    />
+                  )}
                 </div>
               </div>
               {/* End of questioner profile */}
@@ -247,15 +250,19 @@ const ReplyPost: React.FC<Props> = ({
               <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {likedByUsersState.length || 0}
               </p>
-              <Icon
-                name="repost"
-                className="cursor-pointer text-dGray"
-                size={17}
-                onClick={openRepostModal}
-              />
-              <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
-                {repostCountState || '0'}
-              </p>
+              {type != 'repost' && (
+                <>
+                  <Icon
+                    name="repost"
+                    className="cursor-pointer text-dGray"
+                    size={17}
+                    onClick={handleRepost}
+                  />
+                  <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
+                    {repostCountState || '0'}
+                  </p>
+                </>
+              )}
               <Icon
                 onClick={() => setShowComments(!showComments)}
                 name="comment"
@@ -275,7 +282,7 @@ const ReplyPost: React.FC<Props> = ({
           />
           <div className="flex flex-col items-center cursor-pointer">
             <Icon
-              name="share"
+              name="bookmarks"
               className="cursor-pointer text-dGray"
               size={17}
             />
@@ -322,12 +329,6 @@ const ReplyPost: React.FC<Props> = ({
           </div>
         </div>
       )}
-      <Modal
-        isOpen={repostModalState}
-        closeModal={closeRepostModal}
-        children={<RepostModal />}
-        title="Repost"
-      />
     </div>
   )
 }

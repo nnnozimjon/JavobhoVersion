@@ -11,8 +11,6 @@ import BannerComment from '@/components/explore/components/comment'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiPost } from '@/api/post'
 import Cookies from 'js-cookie'
-import Modal from '@/components/useModal/Modal'
-import RepostModal from '@/components/Modals/RepostModal'
 
 const PostWithoutImage = ({
   createdAt,
@@ -38,14 +36,19 @@ const PostWithoutImage = ({
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
-  const [repostModalState, setRepostModalState] = useState<boolean>(false)
-
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
   }, [])
+
+  const handleRepost = () => {
+    const token = Cookies.get('access_token') || ''
+    ApiPost.repostPost(token, { userId, postId }).then(res => {
+      alert(res.message)
+    })
+  }
 
   const handleComment = () => {
     const token = Cookies.get('access_token') || ''
@@ -125,13 +128,6 @@ const PostWithoutImage = ({
     }
   }
 
-  const openRepostModal = () => {
-    setRepostModalState(true)
-  }
-  const closeRepostModal = () => {
-    setRepostModalState(false)
-  }
-
   const time = createdAt.replace('Z', '+03:00')
   const [distanceString, setDistanceString] = React.useState(() =>
     formatDistanceToNowStrict(new Date(time), { addSuffix: true })
@@ -199,7 +195,7 @@ const PostWithoutImage = ({
                 name="repost"
                 className="cursor-pointer text-dGray"
                 size={17}
-                onClick={openRepostModal}
+                onClick={handleRepost}
               />
               <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {repostCountState || '0'}
@@ -223,7 +219,7 @@ const PostWithoutImage = ({
           />
           <div className="flex flex-col items-center cursor-pointer">
             <Icon
-              name="share"
+              name="bookmarks"
               className="cursor-pointer text-dGray"
               size={17}
             />
@@ -270,12 +266,6 @@ const PostWithoutImage = ({
           </div>
         </div>
       )}
-      <Modal
-        isOpen={repostModalState}
-        closeModal={closeRepostModal}
-        children={<RepostModal />}
-        title="Repost"
-      />
     </div>
   )
 }

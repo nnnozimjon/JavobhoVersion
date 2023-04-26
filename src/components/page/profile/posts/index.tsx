@@ -119,6 +119,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
             username={post.username}
             verified={post.verified}
             key={i}
+            type={post.type}
             postId={post.postId}
             reposterFullname={post.reposterFullname || ''}
             reposterId={post.reposterId || 0}

@@ -17,6 +17,10 @@ const repostPost = async (token: string, body: any) => {
   return Axios.post(apiPaths.post.repostPost, body, headerWithToken(token))
 }
 
+const bookmarkPost = async (token: string, body: any) => {
+  return Axios.post(apiPaths.post.bookmarkPost, body, headerWithToken(token))
+}
+
 const UploadPost = async (
   userId: number,
   text: string,
@@ -32,4 +36,5 @@ export const ApiPost = {
   likePost,
   unlikePost,
   repostPost,
+  bookmarkPost,
 }

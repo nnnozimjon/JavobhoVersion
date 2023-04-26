@@ -20,7 +20,8 @@ const apiPaths = {
     commentPost: '/api/user/comment/post',
     likePost: '/api/user/like/post',
     unlikePost: '/api/user/unlike/post',
-    repostPost: '/api/user/repost/post',
+    repostPost: '/api/user/re/post/post',
+    bookmarkPost: '/api/user/post/bookmark/post',
   },
 }
 
