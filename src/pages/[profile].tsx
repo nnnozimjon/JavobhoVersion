@@ -52,6 +52,14 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
   const [view, setView] = React.useState<string>('posts')
   const { user } = useUser()
 
+  const [followersCountState, setFollowersCountState] = React.useState(0)
+  const [followingCountState, setFollowingCountState] = React.useState(0)
+
+  React.useEffect(() => {
+    setFollowersCountState(following[0].followers.length)
+    setFollowingCountState(following[0].following.length)
+  }, [])
+
   const [editProfileModalState, setEditProfileModalState] =
     React.useState<boolean>(false)
 
@@ -109,13 +117,9 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </div>
           <div>
             <p>
-              <b className="pl-[5px] pr-[10px]">
-                {following[0].following.length}
-              </b>
+              <b className="pl-[5px] pr-[10px]">{followingCountState}</b>
               Following{' '}
-              <b className="pl-[5px] pr-[10px]">
-                {following[0].followers.length}
-              </b>
+              <b className="pl-[5px] pr-[10px]">{followersCountState}</b>
               Followers
             </p>
           </div>

@@ -65,7 +65,11 @@ export interface LikedUser {
   fullname?: string
 }
 
-const PostsView: React.FC<any> = ({ posts }: any) => {
+const PostsView: React.FC<any> = ({
+  posts,
+  followersCount,
+  followingCount,
+}: any) => {
   return (
     <div className="w-full flex items-center flex-col">
       {posts[0]?.map((post: PostProps, i: number) =>
@@ -90,6 +94,8 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
               repostCount={post.repostCount}
               booked={post.booked}
               isFollowing={post.isFollowing}
+              followersCount={followersCount}
+              followingCount={followingCount}
             />
           ) : (
             <PostWithoutImage
