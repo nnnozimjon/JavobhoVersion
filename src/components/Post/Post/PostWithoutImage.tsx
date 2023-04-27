@@ -25,6 +25,7 @@ const PostWithoutImage = ({
   userId,
   avatar,
   repostCount,
+  booked,
 }: PostProps) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -35,19 +36,44 @@ const PostWithoutImage = ({
   const [likedByUserState, setLikedByUserState] = useState<boolean>(false)
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
+  const [bookMarkState, setBookMarkState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
+    setBookMarkState(booked)
   }, [])
 
   const handleRepost = () => {
     const token = Cookies.get('access_token') || ''
-    ApiPost.repostPost(token, { userId, postId }).then(res => {
+    ApiPost.repostPost(token, {
+      userId: user.userId,
+      postId,
+    }).then(res => {
       alert(res.message)
     })
+  }
+
+  const handleBookmarkPost = () => {
+    if (bookMarkState) {
+      setBookMarkState(false)
+      ApiPost.bookmarkDelete(token, { userId: user.userId, postId }).then(
+        res => {
+          if (res.message !== 'success') {
+            setBookMarkState(true)
+          }
+        }
+      )
+    } else {
+      setBookMarkState(true)
+      ApiPost.bookmarkPost(token, { userId: user.userId, postId }).then(res => {
+        if (res.message !== 'success') {
+          setBookMarkState(false)
+        }
+      })
+    }
   }
 
   const handleComment = () => {
@@ -219,9 +245,10 @@ const PostWithoutImage = ({
           />
           <div className="flex flex-col items-center cursor-pointer">
             <Icon
-              name="bookmarks"
+              name={bookMarkState ? 'bookmarksFilled' : 'bookmarks'}
               className="cursor-pointer text-dGray"
-              size={17}
+              size={18}
+              onClick={handleBookmarkPost}
             />
           </div>
         </div>

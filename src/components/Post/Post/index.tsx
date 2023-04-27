@@ -28,6 +28,7 @@ const Post: React.FC<PostProps> = ({
   comments,
   likedByUsers,
   repostCount,
+  booked,
 }) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -39,18 +40,44 @@ const Post: React.FC<PostProps> = ({
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
+  const [bookMarkState, setBookMarkState] = useState<boolean>(false)
+
   React.useEffect(() => {
     setCommentState(comments)
     setLikedByUserState(likedByUser)
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
+    setBookMarkState(booked)
   }, [])
 
   const handleRepost = () => {
     const token = Cookies.get('access_token') || ''
-    ApiPost.repostPost(token, { userId, postId }).then(res => {
+    ApiPost.repostPost(token, {
+      userId: user.userId,
+      postId,
+    }).then(res => {
       alert(res.message)
     })
+  }
+
+  const handleBookmarkPost = () => {
+    if (bookMarkState) {
+      setBookMarkState(false)
+      ApiPost.bookmarkDelete(token, { userId: user.userId, postId }).then(
+        res => {
+          if (res.message !== 'success') {
+            setBookMarkState(true)
+          }
+        }
+      )
+    } else {
+      setBookMarkState(true)
+      ApiPost.bookmarkPost(token, { userId: user.userId, postId }).then(res => {
+        if (res.message !== 'success') {
+          setBookMarkState(false)
+        }
+      })
+    }
   }
 
   const handleComment = () => {
@@ -226,9 +253,10 @@ const Post: React.FC<PostProps> = ({
             {repostCountState || '0'}
           </p>
           <Icon
-            name="bookmarks"
+            name={bookMarkState ? 'bookmarksFilled' : 'bookmarks'}
             className="cursor-pointer text-dGray"
             size={18}
+            onClick={handleBookmarkPost}
           />
           <p className="pl-[5px] pr-[10px] text-black">save</p>
         </div>
