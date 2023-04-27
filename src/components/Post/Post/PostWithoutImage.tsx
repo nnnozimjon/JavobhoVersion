@@ -26,6 +26,7 @@ const PostWithoutImage = ({
   avatar,
   repostCount,
   booked,
+  isFollowing,
 }: PostProps) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -37,6 +38,7 @@ const PostWithoutImage = ({
   const [likedByUsersState, setLikedByUsersState] = useState<any[]>([])
   const [repostCountState, setRepostCountState] = useState<number>(0)
   const [bookMarkState, setBookMarkState] = useState<boolean>(false)
+  const [isFollowingState, setIsFollowingState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
@@ -44,6 +46,7 @@ const PostWithoutImage = ({
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
     setBookMarkState(booked)
+    setIsFollowingState(isFollowing)
   }, [])
 
   const handleRepost = () => {
@@ -194,7 +197,8 @@ const PostWithoutImage = ({
                 </Link>
                 {verified ? <Icon name="verified" size={20} /> : ''}
                 <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
-                  {'Follow'}
+                  {userId != user.userId &&
+                    (isFollowingState ? 'Following' : 'Follow')}
                 </p>
               </div>
               <p className=" font-semibold text-[10px] text-indigo">

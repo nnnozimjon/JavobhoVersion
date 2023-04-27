@@ -23,6 +23,8 @@ const apiPaths = {
     repostPost: '/api/user/re/post/post',
     bookmarkPost: '/api/user/post/bookmark/post',
     bookmarkDelete: '/api/user/post/bookmark/delete',
+    postFollowUser: '/api/user/post/follow',
+    postUnfollowUser: '/api/user/post/unfollow',
   },
 }
 

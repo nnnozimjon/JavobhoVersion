@@ -24,6 +24,17 @@ const bookmarkDelete = async (token: string, body: any) => {
   return Axios.post(apiPaths.post.bookmarkDelete, body, headerWithToken(token))
 }
 
+const followUser = async (token: string, body: any) => {
+  return Axios.post(apiPaths.post.postFollowUser, body, headerWithToken(token))
+}
+const unfollowUser = async (token: string, body: any) => {
+  return Axios.post(
+    apiPaths.post.postUnfollowUser,
+    body,
+    headerWithToken(token)
+  )
+}
+
 const UploadPost = async (
   userId: number,
   text: string,
@@ -41,4 +52,6 @@ export const ApiPost = {
   repostPost,
   bookmarkPost,
   bookmarkDelete,
+  followUser,
+  unfollowUser,
 }

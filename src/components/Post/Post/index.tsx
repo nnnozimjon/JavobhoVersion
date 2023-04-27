@@ -29,6 +29,7 @@ const Post: React.FC<PostProps> = ({
   likedByUsers,
   repostCount,
   booked,
+  isFollowing,
 }) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -41,6 +42,7 @@ const Post: React.FC<PostProps> = ({
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
   const [bookMarkState, setBookMarkState] = useState<boolean>(false)
+  const [isFollowingState, setIsFollowingState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
@@ -48,6 +50,7 @@ const Post: React.FC<PostProps> = ({
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
     setBookMarkState(booked)
+    setIsFollowingState(isFollowing)
   }, [])
 
   const handleRepost = () => {
@@ -58,6 +61,30 @@ const Post: React.FC<PostProps> = ({
     }).then(res => {
       alert(res.message)
     })
+  }
+
+  const handleFollow = () => {
+    if (isFollowingState) {
+      setIsFollowingState(false)
+      ApiPost.unfollowUser(token, {
+        followerId: user.userId,
+        followingId: userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsFollowingState(true)
+        }
+      })
+    } else {
+      setIsFollowingState(true)
+      ApiPost.followUser(token, {
+        followerId: user.userId,
+        followingId: userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsFollowingState(false)
+        }
+      })
+    }
   }
 
   const handleBookmarkPost = () => {
@@ -190,17 +217,14 @@ const Post: React.FC<PostProps> = ({
                 </p>
                 {verified ? <Icon name="verified" size={20} /> : ''}
               </div>
-              {true
-                ? user.userId != userId && (
-                    <button className="font-semibold text-[14px] text-darkblue">
-                      Following
-                    </button>
-                  )
-                : user.userId != userId && (
-                    <button className="font-semibold text-[14px] text-darkblue">
-                      Follow
-                    </button>
-                  )}
+              {user.userId != userId && (
+                <button
+                  className="font-semibold text-[14px] text-darkblue"
+                  onClick={handleFollow}
+                >
+                  {isFollowingState ? 'Following' : 'Follow'}
+                </button>
+              )}
             </div>
             <div className="font-semibold text-[12px] text-lighterIndigo">
               {distanceString}

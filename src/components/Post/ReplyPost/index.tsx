@@ -34,6 +34,7 @@ export interface Props {
   reposterFullname: string
   reposterVerified: boolean
   booked: boolean
+  isFollowing: boolean
 }
 
 const ReplyPost: React.FC<Props> = ({
@@ -57,6 +58,7 @@ const ReplyPost: React.FC<Props> = ({
   reposterVerified,
   type,
   booked,
+  isFollowing,
 }: any) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -226,7 +228,8 @@ const ReplyPost: React.FC<Props> = ({
                 </Link>
                 {verified ? <Icon name="verified" size={20} /> : ''}
                 <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
-                  {'Follow'}
+                  {userId !== user.userId &&
+                    (isFollowing ? 'following' : 'follow')}
                 </p>
               </div>
               <p className=" font-semibold text-[10px] text-indigo">

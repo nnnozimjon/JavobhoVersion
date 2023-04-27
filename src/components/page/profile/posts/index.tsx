@@ -24,6 +24,7 @@ export interface PostProps {
   reposterFullname?: string
   reposterVerified?: boolean
   booked: boolean
+  isFollowing: boolean
 }
 
 export interface QuestionPostProps {
@@ -88,6 +89,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
               likedByUsers={post.likedByUsers}
               repostCount={post.repostCount}
               booked={post.booked}
+              isFollowing={post.isFollowing}
             />
           ) : (
             <PostWithoutImage
@@ -105,6 +107,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
               userId={post.userId}
               repostCount={post.repostCount}
               booked={post.booked}
+              isFollowing={post.isFollowing}
             />
           )
         ) : (
@@ -130,6 +133,7 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
             reposterUsername={post.reposterUsername || ''}
             reposterVerified={post.reposterVerified || false}
             booked={post.booked}
+            isFollowing={post.isFollowing}
           />
         )
       )}
