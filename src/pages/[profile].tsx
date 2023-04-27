@@ -194,7 +194,7 @@ export const getServerSideProps = async (context: any) => {
   const { params } = context
   const username = params.profile
 
-  const userProfile = await ApiProfile.userProfile(token, username).then(
+  const userProfile: any = await ApiProfile.userProfile(token, username).then(
     res => {
       return res.payload
     }
@@ -215,7 +215,7 @@ export const getServerSideProps = async (context: any) => {
     }),
   ])
 
-  if (AllUserPosts[0].length === 0) {
+  if (!userProfile.username) {
     return {
       notFound: true,
     }
