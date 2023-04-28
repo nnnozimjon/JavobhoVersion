@@ -21,6 +21,8 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Modal from '@/components/useModal/Modal'
 import EditProfileModal from '@/components/Modals/EditProfileModal'
+import { ApiPost } from '@/api/post'
+import Cookies from 'js-cookie'
 
 export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
   switch (view) {
@@ -49,15 +51,18 @@ export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
 }
 
 const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
+  const token = Cookies.get('access_token') || ''
   const [view, setView] = React.useState<string>('posts')
   const { user } = useUser()
 
   const [followersCountState, setFollowersCountState] = React.useState(0)
   const [followingCountState, setFollowingCountState] = React.useState(0)
+  const [isUserFollowing, setIsUserFollowing] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     setFollowersCountState(following[0].followers.length)
     setFollowingCountState(following[0].following.length)
+    setIsUserFollowing(params.isFollowing)
   }, [])
 
   const [editProfileModalState, setEditProfileModalState] =
@@ -68,6 +73,30 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
   }
   const closeEditModalState = () => {
     setEditProfileModalState(false)
+  }
+
+  const handleFollow = () => {
+    if (isUserFollowing) {
+      setIsUserFollowing(false)
+      ApiPost.unfollowUser(token, {
+        followerId: user.userId,
+        followingId: params.userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsUserFollowing(true)
+        }
+      })
+    } else {
+      setIsUserFollowing(true)
+      ApiPost.followUser(token, {
+        followerId: user.userId,
+        followingId: params.userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsUserFollowing(false)
+        }
+      })
+    }
   }
 
   return (
@@ -91,11 +120,19 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
             Edit Profile
           </button>
         ) : (
-          <Icon
-            name="message"
-            className="absolute right-[30px] mt-[20px] select-none  font-medium duration-300 cursor-pointer"
-            size={25}
-          />
+          <div className="absolute right-[30px] mt-[20px] flex items-center justify-between gap-[20px]">
+            <Icon
+              name="message"
+              className="select-none  font-medium duration-300 cursor-pointer"
+              size={25}
+            />
+            <button
+              onClick={handleFollow}
+              className="bg-dGray text-white p-[5px_10px] rounded-full select-none  font-medium duration-300"
+            >
+              {isUserFollowing ? 'Following' : 'Follow'}
+            </button>
+          </div>
         )}
         <div className="pt-[80px] p-[10px]">
           <div className=" flex items-center">
