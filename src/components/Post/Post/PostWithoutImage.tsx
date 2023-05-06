@@ -59,6 +59,30 @@ const PostWithoutImage = ({
     })
   }
 
+  const handleFollow = () => {
+    if (isFollowingState) {
+      setIsFollowingState(false)
+      ApiPost.unfollowUser(token, {
+        followerId: user.userId,
+        followingId: userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsFollowingState(true)
+        }
+      })
+    } else {
+      setIsFollowingState(true)
+      ApiPost.followUser(token, {
+        followerId: user.userId,
+        followingId: userId,
+      }).then(res => {
+        if (res.message != 'success') {
+          setIsFollowingState(false)
+        }
+      })
+    }
+  }
+
   const handleBookmarkPost = () => {
     if (bookMarkState) {
       setBookMarkState(false)
@@ -196,10 +220,14 @@ const PostWithoutImage = ({
                   {fullname || '@' + username}
                 </Link>
                 {verified ? <Icon name="verified" size={20} /> : ''}
-                <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
-                  {userId != user.userId &&
-                    (isFollowingState ? 'Following' : 'Follow')}
-                </p>
+                {user.userId != userId && (
+                  <button
+                    className="font-semibold text-[14px] text-darkblue ml-[5px]"
+                    onClick={handleFollow}
+                  >
+                    {isFollowingState ? 'Following' : 'Follow'}
+                  </button>
+                )}
               </div>
               <p className=" font-semibold text-[10px] text-indigo">
                 {distanceString}

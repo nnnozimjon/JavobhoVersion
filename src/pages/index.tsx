@@ -6,7 +6,6 @@ import { useUser } from '@/store/contexts/UserContect'
 import Icon from '@/components/Icon'
 import Modal from '@/components/useModal/Modal'
 import PostModal from '@/components/Modals/PostModal'
-import { QuestionPost, ReplyPost } from '@/components/Post'
 import AskModal from '@/components/Modals/AskModal'
 
 export default function Home() {
@@ -40,7 +39,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-full h-full flex justify-center items-center px-[20px] flex-col">
-          <div className="border border-invisible border-t-0 p-[10px_15px] flex flex-col gap-[15px]">
+          <div className="border border-invisible border-t-0 p-[10px_15px]  flex-col gap-[15px] sm:flex hidden">
             <div className="flex gap-[10px]">
               <img
                 src={user.avatar}
@@ -74,45 +73,6 @@ export default function Home() {
             </div>
           </div>
 
-          <QuestionPost
-            avatar={user.avatar}
-            createdAt={new Date().toISOString()}
-            likedByUser
-            likedByUsers={[]}
-            postId={19}
-            repostCount={0}
-            userId={8}
-            username="Bilol"
-            verified
-            fullname="Bilol Sharipov"
-            image=""
-            text="Ты когда-нибудь влюбился?"
-          />
-          <ReplyPost
-            avatar={user.avatar}
-            comments={[]}
-            createdAt={new Date().toISOString()}
-            likedByUser
-            likedByUsers={[]}
-            postId={1}
-            repostCount={0}
-            userId={8}
-            username="bilo"
-            verified
-            fullname="Bilol Sharipov"
-            image=""
-            text="Ты когда-нибудь влюбился?"
-            type="reply"
-            reposterFullname=""
-            reposterId={0}
-            reposterUsername=""
-            reposterVerified
-            reposterText={`Yes every body in the world falls in #love with someone.And we can @deal with our hearts because the heart can not keep our brain in order
-             to be calm as always because the love so something very hard. <br/>Trust me I know what I'm talking about, It's very very hard to fall in love.
-              But once it get to be halal I mean when we Nikah with the person will Alhamdullilah everything, #every moments will become our happiness.
-               For boys there is som happiness that can just make the man really happy.Firstly when we look to our parents smiling and when we marry 
-               the girl we love and the second we buy the car we want we our own #sallary.`}
-          />
           <Modal
             isOpen={askQuestionModalOpen}
             closeModal={closeAskQuestionModal}

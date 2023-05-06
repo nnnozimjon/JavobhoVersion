@@ -129,9 +129,9 @@ const DesktopLayout = ({ children }: ILayout) => {
 
   return (
     <div className="w-screen h-screen flex justify-between">
-      <div className="w-[300px] min-w-[300px]">
-        <Nav />
-      </div>
+      {/* <div className="w-[300px] min-w-[300px] sm:block hidden"> */}
+      <Nav />
+      {/* </div> */}
       <div className="w-full">
         <div className="w-full h-14 px-[20px] flex items-center border-b border-invisible">
           <h1 className="font-bold">
@@ -139,12 +139,12 @@ const DesktopLayout = ({ children }: ILayout) => {
             {pathname === '/[profile]' && username}
           </h1>
         </div>
-        <div className="h-[calc(100vh_-_56px)] w-full min-w-[600px]">
+        <div className="sm:h-[calc(100vh_-_56px)] sm:w-full sm:min-w-[600px]">
           {children}
         </div>
       </div>
       {pathname !== '/messages' && (
-        <div className="w-[400px] min-w-[400px] border-l border-invisible h-full overflow-y-scroll scrollbar-hide">
+        <div className="w-[400px] min-w-[400px] border-l border-invisible h-full overflow-y-scroll scrollbar-hide sm:block hidden">
           {pathname == '/' && <HomeAds />}
           {pathname == '/explore' && <ExploreAds />}
           {pathname == '/notifications' && <NoteAds />}

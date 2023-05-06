@@ -24,10 +24,21 @@ import EditProfileModal from '@/components/Modals/EditProfileModal'
 import { ApiPost } from '@/api/post'
 import Cookies from 'js-cookie'
 
-export const ProfileView: React.FC<any> = ({ view, AllUserPosts }: any) => {
+export const ProfileView: React.FC<any> = ({
+  view,
+  AllUserPosts,
+  setIsUserFollowing,
+  isUserFollowing,
+}: any) => {
   switch (view) {
     case 'posts':
-      return <PostsView posts={AllUserPosts} />
+      return (
+        <PostsView
+          posts={AllUserPosts}
+          setIsUserFollowing={setIsUserFollowing}
+          isUserFollowing={isUserFollowing}
+        />
+      )
     case 'questions':
       return <QuestionsView posts={AllUserPosts} />
     case 'replies':
@@ -215,7 +226,12 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </button>
         </div>
         <div className="p-[10px] flex flex-col items-center">
-          <ProfileView view={view} AllUserPosts={AllUserPosts} />
+          <ProfileView
+            view={view}
+            AllUserPosts={AllUserPosts}
+            setIsUserFollowing={setIsUserFollowing}
+            isUserFollowing={isUserFollowing}
+          />
         </div>
       </div>
       <Modal

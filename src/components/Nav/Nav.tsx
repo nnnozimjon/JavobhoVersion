@@ -23,19 +23,19 @@ const Nav = () => {
   }
 
   return (
-    <div className="w-full h-screen flex justify-between flex-col border-r-[1px] border-invisible">
-      <div className="w-full h-[150px] flex items-center pt-[20px] pl-[40px]">
+    <div className="sm:w-[300px] sm:min-w-[300px] sm:flex grid sm:h-screen sm:justify-between sm:flex-col sm:border-r-[1px] sm:border-invisible">
+      <div className="w-full h-[150px] sm:flex hidden items-center pt-[20px] pl-[40px]">
         <Image src={Logo} alt="Javobho logo" className="w-[50px]" />
         <h1 className="font-bold text-[20px] text-[#1D9BF0] pl-[20px]">
           Javobho
         </h1>
       </div>
-      <div className="w-full h-full pl-[30px] px-[20px]">
+      <div className="w-full sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-6 gap-4 sm:relative sm:border-none fixed bottom-0 border-t">
         {NavLinks.map((nav: INav.nav, i: number) => (
           <Link href={nav.path} key={i}>
             <NavButton
-              className={`${router === nav.path && 'text-white'} ${
-                router === nav.path && 'bg-[#3C87DF]'
+              className={`${router === nav.path && 'sm:text-white'} ${
+                router === nav.path && 'sm:bg-[#3C87DF]'
               } `}
               icon={router === nav.path ? nav.activeIcon : nav.icon}
               label={nav.label}
@@ -51,7 +51,7 @@ const Nav = () => {
             label={'Profile'}
           />
         </Link>
-        <NavDropdownSelect
+        {/* <NavDropdownSelect
           placeholder="More"
           options={[
             { id: 1, name: 'bookshelf', label: 'Bookshelf' },
@@ -59,9 +59,9 @@ const Nav = () => {
             { id: 1, name: 'topics', label: 'Topics' },
             { id: 1, name: 'jobfinder', label: 'Jobs' },
           ]}
-        />
+        /> */}
       </div>
-      <div className="w-full h-[100px] flex justify-center items-center border-t border-invisible ">
+      <div className="w-full h-[100px] sm:flex hidden justify-center items-center border-t border-invisible ">
         <div
           onClick={() => handleLogout()}
           className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"

@@ -30,6 +30,8 @@ const Post: React.FC<PostProps> = ({
   repostCount,
   booked,
   isFollowing,
+  isUserFollowing,
+  setIsUserFollowing,
 }) => {
   const { user } = useUser()
   const token = Cookies.get('access_token') || ''
@@ -42,7 +44,7 @@ const Post: React.FC<PostProps> = ({
   const [repostCountState, setRepostCountState] = useState<number>(0)
 
   const [bookMarkState, setBookMarkState] = useState<boolean>(false)
-  const [isFollowingState, setIsFollowingState] = useState<boolean>(false)
+  // const [isFollowingState, setIsFollowingState] = useState<boolean>(false)
 
   React.useEffect(() => {
     setCommentState(comments)
@@ -50,7 +52,7 @@ const Post: React.FC<PostProps> = ({
     setLikedByUsersState(likedByUsers)
     setRepostCountState(repostCount)
     setBookMarkState(booked)
-    setIsFollowingState(isFollowing)
+    // setIsFollowingState(isFollowing)
   }, [])
 
   const handleRepost = () => {
@@ -64,24 +66,24 @@ const Post: React.FC<PostProps> = ({
   }
 
   const handleFollow = () => {
-    if (isFollowingState) {
-      setIsFollowingState(false)
+    if (isUserFollowing) {
+      setIsUserFollowing(false)
       ApiPost.unfollowUser(token, {
         followerId: user.userId,
         followingId: userId,
       }).then(res => {
         if (res.message != 'success') {
-          setIsFollowingState(true)
+          setIsUserFollowing(true)
         }
       })
     } else {
-      setIsFollowingState(true)
+      setIsUserFollowing(true)
       ApiPost.followUser(token, {
         followerId: user.userId,
         followingId: userId,
       }).then(res => {
         if (res.message != 'success') {
-          setIsFollowingState(false)
+          setIsUserFollowing(false)
         }
       })
     }
@@ -222,7 +224,7 @@ const Post: React.FC<PostProps> = ({
                   className="font-semibold text-[14px] text-darkblue"
                   onClick={handleFollow}
                 >
-                  {isFollowingState ? 'Following' : 'Follow'}
+                  {isUserFollowing ? 'Following' : 'Follow'}
                 </button>
               )}
             </div>

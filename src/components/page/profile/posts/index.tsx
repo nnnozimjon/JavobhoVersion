@@ -25,6 +25,9 @@ export interface PostProps {
   reposterVerified?: boolean
   booked: boolean
   isFollowing: boolean
+
+  isUserFollowing: boolean
+  setIsUserFollowing: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface QuestionPostProps {
@@ -65,7 +68,11 @@ export interface LikedUser {
   fullname?: string
 }
 
-const PostsView: React.FC<any> = ({ posts }: any) => {
+const PostsView: React.FC<any> = ({
+  posts,
+  isUserFollowing,
+  setIsUserFollowing,
+}: any) => {
   return (
     <div className="w-full flex items-center flex-col">
       {posts[0]?.map((post: PostProps, i: number) =>
@@ -90,6 +97,8 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
               repostCount={post.repostCount}
               booked={post.booked}
               isFollowing={post.isFollowing}
+              isUserFollowing={isUserFollowing}
+              setIsUserFollowing={setIsUserFollowing}
             />
           ) : (
             <PostWithoutImage
@@ -108,6 +117,8 @@ const PostsView: React.FC<any> = ({ posts }: any) => {
               repostCount={post.repostCount}
               booked={post.booked}
               isFollowing={post.isFollowing}
+              isUserFollowing={isUserFollowing}
+              setIsUserFollowing={setIsUserFollowing}
             />
           )
         ) : (
