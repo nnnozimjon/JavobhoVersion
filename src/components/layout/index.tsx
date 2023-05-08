@@ -6,6 +6,8 @@ import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
 import Icon from '../Icon'
 import TrendsToFollow from '../trends'
+import { useUser } from '@/store/contexts/UserContect'
+import Link from 'next/link'
 
 const SearchComponent = () => {
   const [search, setSearch] = React.useState<string>('')
@@ -124,17 +126,102 @@ const ListsAds = () => {
 }
 
 const DesktopLayout = ({ children }: ILayout) => {
+  const [isOpen, setIsOpen] = React.useState(false)
   const { pathname, query } = useRouter()
+  const { user } = useUser()
   const username = query.profile
+
+  React.useEffect(() => {
+    const handleCloseToggle = (e: any) => {
+      if (!e.target.closest('#closeOptions')) {
+        setIsOpen(false)
+      }
+    }
+    window.addEventListener('click', handleCloseToggle)
+    return () => window.removeEventListener('click', handleCloseToggle)
+  }, [])
 
   return (
     <div className="w-screen h-screen flex justify-between">
-      {/* <div className="w-[300px] min-w-[300px] sm:block hidden"> */}
       <Nav />
-      {/* </div> */}
       <div className="w-full">
-        <div className="w-full h-14 px-[20px] flex items-center border-b border-invisible">
-          <h1 className="font-bold">
+        <div className="w-full h-[50px] sm:px-[20px] px-[5px] flex items-center border-b border-invisible">
+          <div className="grid grid-cols-12 w-full sm:hidden">
+            <div id="closeOptions">
+              <button
+                className="relative z-10 p-[10px] md:hidden w-[50px]"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <img
+                  src={user.avatar}
+                  alt="profile_image"
+                  className="w-[25px] h-[25px] border rounded-full border-invisible cursor-pointer"
+                />
+              </button>
+              <div
+                className={`fixed z-10 border-r border-invisible top-0 left-0 w-64 bg-white h-screen overflow-auto transition-all duration-300 ${
+                  isOpen ? 'ml-0' : '-ml-64'
+                }`}
+              >
+                <nav className="w-full h-full p-[20px]">
+                  <img
+                    src={user.avatar}
+                    alt="profile_image"
+                    className="w-[40px] h-[40px]  border rounded-full border-invisible cursor-pointer"
+                  />
+                  <h1 className="pt-[15px] text-[14px] font-bold">
+                    {user.fullname}
+                  </h1>
+                  <h1 className="text-[12px] font-normal text-dGray leading-[10px]">
+                    @{user.username}
+                  </h1>
+                  <div className="grid grid-cols-2 mt-[20px]">
+                    <p className="text-[12px]">
+                      <b>63</b> Followers
+                    </p>
+                    <p className="text-[12px]">
+                      <b>63</b> Following
+                    </p>
+                  </div>
+                  <div className="border-t mt-[20px] border-invisible" />
+
+                  <Link href={`/${user.username}`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="profile" />
+                    <p className="select-none">Profile</p>
+                  </Link>
+                  <Link href={`/bookmarks`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="bookmarks" />
+                    <p className="select-none">Bookmarks</p>
+                  </Link>
+                  <Link href={`/jobfinder`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="jobfinder" />
+                    <p className="select-none">Jobs</p>
+                  </Link>
+                  <Link href={`/topics`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="topics" />
+                    <p className="select-none">Topics</p>
+                  </Link>
+                  <Link href={`/courses`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="courses" />
+                    <p className="select-none">Courses</p>
+                  </Link>
+                  <Link href={`/bookshelf`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                    <Icon name="bookshelf" />
+                    <p className="select-none">Bookshelf</p>
+                  </Link>
+
+                  <div className="flex gap-[10px] px-[20px] py-[10px] fixed bottom-[10px] rounded-full hover:bg-[#FC8181] hover:text-white">
+                    <Icon name="logout" />
+                    <p className="select-none">logout</p>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <p className="text-[18px] col-start-6 pt-[10px] font-bold text-main">
+              Javobho
+            </p>
+          </div>
+          <h1 className="font-bold sm:block hidden">
             {NavLinks.filter(path => path.path == pathname)[0]?.label}
             {pathname === '/[profile]' && username}
           </h1>

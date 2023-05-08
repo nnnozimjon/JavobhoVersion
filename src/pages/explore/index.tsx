@@ -3,47 +3,53 @@ import { ApiExplore } from '@/api/explore'
 import { BannerView } from '@/components/explore'
 import HashTag from '@/components/explore/viewTypes/HashTags'
 import IExplore from '@/interfaces/tags.interface'
-import { Loading } from '@/components/loading'
 import { parseCookies } from 'nookies'
+import Spinner from '@/components/Spinner'
 
 const Explore = ({ hashTags, loading }: any) => {
+  if (loading) {
+    return <Spinner />;
+  }
+
+  console.log(hashTags)
   return (
     <div>
       <BannerView />
-      {loading ? (
-        <Loading />
-      ) : (
-        hashTags[0]?.map((hash: IExplore.tags, i: number) => (
+      {hashTags?.map((hash: IExplore.tags, i: number) => (
           <HashTag
             key={i}
             size={hash.postCount}
             hash={hash.name}
             category={hash.category}
           />
-        ))
-      )}
+        ))}
     </div>
   )
 }
 
 export const getServerSideProps = async (context: any) => {
-  const cookies = parseCookies(context)
-  const token = cookies.access_token
+  const cookies = parseCookies(context);
+  const token = cookies.access_token;
 
-  const hashTags: any = await Promise.all([
-    ApiExplore.getAllTags(token).then(res => {
-      return res.payload
-    }),
-  ])
+  let hashTags;
+  let loading = true; // set the initial loading state to true
 
-  const loading = !hashTags
+  try {
+    hashTags = await ApiExplore.getAllTags(token).then((res) => {
+      return res.payload;
+    });
+
+    loading = false; // set the loading state to false after the data is loaded
+  } catch (error) {
+    return []
+  }
 
   return {
     props: {
       hashTags,
       loading,
     },
-  }
-}
+  };
+};
 
 export default Explore

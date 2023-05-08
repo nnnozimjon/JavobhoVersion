@@ -72,7 +72,6 @@ export default function Home() {
               </button>
             </div>
           </div>
-
           <Modal
             isOpen={askQuestionModalOpen}
             closeModal={closeAskQuestionModal}

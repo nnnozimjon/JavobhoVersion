@@ -1,16 +1,17 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import Image from 'next/image'
-import NavLinks from './NavLinks'
-import INav from './interface'
+// import NavLinks from './NavLinks'
+// import INav from './interface'
 import Logo from '@/assets/img/svg-logo.png'
 import Icon from '../Icon'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
 import Cookies from 'js-cookie'
-import NavDropdownSelect from '../NavDropdownSelect'
+// import NavDropdownSelect from '../NavDropdownSelect'
 import { useUser } from '@/store/contexts/UserContect'
+import NavDropdownSelect from '../NavDropdownSelect'
 
 const Nav = () => {
   const router = useRouter().pathname
@@ -30,28 +31,60 @@ const Nav = () => {
           Javobho
         </h1>
       </div>
-      <div className="w-full sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-6 gap-4 sm:relative sm:border-none fixed bottom-0 border-t">
-        {NavLinks.map((nav: INav.nav, i: number) => (
-          <Link href={nav.path} key={i}>
-            <NavButton
-              className={`${router === nav.path && 'sm:text-white'} ${
-                router === nav.path && 'sm:bg-[#3C87DF]'
-              } `}
-              icon={router === nav.path ? nav.activeIcon : nav.icon}
-              label={nav.label}
-            />
-          </Link>
-        ))}
-        <Link href={`/${user.username}`}>
+      <div className="w-full bg-white sm:bg-white sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-4 gap-4 sm:relative sm:border-none fixed bottom-0 border-t border-invisible">
+        <Link href={`/`} className="flex items-center justify-center">
           <NavButton
-            className={`${router === profilePath && 'text-white'} ${
-              router === profilePath && 'bg-[#3C87DF]'
+            className={`${router === '/' && 'sm:text-white text-main'} ${
+              router === '/' && 'sm:bg-[#3C87DF]'
             } `}
+            icon={router === '/' ? 'homeFilled' : 'home'}
+            label={'Home'}
+          />
+        </Link>
+        <Link href={`/explore`} className="flex items-center justify-center">
+          <NavButton
+            className={`${router === '/explore' && 'sm:text-white text-main'} ${
+              router === '/explore' && 'sm:bg-[#3C87DF]'
+            } `}
+            icon={router === '/explore' ? 'exploreFilled' : 'explore'}
+            label={'Explore'}
+          />
+        </Link>
+        <Link
+          href={`/notifications`}
+          className="flex items-center justify-center"
+        >
+          <NavButton
+            className={`${
+              router === '/notifications' && 'sm:text-white text-main'
+            } ${router === '/notifications' && 'sm:bg-[#3C87DF]'} `}
+            icon={router === '/notifications' ? 'noteFilled' : 'note'}
+            label={'Notifications'}
+          />
+        </Link>
+        <Link href={`/messages`} className="flex items-center justify-center">
+          <NavButton
+            className={`${
+              router === '/messages' && 'sm:text-white text-main'
+            } ${router === '/messages' && 'sm:bg-[#3C87DF]'} `}
+            icon={router === '/messages' ? 'messageFilled' : 'message'}
+            label={'Messages'}
+          />
+        </Link>
+        <Link
+          href={`/${user.username}`}
+          className="sm:flex hidden items-center justify-center"
+        >
+          <NavButton
+            className={`${
+              router === profilePath && 'sm:text-white text-main'
+            } ${router === profilePath && 'sm:bg-[#3C87DF]'} `}
             icon={router === profilePath ? 'profileFilled' : 'profile'}
             label={'Profile'}
           />
         </Link>
-        {/* <NavDropdownSelect
+        {/* 
+        <NavDropdownSelect
           placeholder="More"
           options={[
             { id: 1, name: 'bookshelf', label: 'Bookshelf' },
