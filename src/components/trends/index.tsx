@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from 'react'
-import Icon from '../Icon'
+import Ico from '../Icon'
 import { Axios } from '@/utils/Axios'
 import { baseUrl } from '@/utils/baseUrl'
 import { useUser } from '@/store/contexts/UserContect'
@@ -48,7 +48,7 @@ const TrendsToFollow = ({
         <div>
           <div className="flex gap-[5px]">
             <p className="font-bold text-[14px] hover:underline ">{fullname}</p>
-            {verified && <Icon name="verified" />}
+            {verified && <Ico name="verified" />}
           </div>
           <p className="font-medium text-[14px] text-darkerIndigo ">
             @{username}

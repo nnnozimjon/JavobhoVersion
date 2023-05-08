@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import image from '@/assets/img/burj.jpg'
 import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import BannerComment from '../components/comment'
 
 export const SwitchView: React.FC<any> = ({ view }: any): any => {
@@ -134,7 +134,7 @@ const BannerView: React.FC<any> = () => {
         <div className="w-full">
           <SwitchView view={selected} />
         </div>
-        <Icon
+        <Ico
           name="arrowBottom"
           className="rounded-full hover:cursor-pointer"
         />

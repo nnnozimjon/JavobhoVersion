@@ -4,7 +4,7 @@ import Image from 'next/image'
 // import NavLinks from './NavLinks'
 // import INav from './interface'
 import Logo from '@/assets/img/svg-logo.png'
-import Icon from '../Icon'
+import Ico from '../Icon'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
@@ -99,7 +99,7 @@ const Nav = () => {
           onClick={() => handleLogout()}
           className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"
         >
-          <Icon name="logout" />
+          <Ico name="logout" />
           <button className="pl-[20px] font-medium">Logout</button>
         </div>
       </div>

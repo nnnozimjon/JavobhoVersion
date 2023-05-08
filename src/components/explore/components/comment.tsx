@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
@@ -60,7 +60,7 @@ const BannerComment = ({
                 {fullname || '@' + username}
               </Link>
               {verified ? (
-                <Icon name="verified" className="pl-[5px]" size={20} />
+                <Ico name="verified" className="pl-[5px]" size={20} />
               ) : (
                 ''
               )}
@@ -75,19 +75,19 @@ const BannerComment = ({
         </div>
       </div>
       <div className="flex flex-col  items-center justify-between">
-        <Icon
+        <Ico
           name="moreHorizontal"
           className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
         />
         <div className="flex flex-col items-center">
           {liked ? (
-            <Icon
+            <Ico
               size={15}
               name="loved"
               className="text-main cursor-pointer duration-500"
             />
           ) : (
-            <Icon
+            <Ico
               size={15}
               name="love"
               className="text-main cursor-pointer duration-500"

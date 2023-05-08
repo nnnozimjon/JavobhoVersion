@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useRef, useState } from 'react'
 import { useUser } from '@/store/contexts/UserContect'
-import Icon from '../Icon'
+import Ico from '../Icon'
 import html2canvas from 'html2canvas'
 import { ApiProfile } from '@/api/profile'
 
@@ -144,11 +144,11 @@ const PostModal = () => {
           />
           <div className="flex gap-[15px] items-center cursor-pointer">
             <div onClick={handleClick} className="flex items-center gap-[3px]">
-              <Icon name="post" className="text-indigo cursor-pointer" />
+              <Ico name="post" className="text-indigo cursor-pointer" />
               <p className="leading-[8px]">select</p>
             </div>
             <div onClick={handleClear} className="flex items-center gap-[3px]">
-              <Icon name="trash" className="text-indigo cursor-pointer" />
+              <Ico name="trash" className="text-indigo cursor-pointer" />
               <p className="leading-[12px]">clear</p>
             </div>
           </div>
@@ -156,7 +156,7 @@ const PostModal = () => {
             onClick={setCropedImage}
             className="flex gap-[5px] items-center cursor-pointer"
           >
-            <Icon name="edit" className="text-indigo cursor-pointer" />
+            <Ico name="edit" className="text-indigo cursor-pointer" />
             <p className="leading-[12px]">crop</p>
           </div>
         </div>

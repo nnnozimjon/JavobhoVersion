@@ -4,7 +4,7 @@ import Nav from '../Nav/Nav'
 import { ILayout } from './layout'
 import NavLinks from '../Nav/NavLinks'
 import { useRouter } from 'next/router'
-import Icon from '../Icon'
+import Ico from '../Icon'
 import TrendsToFollow from '../trends'
 import { useUser } from '@/store/contexts/UserContect'
 import Link from 'next/link'
@@ -14,7 +14,7 @@ const SearchComponent = () => {
 
   return (
     <div className="border-[2px] border-main p-[5px_20px] w-[280px] rounded-full flex items-center text-main">
-      <Icon name="searchNormal" size={25} />
+      <Ico name="searchNormal" size={25} />
       <input
         value={search}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -24,7 +24,7 @@ const SearchComponent = () => {
         className="px-[10px] w-full h-full p-[5px] outline-none"
       />
       {search && (
-        <Icon
+        <Ico
           name="closeSquare"
           className="cursor-pointer"
           onClick={() => setSearch('')}
@@ -186,32 +186,32 @@ const DesktopLayout = ({ children }: ILayout) => {
                   <div className="border-t mt-[20px] border-invisible" />
 
                   <Link href={`/${user.username}`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="profile" />
+                    <Ico name="profile" />
                     <p className="select-none">Profile</p>
                   </Link>
                   <Link href={`/bookmarks`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="bookmarks" />
+                    <Ico name="bookmarks" />
                     <p className="select-none">Bookmarks</p>
                   </Link>
                   <Link href={`/jobfinder`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="jobfinder" />
+                    <Ico name="jobfinder" />
                     <p className="select-none">Jobs</p>
                   </Link>
                   <Link href={`/topics`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="topics" />
+                    <Ico name="topics" />
                     <p className="select-none">Topics</p>
                   </Link>
                   <Link href={`/courses`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="courses" />
+                    <Ico name="courses" />
                     <p className="select-none">Courses</p>
                   </Link>
                   <Link href={`/bookshelf`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
-                    <Icon name="bookshelf" />
+                    <Ico name="bookshelf" />
                     <p className="select-none">Bookshelf</p>
                   </Link>
 
                   <div className="flex gap-[10px] px-[20px] py-[10px] fixed bottom-[10px] rounded-full hover:bg-[#FC8181] hover:text-white">
-                    <Icon name="logout" />
+                    <Ico name="logout" />
                     <p className="select-none">logout</p>
                   </div>
                 </nav>

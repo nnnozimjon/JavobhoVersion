@@ -3,7 +3,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { useUser } from '@/store/contexts/UserContect'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import Modal from '@/components/useModal/Modal'
 import PostModal from '@/components/Modals/PostModal'
 import AskModal from '@/components/Modals/AskModal'
@@ -56,18 +56,18 @@ export default function Home() {
                 onClick={openAskQuestionModal}
                 className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
               >
-                <Icon name="ask" />
+                <Ico name="ask" />
                 Ask
               </button>
               <button className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500">
-                <Icon name="answer" />
+                <Ico name="answer" />
                 Answer
               </button>
               <button
                 onClick={openPostContentModal}
                 className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
               >
-                <Icon name="post" />
+                <Ico name="post" />
                 Post
               </button>
             </div>

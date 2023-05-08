@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
@@ -219,7 +219,7 @@ const PostWithoutImage = ({
                 >
                   {fullname || '@' + username}
                 </Link>
-                {verified ? <Icon name="verified" size={20} /> : ''}
+                {verified ? <Ico name="verified" size={20} /> : ''}
                 {user.userId != userId && (
                   <button
                     className="font-semibold text-[14px] text-darkblue ml-[5px]"
@@ -237,7 +237,7 @@ const PostWithoutImage = ({
               <Read text={text || ''} className="text-[16px] font-normal " />
             </div>
             <div className="flex items-center gap-[5px] mt-[5px]">
-              <Icon
+              <Ico
                 onClick={handleLikePost}
                 size={15}
                 name={`${likedByUserState ? 'liked' : 'like'}`}
@@ -249,7 +249,7 @@ const PostWithoutImage = ({
               <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {likedByUsersState.length || 0}
               </p>
-              <Icon
+              <Ico
                 name="repost"
                 className="cursor-pointer text-dGray"
                 size={17}
@@ -258,7 +258,7 @@ const PostWithoutImage = ({
               <p className="pl-[3px] pr-[10px] text-[12px] font-medium text-dGray select-none">
                 {repostCountState || '0'}
               </p>
-              <Icon
+              <Ico
                 onClick={() => setShowComments(!showComments)}
                 name="comment"
                 className="cursor-pointer text-dGray"
@@ -271,12 +271,12 @@ const PostWithoutImage = ({
           </div>
         </div>
         <div className="flex flex-col  items-center justify-between">
-          <Icon
+          <Ico
             name="moreHorizontal"
             className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
           />
           <div className="flex flex-col items-center cursor-pointer">
-            <Icon
+            <Ico
               name={bookMarkState ? 'bookmarksFilled' : 'bookmarks'}
               className="cursor-pointer text-dGray"
               size={18}
@@ -294,7 +294,7 @@ const PostWithoutImage = ({
               placeholder="write a comment"
               className="bg-transparent w-full outline-none placeholder:text-lighterIndigo"
             />
-            <Icon
+            <Ico
               name="publish"
               className="cursor-pointer"
               size={30}
@@ -317,7 +317,7 @@ const PostWithoutImage = ({
             ))}
           </div>
           <div className="flex flex-col items-center">
-            <Icon
+            <Ico
               name="arrowTop"
               className="text-center cursor-pointer"
               onClick={() => setShowComments(!showComments)}

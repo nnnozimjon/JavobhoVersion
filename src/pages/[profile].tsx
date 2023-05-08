@@ -14,7 +14,7 @@ import {
   LikesView,
   BioView,
 } from '@/components/page/profile'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiProfile } from '@/api/profile'
 import { NextPage } from 'next'
@@ -132,7 +132,7 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </button>
         ) : (
           <div className="absolute right-[30px] mt-[20px] flex items-center justify-between gap-[20px]">
-            <Icon
+            <Ico
               name="message"
               className="select-none  font-medium duration-300 cursor-pointer"
               size={25}
@@ -148,13 +148,13 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
         <div className="pt-[80px] p-[10px]">
           <div className=" flex items-center">
             <p className="font-bold text-[20px] pr-[10px]">{params.fullname}</p>
-            {Boolean(params.verified) && <Icon name="verified" />}
+            {Boolean(params.verified) && <Ico name="verified" />}
           </div>
           <p className="font-medium text-dGray">@{params.username}</p>
           <p className="text-[15px]">{params.description}</p>
           <br />
           <div className="flex text-dGray items-center">
-            <Icon name="calendar" size={20} />
+            <Ico name="calendar" size={20} />
             <p className="font-medium pl-[10px]">
               Joined{' '}
               {new Date(params.createdAt).toLocaleDateString('en-US', {

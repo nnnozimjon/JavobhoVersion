@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import Read from '@/components/Read'
 import { PostProps } from '@/components/page/profile/posts'
 import { useUser } from '@/store/contexts/UserContect'
@@ -217,7 +217,7 @@ const Post: React.FC<PostProps> = ({
                 <p className="font-semibold text-[14px] text-darkestIndigo cursor-pointer">
                   {fullname || '@' + username}
                 </p>
-                {verified ? <Icon name="verified" size={20} /> : ''}
+                {verified ? <Ico name="verified" size={20} /> : ''}
               </div>
               {user.userId != userId && (
                 <button
@@ -232,7 +232,7 @@ const Post: React.FC<PostProps> = ({
               {distanceString}
             </div>
           </div>
-          <Icon name="moreHorizontal" className="cursor-pointer" />
+          <Ico name="moreHorizontal" className="cursor-pointer" />
         </div>
       </div>
       <div className="d-flex flex-col">
@@ -258,7 +258,7 @@ const Post: React.FC<PostProps> = ({
       </div>
       <div className="flex justify-between items-center p-[5px_15px]">
         <div className="flex justify-center items-center pl-[10px] text-darkblue ">
-          <Icon
+          <Ico
             onClick={handleLikePost}
             name={likedByUserState ? 'liked' : 'like'}
             className={`${
@@ -269,7 +269,7 @@ const Post: React.FC<PostProps> = ({
           <p className="pl-[5px] pr-[10px] text-black">
             {likedByUsersState?.length}
           </p>
-          <Icon
+          <Ico
             name="repost"
             className="cursor-pointer text-dGray"
             size={18}
@@ -278,7 +278,7 @@ const Post: React.FC<PostProps> = ({
           <p className="pl-[5px] pr-[10px] text-black">
             {repostCountState || '0'}
           </p>
-          <Icon
+          <Ico
             name={bookMarkState ? 'bookmarksFilled' : 'bookmarks'}
             className="cursor-pointer text-dGray"
             size={18}
@@ -301,7 +301,7 @@ const Post: React.FC<PostProps> = ({
             placeholder="write a comment"
             className="bg-transparent w-full outline-none placeholder:text-lighterIndigo"
           />
-          <Icon
+          <Ico
             name="publish"
             className="cursor-pointer"
             size={30}

@@ -4,7 +4,7 @@ import React from 'react'
 import IIcon from '@/components/Icon/IIcon'
 import list from '@/components/Icon/svg-list'
 
-const Icon: React.FC<IIcon.props> = ({
+const Ico: React.FC<IIcon.props> = ({
   size = 24,
   name,
   className,
@@ -25,4 +25,4 @@ const Icon: React.FC<IIcon.props> = ({
   )
 }
 
-export default Icon
+export default Ico

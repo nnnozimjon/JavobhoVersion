@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from './Icon'
+import Ico from './Icon'
 import IIcon from './Icon/IIcon'
 
 interface Props {
@@ -46,7 +46,7 @@ const NavDropdownSelect: React.FC<Props> = ({
     >
       <div onClick={toggleOptions}>
         <div className="flex items-center min-w-[100px] w-[252px] h-[48px] px-[16px] py-[14px] text-start m-[10px] cursor-pointer select-none rounded-[6px] hover:bg-[#3C87DF] hover:text-white duration-500 select-header">
-          <Icon name="moreHorizontalScale" />
+          <Ico name="moreHorizontalScale" />
           <span className="pl-[13px] text-[14px] font-medium">
             {selected ? selected : placeholder}
           </span>
@@ -59,7 +59,7 @@ const NavDropdownSelect: React.FC<Props> = ({
                 className="select-item px-4 py-2 h-[48px] cursor-pointer hover:bg-[#3C87DF] flex flex-col justify-center hover:text-white font-medium text-[14px]"
               >
                 <div className="flex items-center text-start m-[10px] ">
-                  {option.name && <Icon name={option.name} />}
+                  {option.name && <Ico name={option.name} />}
                   <span className="pl-[13px] text-[14px] font-medium">
                     {option.name}
                   </span>

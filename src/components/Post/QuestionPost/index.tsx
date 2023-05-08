@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'
@@ -160,7 +160,7 @@ const QuestionPost = ({
               >
                 {fullname || '@' + username}
               </Link>
-              {verified ? <Icon name="verified" size={20} /> : ''}
+              {verified ? <Ico name="verified" size={20} /> : ''}
               <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
                 {'Follow'}
               </p>
@@ -188,7 +188,7 @@ const QuestionPost = ({
             </Link>
           </div>
           <div className="flex items-center gap-[10px] mt-[5px]">
-            <Icon
+            <Ico
               onClick={handleLikePost}
               size={15}
               name={`${likedByUserState ? 'liked' : 'like'}`}
@@ -199,9 +199,9 @@ const QuestionPost = ({
             <p className="text-[12px] font-medium">
               {likedByUsersState.length || 0}
             </p>
-            <Icon name="edit" className="cursor-pointer text-dGray" size={17} />
+            <Ico name="edit" className="cursor-pointer text-dGray" size={17} />
             <p className="text-[12px] font-medium">{answerState.length || 0}</p>
-            <Icon
+            <Ico
               name="repost"
               className="cursor-pointer text-dGray"
               size={17}
@@ -211,12 +211,12 @@ const QuestionPost = ({
         </div>
       </div>
       <div className="flex flex-col  items-center justify-between">
-        <Icon
+        <Ico
           name="moreHorizontal"
           className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
         />
         <div className="flex flex-col items-center">
-          <Icon name="share" className="cursor-pointer text-dGray" size={17} />
+          <Ico name="share" className="cursor-pointer text-dGray" size={17} />
         </div>
       </div>
       <Modal

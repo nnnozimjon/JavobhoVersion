@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactNode } from 'react'
-import Icon from '../Icon'
+import Ico from '../Icon'
 
 type ModalProps = {
   isOpen: boolean
@@ -15,7 +15,7 @@ const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
       <div className="p-[10px_10px] w-[500px] bg-white rounded-[15px] shadow-lg ">
         <div className="relative p-[5px] flex items-center justify-between">
           <p className="font-semibold">{title}</p>
-          <Icon
+          <Ico
             name="closeSquare"
             onClick={closeModal}
             className="cursor-pointer text-lighterIndigo hover:text-darkestIndigo"

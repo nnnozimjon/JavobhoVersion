@@ -1,5 +1,5 @@
 import Button from '@/components/Button'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import User from '@/interfaces/user.interface'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -19,7 +19,7 @@ const MessageProfile = ({ selectedContact, select, onClick }: any) => {
       <div className="w-[50px] h-[50px] rounded-full bg-main" />
       <div className="flex">
         <p className="font-bold text-[14px] pr-[5px]">{fullname} </p>
-        {verified && <Icon name="verified" size={20} />}
+        {verified && <Ico name="verified" size={20} />}
         <p className="text-[14px] pl-[3px]">@{username}</p>
       </div>
     </div>
@@ -36,7 +36,7 @@ const ChatRoom: React.FC<User> = ({ verified, username, fullname }: User) => {
         <div className="w-[80px] h-[80px] bg-main rounded-full" />
         <h1 className="flex font-bold">
           {fullname}{' '}
-          {verified && <Icon name="verified" className="ml-[10px]" />}
+          {verified && <Ico name="verified" className="ml-[10px]" />}
         </h1>
         <p className="font-medium text-dGray"> @{username}</p>
       </Link>
@@ -138,14 +138,14 @@ const Messages = () => {
                   type="button"
                   className="inline-flex justify-center p-2 text-main font-medium rounded-full cursor-pointer hover:bg-[#54cae785] duration-300"
                 >
-                  <Icon name="post" size={20} />
+                  <Ico name="post" size={20} />
                   <span className="sr-only">Upload image</span>
                 </button>
                 <button
                   type="button"
                   className={`p-2 text-main rounded-full cursor-pointer hover:bg-[#54cae785]`}
                 >
-                  <Icon name="emoji" size={20} />
+                  <Ico name="emoji" size={20} />
                   <span className="sr-only">Add emoji</span>
                 </button>
                 <textarea
@@ -163,7 +163,7 @@ const Messages = () => {
                     text.length > 0 ? 'cursor-pointer' : 'cursor-default'
                   }`}
                 >
-                  <Icon name="publish" size={30} />
+                  <Ico name="publish" size={30} />
                   <span className="sr-only">Send message</span>
                 </button>
               </div>

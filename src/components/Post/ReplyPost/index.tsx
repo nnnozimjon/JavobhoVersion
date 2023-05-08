@@ -3,7 +3,7 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Icon from '@/components/Icon'
+import Ico from '@/components/Icon'
 import { useUser } from '@/store/contexts/UserContect'
 import { formatDistanceToNowStrict } from 'date-fns'
 import Link from 'next/link'
@@ -226,7 +226,7 @@ const ReplyPost: React.FC<Props> = ({
                 >
                   {fullname || '@' + username}
                 </Link>
-                {verified ? <Icon name="verified" size={20} /> : ''}
+                {verified ? <Ico name="verified" size={20} /> : ''}
                 <p className="text-main font-semibold text-[13px] select-none pl-[10px]">
                   {userId !== user.userId &&
                     (isFollowing ? 'following' : 'follow')}
@@ -248,7 +248,7 @@ const ReplyPost: React.FC<Props> = ({
                     >
                       {reposterFullname || '@' + reposterUsername}
                     </Link>
-                    {reposterVerified ? <Icon name="verified" size={20} /> : ''}
+                    {reposterVerified ? <Ico name="verified" size={20} /> : ''}
                   </div>
                   <Read
                     text={reposterText || ''}
@@ -270,7 +270,7 @@ const ReplyPost: React.FC<Props> = ({
               <Read text={text || ''} className="text-[16px] font-normal " />
             </div>
             <div className="flex items-center gap-[5px] mt-[5px]">
-              <Icon
+              <Ico
                 onClick={handleLikePost}
                 size={15}
                 name={`${likedByUserState ? 'liked' : 'like'}`}
@@ -284,7 +284,7 @@ const ReplyPost: React.FC<Props> = ({
               </p>
               {type != 'repost' && (
                 <>
-                  <Icon
+                  <Ico
                     name="repost"
                     className="cursor-pointer text-dGray"
                     size={17}
@@ -295,7 +295,7 @@ const ReplyPost: React.FC<Props> = ({
                   </p>
                 </>
               )}
-              <Icon
+              <Ico
                 onClick={() => setShowComments(!showComments)}
                 name="comment"
                 className="cursor-pointer text-dGray"
@@ -308,12 +308,12 @@ const ReplyPost: React.FC<Props> = ({
           </div>
         </div>
         <div className="flex flex-col  items-center justify-between">
-          <Icon
+          <Ico
             name="moreHorizontal"
             className="rounded-full text-main hover:bg-[#73fffd5b] cursor-pointer duration-500"
           />
           <div className="flex flex-col items-center cursor-pointer">
-            <Icon
+            <Ico
               name={bookMarkState ? 'bookmarksFilled' : 'bookmarks'}
               className="cursor-pointer text-dGray"
               size={18}
@@ -331,7 +331,7 @@ const ReplyPost: React.FC<Props> = ({
               placeholder="write a comment"
               className="bg-transparent w-full outline-none placeholder:text-lighterIndigo"
             />
-            <Icon
+            <Ico
               name="publish"
               className="cursor-pointer"
               size={30}
@@ -354,7 +354,7 @@ const ReplyPost: React.FC<Props> = ({
             ))}
           </div>
           <div className="flex flex-col items-center">
-            <Icon
+            <Ico
               name="arrowTop"
               className="text-center cursor-pointer"
               onClick={() => setShowComments(!showComments)}
