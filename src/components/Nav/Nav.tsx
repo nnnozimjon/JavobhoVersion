@@ -4,7 +4,7 @@ import Image from 'next/image'
 // import NavLinks from './NavLinks'
 // import INav from './interface'
 import Logo from '@/assets/img/svg-logo.png'
-import Ico from '../Icon'
+import Icon from '../Icon'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavButton from './components/NavButton'
@@ -31,7 +31,7 @@ const Nav = () => {
           Javobho
         </h1>
       </div>
-      <div className="w-full bg-white sm:bg-white sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-4 gap-4 sm:relative sm:border-none fixed bottom-0 border-t border-invisible">
+      <div className="w-full bg-white sm:bg-white sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-4 gap-4 sm:relative sm:border-none fixed bottom-0 border-t border-invisible z-10">
         <Link href={`/`} className="flex items-center justify-center">
           <NavButton
             className={`${router === '/' && 'sm:text-white text-main'} ${
@@ -99,7 +99,7 @@ const Nav = () => {
           onClick={() => handleLogout()}
           className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"
         >
-          <Ico name="logout" />
+          <Icon name="logout" />
           <button className="pl-[20px] font-medium">Logout</button>
         </div>
       </div>

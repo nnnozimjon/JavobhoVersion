@@ -206,7 +206,7 @@ const ReplyPost: React.FC<Props> = ({
 
   return (
     <div
-      className={`w-[580px] border-x border-t ${
+      className={`sm:w-[580px] w-full border-x border-t ${
         !showComments && 'border-b'
       } my-[10px] border-invisible`}
     >
@@ -238,7 +238,7 @@ const ReplyPost: React.FC<Props> = ({
             </div>
 
             {/* The questioner profile  */}
-            <div className="w-full px-[10px]">
+            <div className="w-full sm:px-[10px]">
               <div className="flex gap-[10px] bg-silver rounded-2xl p-[3px_10px]">
                 <div className="flex flex-col">
                   <div className="flex">

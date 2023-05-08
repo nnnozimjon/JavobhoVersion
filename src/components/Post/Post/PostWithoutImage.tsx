@@ -199,7 +199,7 @@ const PostWithoutImage = ({
 
   return (
     <div
-      className={`w-[580px] border-x border-t ${
+      className={`sm:w-[580px] w-full border-x border-t ${
         !showComments && 'border-b'
       } my-[10px] border-invisible`}
     >
@@ -208,7 +208,7 @@ const PostWithoutImage = ({
           <img
             src={avatar}
             alt="comment image"
-            className="w-[36px] h-[36px] rounded-full object-cover"
+            className="sm:w-[36px] w-[25px] sm:h-[36px] h-[25px] rounded-full object-cover"
           />
           <div className="flex gap-[5px] flex-col">
             <div className="flex flex-col">

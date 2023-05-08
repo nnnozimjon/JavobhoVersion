@@ -115,13 +115,13 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
       <img
         src={params.splashImage}
         alt="profile_cover_image"
-        className="w-full h-[200px] border-b border-invisible object-cover"
+        className="sm:w-full sm:h-[200px] border-b border-invisible object-cover"
       />
-      <div className="h-[200px]">
+      <div className="h-[200px] relative">
         <img
           src={params.avatar}
           alt="profile_photo"
-          className="w-[150px] h-[150px] rounded-full absolute top-[120px] left-[40px] object-cover border-[3px] border-white"
+          className="sm:w-[150px] sm:h-[150px] w-[100px] h-[100px] rounded-full absolute sm:top-[-80px] top-[-40px] left-[40px] object-cover border-[3px] border-white"
         />
         {params.username === user.username ? (
           <button
@@ -173,10 +173,10 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </div>
           <br />
         </div>
-        <div className="h-[50px] flex justify-evenly items-center border-b border-invisible">
+        <div className="h-[50px] sm:flex grid grid-cols-3 justify-evenly items-center border-b border-invisible">
           <button
             onClick={() => setView('posts')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
               view === 'posts' && 'border-b-[5px]'
             } border-main`}
           >
@@ -184,7 +184,7 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </button>
           <button
             onClick={() => setView('questions')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
               view === 'questions' && 'border-b-[5px]'
             } border-main`}
           >
@@ -192,7 +192,7 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </button>
           <button
             onClick={() => setView('replies')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
               view === 'replies' && 'border-b-[5px]'
             } border-main`}
           >
@@ -200,7 +200,7 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </button>
           {/* <button
             onClick={() => setView('media')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
               view === 'media' && 'border-b-[5px]'
             } border-main`}
           >
@@ -209,7 +209,7 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           {params.username === user.username && (
             <button
               onClick={() => setView('likes')}
-              className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+              className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full sm:flex hidden items-center justify-center ${
                 view === 'likes' && 'border-b-[5px]'
               } border-main`}
             >
@@ -218,14 +218,14 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           )}
           <button
             onClick={() => setView('bio')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full sm:flex hidden items-center justify-center ${
               view === 'bio' && 'border-b-[5px]'
             } border-main`}
           >
             Bio
           </button>
         </div>
-        <div className="p-[10px] flex flex-col items-center">
+        <div className="p-[10px] flex flex-col items-center overflow-hidden">
           <ProfileView
             view={view}
             AllUserPosts={AllUserPosts}

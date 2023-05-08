@@ -203,17 +203,17 @@ const Post: React.FC<PostProps> = ({
   }, [distanceString, time])
 
   return (
-    <div className="w-[580px] h-fit mt-[10px] border border-invisible">
+    <div className="sm:w-[580px] w-full h-fit mt-[10px] border border-invisible">
       <div className="rounded-t-[20px] p-[5px_15px] bg-white flex items-center border-b border-invisible">
         <img
           src={avatar}
-          className="bg-black text-white rounded-full w-[36px] h-[36px] flex justify-center items-center object-cover"
+          className="bg-black text-white rounded-full sm:w-[36px] sm:h-[36px] w-[25px] h-[25px] flex justify-center items-center object-cover"
           alt="profile image"
         />
         <div className="flex justify-between w-full items-center">
           <div className="flex pl-[10px] m-0 flex-col">
             <div className="flex">
-              <div className="pr-[10px] font-semibold text-[14px] flex gap-[5px]">
+              <div className="pr-[10px] font-semibold flex gap-[5px]">
                 <p className="font-semibold text-[14px] text-darkestIndigo cursor-pointer">
                   {fullname || '@' + username}
                 </p>
@@ -244,7 +244,7 @@ const Post: React.FC<PostProps> = ({
         )}
         {image && (
           <div
-            className={`w-full h-[460px] bg-white flex justify-center border-b ${
+            className={`sm:w-full sm:h-[460px] bg-white flex justify-center border-b ${
               text && 'border-t'
             } border-invisible`}
           >
@@ -294,7 +294,7 @@ const Post: React.FC<PostProps> = ({
         </button>
       </div>
       <div className="rounded-b-[20px] p-[10px_20px] bg-white border-t border-invisible">
-        <div className="flex justify-between w-[410px] p-[10px] h-[34px] border border-invisible text-lighterIndigo rounded-[8px] items-center">
+        <div className="flex justify-between sm:w-[410px] p-[10px] h-[34px] border border-invisible text-lighterIndigo rounded-[8px] items-center">
           <input
             value={commentText}
             onChange={e => setCommentText(e.target.value)}

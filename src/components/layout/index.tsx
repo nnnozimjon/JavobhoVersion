@@ -175,14 +175,6 @@ const DesktopLayout = ({ children }: ILayout) => {
                   <h1 className="text-[12px] font-normal text-dGray leading-[10px]">
                     @{user.username}
                   </h1>
-                  <div className="grid grid-cols-2 mt-[20px]">
-                    <p className="text-[12px]">
-                      <b>63</b> Followers
-                    </p>
-                    <p className="text-[12px]">
-                      <b>63</b> Following
-                    </p>
-                  </div>
                   <div className="border-t mt-[20px] border-invisible" />
 
                   <Link href={`/${user.username}`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
@@ -226,7 +218,7 @@ const DesktopLayout = ({ children }: ILayout) => {
             {pathname === '/[profile]' && username}
           </h1>
         </div>
-        <div className="sm:h-[calc(100vh_-_56px)] sm:w-full sm:min-w-[600px]">
+        <div className="sm:h-[calc(100vh_-_56px)] h-full sm:w-full sm:min-w-[600px]">
           {children}
         </div>
       </div>
