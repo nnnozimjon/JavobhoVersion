@@ -12,6 +12,7 @@
     "tw:clean": "rm -rf ./public/tailwind.css"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.36.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@rematch/core": "^2.2.0",
     "@types/axios": "^0.14.0",

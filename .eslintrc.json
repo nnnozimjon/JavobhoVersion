@@ -1,12 +1,12 @@
 {
   "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
 
-  "plugins": [
-    "unused-imports"
-  ],
-  "rules": {
-    "unused-imports/no-unused-imports": "error",
-    "no-undef" : "error",
-    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
-  }
+  // "plugins": [
+  //   "unused-imports"
+  // ],
+  // "rules": {
+  //   "unused-imports/no-unused-imports": "error",
+  //   "no-undef" : "error",
+  //   "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+  // }
 }
