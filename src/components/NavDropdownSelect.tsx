@@ -13,7 +13,7 @@ interface Option {
   label: string
 }
 
-export const NavDropdownSelect: React.FC<Props> = ({
+const NavDropdownSelect: React.FC<Props> = ({
   options,
   placeholder,
   selectedOpts,
