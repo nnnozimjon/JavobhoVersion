@@ -3,7 +3,7 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import { useUser } from '@/store/contexts/UserContect'
 import { formatDistanceToNowStrict } from 'date-fns'
 import Link from 'next/link'

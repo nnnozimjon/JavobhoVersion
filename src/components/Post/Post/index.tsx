@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import Read from '@/components/Read'
 import { PostProps } from '@/components/page/profile/posts'
 import { useUser } from '@/store/contexts/UserContect'

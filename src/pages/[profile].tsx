@@ -14,7 +14,7 @@ import {
   LikesView,
   BioView,
 } from '@/components/page/profile'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import { useUser } from '@/store/contexts/UserContect'
 import { ApiProfile } from '@/api/profile'
 import { NextPage } from 'next'

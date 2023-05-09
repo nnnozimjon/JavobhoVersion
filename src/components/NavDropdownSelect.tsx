@@ -1,6 +1,6 @@
 import React from 'react'
-import Ico from './Icon'
-import IIcon from './Icon/IIcon'
+import Ico from './icon'
+import IIcon from './icon/IIcon'
 
 interface Props {
   options: Option[]

@@ -1,5 +1,5 @@
 import Button from '@/components/Button'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import User from '@/interfaces/user.interface'
 import Link from 'next/link'
 import Image from 'next/image'

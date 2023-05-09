@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import image from '@/assets/img/burj.jpg'
 import Button from '@/components/Button'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import BannerComment from '../components/comment'
 
 export const SwitchView: React.FC<any> = ({ view }: any): any => {

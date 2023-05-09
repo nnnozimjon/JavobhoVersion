@@ -3,7 +3,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { useUser } from '@/store/contexts/UserContect'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import Modal from '@/components/useModal/Modal'
 import PostModal from '@/components/Modals/PostModal'
 import AskModal from '@/components/Modals/AskModal'

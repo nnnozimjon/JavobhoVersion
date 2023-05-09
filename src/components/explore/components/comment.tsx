@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import Link from 'next/link'
 import Read from '@/components/Read'
 import { formatDistanceToNowStrict } from 'date-fns'

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useRef, useState } from 'react'
 import { useUser } from '@/store/contexts/UserContect'
-import Ico from '../Icon'
+import Ico from '../icon'
 import html2canvas from 'html2canvas'
 import { ApiProfile } from '@/api/profile'
 

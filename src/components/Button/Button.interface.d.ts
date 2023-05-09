@@ -1,4 +1,4 @@
-import IIcon from '../Icon'
+import IIcon from '../icon'
 declare namespace IButton {
   interface props {
     onClick?: () => void

@@ -1,5 +1,5 @@
 import React from 'react'
-import Ico from '@/components/Icon'
+import Ico from '@/components/icon'
 import INavButton from '../interface'
 
 const NavButton: React.FC<INavButton> = ({

@@ -1,8 +1,8 @@
 /* eslint-disable react/display-name */
 /* eslint-disable no-undef */
 import React from 'react'
-import IIcon from '@/components/Icon/IIcon'
-import list from '@/components/Icon/svg-list'
+import IIcon from '@/components/icon/IIcon'
+import list from '@/components/icon/svg-list'
 
 const Ico: React.FC<IIcon.props> = ({
   size = 24,

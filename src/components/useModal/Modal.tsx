@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactNode } from 'react'
-import Ico from '../Icon'
+import Ico from '../icon'
 
 type ModalProps = {
   isOpen: boolean
