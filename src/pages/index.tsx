@@ -38,34 +38,34 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-full h-full flex justify-center items-center px-[20px] flex-col">
-          <div className="border border-invisible border-t-0 p-[10px_15px]  flex-col gap-[15px] sm:flex hidden">
+        <div className="w-full h-full flex justify-center items-center sm:px-[20px] flex-col">
+          <div className="border border-invisible border-t-0 p-[10px_15px] flex-col gap-[15px] flex sm:w-[420px] w-full">
             <div className="flex gap-[10px]">
               <img
                 src={user.avatar}
                 alt="profile"
-                className="w-[40px] h-[40px] rounded-full object-cover"
+                className="sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] rounded-full object-cover"
               />
               <input
                 placeholder="What do you want to ask or share?"
-                className="border outline-none p-[5px] rounded-lg border-invisible w-[350px]"
+                className="border outline-none p-[5px] rounded-lg border-invisible sm:w-[350px] w-full"
               />
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between w-full">
               <button
                 onClick={openAskQuestionModal}
-                className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
+                className="p-[5px_15px]  flex sm:gap-[15px] gap-[5px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
               >
                 <Ico name="ask" />
                 Ask
               </button>
-              <button className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500">
+              <button className="p-[5px_15px]  flex sm:gap-[15px] gap-[5px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500">
                 <Ico name="answer" />
                 Answer
               </button>
               <button
                 onClick={openPostContentModal}
-                className="p-[5px_15px] flex gap-[15px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
+                className="p-[5px_15px]  flex sm:gap-[15px] gap-[5px] items-center justify-between rounded-[10px] text-lighterIndigo hover:bg-main hover:text-white transition-colors duration-500"
               >
                 <Ico name="post" />
                 Post

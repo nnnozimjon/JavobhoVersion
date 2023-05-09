@@ -145,11 +145,11 @@ const DesktopLayout = ({ children }: ILayout) => {
     <div className="w-screen h-screen flex justify-between">
       <Nav />
       <div className="w-full">
-        <div className="w-full h-[50px] sm:px-[20px] px-[5px] flex items-center border-b border-invisible">
-          <div className="grid grid-cols-12 w-full sm:hidden">
+        <div className="w-full h-[50px] sm:px-[20px] px-[5px] flex items-center bg-white border-b border-invisible">
+          <div className="grid grid-cols-12 w-full sm:hidden z-50">
             <div id="closeOptions">
               <button
-                className="relative z-10 p-[10px] md:hidden w-[50px]"
+                className="relative p-[10px] sm:hidden w-[50px]"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <img
@@ -159,11 +159,11 @@ const DesktopLayout = ({ children }: ILayout) => {
                 />
               </button>
               <div
-                className={`fixed z-10 border-r border-invisible top-0 left-0 w-64 bg-white h-screen overflow-auto transition-all duration-300 ${
+                className={`fixed border-r border-invisible top-0 left-0 w-64 bg-white h-screen overflow-auto transition-all duration-300 ${
                   isOpen ? 'ml-0' : '-ml-64'
                 }`}
               >
-                <nav className="w-full h-full p-[20px]">
+                <nav className="w-full h-full p-[20px] ">
                   <img
                     src={user.avatar}
                     alt="profile_image"
@@ -185,22 +185,22 @@ const DesktopLayout = ({ children }: ILayout) => {
                     <Ico name="bookmarks" />
                     <p className="select-none">Bookmarks</p>
                   </Link>
-                  <Link href={`/jobfinder`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  {/* <Link href={`/jobfinder`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
                     <Ico name="jobfinder" />
                     <p className="select-none">Jobs</p>
-                  </Link>
-                  <Link href={`/topics`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link> */}
+                  {/* <Link href={`/topics`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
                     <Ico name="topics" />
                     <p className="select-none">Topics</p>
-                  </Link>
-                  <Link href={`/courses`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link> */}
+                  {/* <Link href={`/courses`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
                     <Ico name="courses" />
                     <p className="select-none">Courses</p>
-                  </Link>
-                  <Link href={`/bookshelf`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link> */}
+                  {/* <Link href={`/bookshelf`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
                     <Ico name="bookshelf" />
                     <p className="select-none">Bookshelf</p>
-                  </Link>
+                  </Link> */}
 
                   <div className="flex gap-[10px] px-[20px] py-[10px] fixed bottom-[10px] rounded-full hover:bg-[#FC8181] hover:text-white">
                     <Ico name="logout" />

@@ -173,34 +173,37 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           </div>
           <br />
         </div>
-        <div className="h-[50px] sm:flex grid grid-cols-3 justify-evenly items-center border-b border-invisible">
+        <div className="h-[50px] flex  justify-evenly items-center border-b border-invisible">
           <button
             onClick={() => setView('posts')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)]  cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex items-center justify-center ${
               view === 'posts' && 'border-b-[5px]'
             } border-main`}
           >
             Posts
+            {/* <Ico name='post'/> */}
           </button>
           <button
             onClick={() => setView('questions')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex items-center justify-center ${
               view === 'questions' && 'border-b-[5px]'
             } border-main`}
           >
             Questions
+            {/* <Ico name='edit'/> */}
           </button>
           <button
             onClick={() => setView('replies')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex items-center justify-center ${
               view === 'replies' && 'border-b-[5px]'
             } border-main`}
           >
             Replies
+            {/* <Ico name='answer'/> */}
           </button>
           {/* <button
             onClick={() => setView('media')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full flex items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex items-center justify-center ${
               view === 'media' && 'border-b-[5px]'
             } border-main`}
           >
@@ -209,16 +212,17 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
           {params.username === user.username && (
             <button
               onClick={() => setView('likes')}
-              className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full sm:flex hidden items-center justify-center ${
+              className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex items-center justify-center ${
                 view === 'likes' && 'border-b-[5px]'
               } border-main`}
             >
               Likes
+              {/* <Ico name='like'/> */}
             </button>
           )}
           <button
             onClick={() => setView('bio')}
-            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none w-full h-full sm:flex hidden items-center justify-center ${
+            className={`font-bold hover:bg-[rgba(0,0,0,0.1)] cursor-pointer sm:text-[16px] text-[12px] select-none sm:w-full h-full flex  items-center justify-center ${
               view === 'bio' && 'border-b-[5px]'
             } border-main`}
           >
@@ -230,9 +234,11 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
             view={view}
             AllUserPosts={AllUserPosts}
             setIsUserFollowing={setIsUserFollowing}
-            isUserFollowing={isUserFollowing}
+            isUserFollowing={isUserFollowing}   
           />
         </div>
+        <br/>
+        <br/>
       </div>
       <Modal
         isOpen={editProfileModalState}

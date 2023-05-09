@@ -203,7 +203,7 @@ const PostWithoutImage = ({
         !showComments && 'border-b'
       } my-[10px] border-invisible`}
     >
-      <div className="w-[580px] p-[10px] flex gap-[10px]">
+      <div className="p-[10px] flex gap-[10px]">
         <div className="flex w-[99%] gap-[10px]">
           <img
             src={avatar}
