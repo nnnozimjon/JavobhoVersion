@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      #- name: Checkout code
+      #  uses: actions/checkout@v2
 
       #- name: Install dependencies
       #  run: npm ci  # Replace with your package manager and command
@@ -24,6 +24,6 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SERVER_PRIVATE_KEY }}
-          source: .  # Replace with the path to your build artifacts
+          password: ${{ secrets.SERVER_PRIVATE_KEY }}
+          source: ./build  # Replace with the path to your build artifacts
           target: /var/www/fastuser/data/www/javobho.com
