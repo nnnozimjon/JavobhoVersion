@@ -6,6 +6,7 @@ declare namespace ILogin {
     value?: string
     type: 'password' | 'text'
     className?: string
+    label?: string
   }
 
   type props = props

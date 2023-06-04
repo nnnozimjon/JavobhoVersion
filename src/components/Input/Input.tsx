@@ -7,20 +7,22 @@ const Input = ({
   value,
   type,
   className,
+  label,
 }: ILogin.props) => {
   const InputRef = React.useRef<HTMLInputElement | null>(null)
 
   return (
     <div className="relative">
-      {value && (
+      {label && <h1 className="mb-[4px] font-bold text-[12px]">{label}</h1>}
+      {/* {value && (
         <span className="absolute top-[-9px] bg-white px-[3px] text-[12px] left-[20px] font-medium text-gray">
           {placeholder?.toLocaleLowerCase()}
         </span>
-      )}
+      )} */}
       <input
         autoComplete={type === 'password' ? 'current-password' : ''}
         ref={InputRef}
-        className={`${className} border-[0.1px] border-border rounded pl-[20px] p-[10px] w-full  outline-none 
+        className={`${className} border-[0.1px] border-border rounded pl-[20px] p-[10px] w-full  outline-none focus:border-darkblue 
         `}
         placeholder={placeholder}
         onChange={onChange}
