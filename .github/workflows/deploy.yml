@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm ci  # Replace with your package manager and command
+      #- name: Install dependencies
+      #  run: npm ci  # Replace with your package manager and command
 
-      - name: Build project
-        run: npm run build  # Replace with your build command
+      #- name: Build project
+      #  run: npm run build  # Replace with your build command
 
       - name: Deploy to server
         uses: appleboy/scp-action@master
