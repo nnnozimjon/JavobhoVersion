@@ -26,4 +26,4 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           source: .  # Replace with the path to your build artifacts
-          target: /path/to/deployment/folder
+          target: /var/www/fastuser/data/www/javobho.com
