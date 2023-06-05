@@ -19,6 +19,9 @@ jobs:
       - name: Copy source
         run: cp -R /var/www/fastuser/data/actions-runner/_work/JavobhoVersion/JavobhoVersion/  ./
       
+      - name: Move source
+        run: mv ./JavobhoVersion/* ./ && rm -r ./JavobhoVersion/
+      
       - name: Build and Archive
         run: |
           npm ci
