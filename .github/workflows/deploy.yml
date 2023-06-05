@@ -14,7 +14,10 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+        
+      - name: Copy source
+        run: cp -R /var/www/fastuser/data/actions-runner/_work/JavobhoVersion/JavobhoVersion  ./
 
       - name: Build and Archive
         run: |
