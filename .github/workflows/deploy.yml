@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #- name: Checkout code
-      #  uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      #- name: Install dependencies
-      #  run: npm ci  # Replace with your package manager and command
-
-      #- name: Build project
-      #  run: npm run build  # Replace with your build command
+      - name: Build and Archive
+        run: |
+          npm ci
+          npm run build
+          tar -cjf build.tar.bz2 ./build/
 
       - name: Deploy to server
         uses: appleboy/scp-action@master
@@ -25,5 +25,5 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
-          source: ./build  # Replace with the path to your build artifacts
+          source: ./build.tar.bz2
           target: /var/www/fastuser/data/www/javobho.com
