@@ -59,7 +59,7 @@ const BannerView: React.FC<any> = () => {
         <Image
           src={image}
           alt="question Banner"
-          className="w-full h-full object-cover absolute -z-[10]"
+          className="w-full h-full object-cover absolute"
         />
         <div className="flex flex-col">
           <h1 className="p-[20px] font-semibold text-[30px] text-white absolute top-0">

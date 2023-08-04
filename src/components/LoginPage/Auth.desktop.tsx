@@ -49,7 +49,7 @@ const AuthDesktop = () => {
           alt="background"
           className="w-full h-full absolute select-none object-cover"
         />
-        <div className="flex flex-col gap-[15px] text-black z-10 bg-[#fff] w-[550px] p-[40px] shadow-sm shadow-gray">
+        <div className="flex flex-col gap-[15px] text-black  bg-white w-[550px] p-[20px] shadow-sm shadow-gray z-50 h-full">
           <div className="flex items-center justify-center gap-[15px]">
             <h1 className={`text-center font-bold text-[45px] text-main`}>
               Javobho

@@ -41,7 +41,7 @@ const NavDropdownSelect: React.FC<Props> = ({
 
   return (
     <div
-      className="relative inline-block min-w-[100px] w-[252px] z-10"
+      className="relative inline-block min-w-[100px] w-[252px] "
       id="closeOptions"
     >
       <div onClick={toggleOptions}>
@@ -52,7 +52,7 @@ const NavDropdownSelect: React.FC<Props> = ({
           </span>
         </div>
         {isOpen && (
-          <div className="absolute min-w-[100px] w-[252px] rounded-b select-lis bg-white text-dGray border-none shadow-2xl z-[10] ">
+          <div className="absolute min-w-[100px] w-[252px] rounded-b select-lis bg-white text-dGray border-none shadow-2xl ">
             {options?.map((option: Option) => (
               <div
                 key={option.id}
