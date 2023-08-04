@@ -37,7 +37,7 @@ const AskModal = () => {
 
   return (
     <div>
-      <div className="flex gap-[10px] mb-[10px] items-center">
+      <div className="flex gap-[10px] mb-[10px] items-center border-b p-[5px_10px] border-invisible">
         <img
           src={user.avatar}
           alt="profile"
@@ -54,22 +54,24 @@ const AskModal = () => {
       </div>
       <form id="form">
         <textarea
-          ref={textAreaRef}
+          // ref={textAreaRef}
           value={text}
           onChange={handleTextChange}
           onInput={adjustTextAreaHeight}
           placeholder="Start your question with What , Why , When etc. "
-          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[200px]"
+          className="border-b w-full scrollbar-hide overflow-hidden outline-none border-invisible p-[5px] max-h-[400px] h-[400px]"
         />
       </form>
-      <button
-        onClick={text ? UploadPost : () => {}}
-        className={`mt-[10px] rounded-full w-full p-[5px]  text-white ${
-          text ? 'bg-main' : 'bg-invisible'
-        }`}
-      >
-        Add Question
-      </button>
+      <div className="p-[10px]">
+        <button
+          onClick={text ? UploadPost : () => {}}
+          className={`mt-[10px] rounded-full w-full p-[5px]  text-white ${
+            text ? 'bg-main' : 'bg-invisible'
+          }`}
+        >
+          Add Question
+        </button>
+      </div>
     </div>
   )
 }

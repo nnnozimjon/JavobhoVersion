@@ -12,16 +12,17 @@ type ModalProps = {
 const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
   return isOpen ? (
     <div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] text-black flex justify-center items-center">
-      <div className="p-[10px_10px] w-[500px] bg-white rounded-[15px] shadow-lg ">
-        <div className="relative p-[5px] flex items-center justify-between">
-          <p className="font-semibold">{title}</p>
+      <div className=" w-[500px] bg-white sm:rounded-[15px] rounded-none shadow-lg h-full sm:h-fit">
+        <div className="relative p-[10px] flex items-center justify-between">
           <Ico
-            name="closeSquare"
+            name="arrowback"
             onClick={closeModal}
             className="cursor-pointer text-lighterIndigo hover:text-darkestIndigo"
           />
+          <p className="font-semibold">{title}</p>
         </div>
-        <div className="modal-content px-[10px]">{children}</div>
+        <div className="border-t pb-[5px] border-invisible" />
+        <div className="modal-content">{children}</div>
       </div>
     </div>
   ) : null

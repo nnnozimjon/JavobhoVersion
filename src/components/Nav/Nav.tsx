@@ -31,7 +31,7 @@ const Nav = () => {
           Javobho
         </h1>
       </div>
-      <div className="w-full z-50 bg-white sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-4 gap-4 sm:relative sm:border-none fixed bottom-0 border-t border-invisible ">
+      <div className="w-full bg-white sm:h-full h-fit p-0 sm:pl-[30px] sm:px-[20px] sm:block grid grid-cols-4 gap-4 sm:relative sm:border-none fixed bottom-0 border-t border-invisible ">
         <Link href={`/`} className="flex items-center justify-center">
           <NavButton
             className={`${router === '/' && 'sm:text-white text-main'} ${
