@@ -15,18 +15,6 @@ const PostModal = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const ImageRef = useRef<HTMLInputElement>(null)
 
-  const setCropedImage = () => {
-    const divElement = document.getElementById('qr-gen')
-    if (divElement) {
-      html2canvas(divElement).then((canvas: HTMLCanvasElement) => {
-        canvas.toBlob((blob: any) => {
-          const file = new File([blob], 'image.png', { type: 'image/png' })
-          setSelectedFile(file)
-        }, 'image/png')
-      })
-    }
-  }
-
   useEffect(() => {
     if (selectedFile) {
       const reader = new FileReader()
@@ -84,7 +72,6 @@ const PostModal = () => {
   }
 
   const UploadPost = async () => {
-    await setCropedImage()
     await ApiProfile.UploadPost(
       user.userId,
       text,
@@ -98,7 +85,7 @@ const PostModal = () => {
   }
   return (
     <div>
-      <div className="flex gap-[10px] mb-[10px] items-center">
+      <div className="flex gap-[10px] mb-[10px] items-center border-b p-[5px_10px] border-invisible">
         <img
           src={user.avatar}
           alt="profile"
@@ -115,12 +102,12 @@ const PostModal = () => {
       </div>
       <form id="form">
         <textarea
-          ref={textAreaRef}
+          // ref={textAreaRef}
           value={text}
           onChange={handleTextChange}
           onInput={adjustTextAreaHeight}
           placeholder="Start your question with What , Why , When etc. "
-          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[200px]"
+          className="border-b w-full scrollbar-hide overflow-hidden outline-none  border-invisible p-[5px] max-h-[200px]"
         />
         {selectedFile && (
           <div
@@ -130,7 +117,7 @@ const PostModal = () => {
             <img
               src={URL.createObjectURL(selectedFile)}
               alt="image"
-              className="object-cover scrollable-element"
+              className="object-cover scrollable-element w-full"
             />
           </div>
         )}
@@ -152,23 +139,18 @@ const PostModal = () => {
               <p className="leading-[12px]">clear</p>
             </div>
           </div>
-          <div
-            onClick={setCropedImage}
-            className="flex gap-[5px] items-center cursor-pointer"
-          >
-            <Ico name="edit" className="text-indigo cursor-pointer" />
-            <p className="leading-[12px]">crop</p>
-          </div>
         </div>
       </form>
-      <button
-        onClick={selectedFile || text ? UploadPost : () => {}}
-        className={`mt-[10px] rounded-full w-full p-[5px]  text-white ${
-          selectedFile || text ? 'bg-main' : 'bg-invisible'
-        }`}
-      >
-        Post
-      </button>
+      <div className="p-[10px]">
+        <button
+          onClick={selectedFile || text ? UploadPost : () => {}}
+          className={`mt-[10px] rounded-full w-full p-[5px]  text-white ${
+            selectedFile || text ? 'bg-main' : 'bg-invisible'
+          }`}
+        >
+          Post
+        </button>
+      </div>
     </div>
   )
 }

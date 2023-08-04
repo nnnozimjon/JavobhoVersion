@@ -12,7 +12,7 @@ const HashTag: React.FC<any> = ({ hash, size, category }: any) => {
       </Link>
       <Ico
         name="moreHorizontal"
-        className="cursor-pointer rounded-full text-main hover:bg-[#73fffd5b] duration-500 z-10"
+        className="cursor-pointer rounded-full text-main hover:bg-[#73fffd5b] duration-500"
       />
     </div>
   )

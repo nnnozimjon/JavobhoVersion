@@ -146,8 +146,8 @@ const DesktopLayout = ({ children }: ILayout) => {
       <Nav />
       <div className="w-full">
         <div className="w-full h-[50px] sm:px-[20px] px-[5px] flex items-center bg-white border-b border-invisible">
-          <div className="grid grid-cols-12 w-full sm:hidden z-50">
-            <div id="closeOptions">
+          <div className="grid grid-cols-12 w-full sm:hidden">
+            <div id="closeOptions" className="bg-white z-50">
               <button
                 className="relative p-[10px] sm:hidden w-[50px]"
                 onClick={() => setIsOpen(!isOpen)}
@@ -163,7 +163,7 @@ const DesktopLayout = ({ children }: ILayout) => {
                   isOpen ? 'ml-0' : '-ml-64'
                 }`}
               >
-                <nav className="w-full h-full p-[20px] ">
+                <nav className="w-full h-full p-[20px]">
                   <img
                     src={user.avatar}
                     alt="profile_image"
@@ -177,11 +177,17 @@ const DesktopLayout = ({ children }: ILayout) => {
                   </h1>
                   <div className="border-t mt-[20px] border-invisible" />
 
-                  <Link href={`/${user.username}`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  <Link
+                    href={`/${user.username}`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
                     <Ico name="profile" />
                     <p className="select-none">Profile</p>
                   </Link>
-                  <Link href={`/bookmarks`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  <Link
+                    href={`/bookmarks`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
                     <Ico name="bookmarks" />
                     <p className="select-none">Bookmarks</p>
                   </Link>

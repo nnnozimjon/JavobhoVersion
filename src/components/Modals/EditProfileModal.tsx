@@ -144,7 +144,7 @@ const EditProfileModal: React.FC<any> = () => {
           onChange={handleTextChange}
           onInput={adjustTextAreaHeight}
           placeholder="Description"
-          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[100px]"
+          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[400px]"
         />
 
         <Button
