@@ -14,7 +14,7 @@ const Button: React.FC<IButton.props> = ({
   return (
     <button
       onClick={onClick}
-      className={`px-[15px] py-[10px]  rounded-lg bg-${bg} text-${color} hover:bg-[rgba(0,0,0,0.4)] hover:text-white   transition duration-500
+      className={`p-[5px] sm:p-[10px] rounded-lg bg-${bg} text-${color}  transition duration-500
        font-medium text-[14px] flex items-center gap-[10px] ${className}`}
     >
       {name && <Ico name={name} size={20} />}

@@ -19,6 +19,7 @@ const Nav = () => {
   const profilePath = '/[profile]'
 
   const handleLogout = async () => {
+    alert('logout')
     Cookies.remove('access_token')
     window.location.replace('/login')
   }
@@ -62,7 +63,7 @@ const Nav = () => {
             label={'Notifications'}
           />
         </Link>
-        <Link href={`/messages`} className="flex items-center justify-center">
+        {/* <Link href={`/messages`} className="flex items-center justify-center">
           <NavButton
             className={`${
               router === '/messages' && 'sm:text-white text-main'
@@ -70,10 +71,10 @@ const Nav = () => {
             icon={router === '/messages' ? 'messageFilled' : 'message'}
             label={'Messages'}
           />
-        </Link>
+        </Link> */}
         <Link
           href={`/${user.username}`}
-          className="sm:flex hidden items-center justify-center"
+          className="flex items-center justify-center"
         >
           <NavButton
             className={`${
@@ -94,10 +95,10 @@ const Nav = () => {
           ]}
         /> */}
       </div>
-      <div className="w-full h-[100px] sm:flex hidden justify-center items-center border-t border-invisible ">
+      <div className="w-full h-[100px] sm:flex hidden justify-center items-center border-t  border-invisible">
         <div
           onClick={() => handleLogout()}
-          className="flex p-[10px_20px] rounded-[6px] w-[252px] hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"
+          className="flex p-[10px_20px] rounded-[6px] w-[252px]  hover:bg-[#FC8181] hover:text-white duration-500 select-none cursor-pointer"
         >
           <Icon name="logout" />
           <button className="pl-[20px] font-medium">Logout</button>

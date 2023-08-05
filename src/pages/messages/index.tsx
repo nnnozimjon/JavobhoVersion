@@ -13,7 +13,7 @@ const MessageProfile = ({ selectedContact, select, onClick }: any) => {
     <div
       onClick={onClick}
       className={`p-[10px] flex gap-[10px] cursor-pointer hover:bg-[rgba(0,0,0,0.05)] border-main transition-colors duration-500 ${
-        select == id && 'border-r-[3px] border-main bg-silver'
+        select.userId == id && 'border-r-[3px] border-main bg-silver'
       }`}
     >
       <div className="w-[50px] h-[50px] rounded-full bg-main" />
@@ -35,8 +35,7 @@ const ChatRoom: React.FC<User> = ({ verified, username, fullname }: User) => {
       >
         <div className="w-[80px] h-[80px] bg-main rounded-full" />
         <h1 className="flex font-bold">
-          {fullname}{' '}
-          {verified && <Ico name="verified" className="ml-[10px]" />}
+          {fullname} {verified && <Ico name="verified" className="ml-[10px]" />}
         </h1>
         <p className="font-medium text-dGray"> @{username}</p>
       </Link>
@@ -46,39 +45,49 @@ const ChatRoom: React.FC<User> = ({ verified, username, fullname }: User) => {
 }
 
 const friendsList: User[] = [
-  // {
-  //   userId: 1,
-  //   fullname: 'Qosimjon Rahimov',
-  //   username: 'qosimjon',
-  //   avatar: '/static/images/avatars/avatar_1.png',
-  //   verified: true,
-  //   description: '',
-  //   createdAt: '',
-  //   splashImage: '',
-  // },
-  // {
-  //   userId: 2,
-  //   fullname: 'Shamsulloev Nozimjon',
-  //   username: 'nnnozimjon',
-  //   avatar: '/static/images/avatars/avatar_1.png',
-  //   verified: false,
-  //   description: '',
-  //   createdAt: '',
-  //   splashImage: '',
-  // },
+  {
+    userId: 1,
+    fullname: 'Qosimjon Rahimov',
+    username: 'qosimjon',
+    avatar: '/static/images/avatars/avatar_1.png',
+    verified: true,
+    description: '',
+    createdAt: '',
+    splashImage: '',
+  },
+  {
+    userId: 2,
+    fullname: 'Shamsulloev Nozimjon',
+    username: 'nnnozimjon',
+    avatar: '/static/images/avatars/avatar_1.png',
+    verified: false,
+    description: '',
+    createdAt: '',
+    splashImage: '',
+  },
 ]
 
 const Messages = () => {
-  const [selectedFriend, setSelectedFriend] = React.useState<number>(0)
+  const initialState: User = {
+    avatar: '',
+    createdAt: '',
+    description: '',
+    fullname: '',
+    splashImage: '',
+    userId: 0,
+    username: '',
+    verified: false,
+  }
+  const [selectedFriend, setSelectedFriend] = React.useState<User>(initialState)
   const [text, setText] = React.useState<string>('')
 
   useEffect(() => {
-    setSelectedFriend(friendsList.length > 0 ? friendsList[0]?.userId : 0)
+    setSelectedFriend(friendsList.length > 0 ? friendsList[0] : initialState)
   }, [])
 
   const chatRoomProps: any = friendsList
-    .filter((friend: User) => friend.userId == selectedFriend)
-    .find((friend: User) => friend.userId == selectedFriend)
+    .filter((friend: User) => friend.userId == selectedFriend.userId)
+    .find((friend: User) => friend.userId == selectedFriend.userId)
 
   return (
     <div className="h-full flex overflow-hidden">
@@ -86,7 +95,7 @@ const Messages = () => {
         {friendsList.length > 0 ? (
           friendsList.map((friend: any, i: number) => (
             <MessageProfile
-              onClick={() => setSelectedFriend(friend?.id)}
+              onClick={() => setSelectedFriend(friend)}
               key={i}
               selectedContact={friend}
               select={selectedFriend}
@@ -104,7 +113,7 @@ const Messages = () => {
             </h1>
             <p className="text-dGray p-[10px]">
               Chat, share posts and more with private conversations between you
-              and your friends on Javobho.{' '}
+              and your friends on Javobho.
             </p>
             <br />
             <Button
@@ -118,19 +127,10 @@ const Messages = () => {
         )}
       </div>
       <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">
-        {selectedFriend ? (
+        {selectedFriend.username ? (
           <>
             <div className="h-[calc(100%_-_65px)] border-b border-invisible">
-              <ChatRoom
-                avatar={chatRoomProps?.avatar}
-                splashImage={chatRoomProps?.splashImage}
-                description={chatRoomProps?.description}
-                userId={chatRoomProps?.userId}
-                createdAt={chatRoomProps?.createdAt}
-                fullname={chatRoomProps?.fullname}
-                username={chatRoomProps?.username}
-                verified={chatRoomProps?.verified}
-              />
+              <ChatRoom {...chatRoomProps} />
             </div>
             <div className="absolute bottom-0">
               <div className="flex items-center px-3 py-2 rounded-[30px] bg-silver w-[600px] mb-[5px] ml-[10px]">

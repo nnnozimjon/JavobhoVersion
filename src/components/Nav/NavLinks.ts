@@ -19,12 +19,12 @@ const NavLinks: INav.nav[] = [
     activeIcon: 'noteFilled',
     path: '/notifications',
   },
-  {
-    icon: 'message',
-    label: 'Messages',
-    activeIcon: 'messageFilled',
-    path: '/messages',
-  },
+  // {
+  //   icon: 'message',
+  //   label: 'Messages',
+  //   activeIcon: 'messageFilled',
+  //   path: '/messages',
+  // },
   {
     icon: 'bookmarks',
     label: 'Bookmarks',

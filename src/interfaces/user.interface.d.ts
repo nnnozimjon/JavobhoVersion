@@ -11,4 +11,5 @@ interface user {
 
 type User = user
 
+
 export default User

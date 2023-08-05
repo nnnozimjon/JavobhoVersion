@@ -27,21 +27,21 @@ const BannerComment = ({
   likes,
   avatar,
 }: Props) => {
-  const time = createdAt.replace('Z', '+03:00')
-  const [distanceString, setDistanceString] = React.useState(() =>
-    formatDistanceToNowStrict(new Date(time), { addSuffix: true })
-  )
+  // const time = createdAt.replace('Z', '+03:00')
+  // const [distanceString, setDistanceString] = React.useState(() =>
+  //   formatDistanceToNowStrict(new Date(time), { addSuffix: true })
+  // )
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const distanceString = formatDistanceToNowStrict(new Date(time), {
-        addSuffix: true,
-      })
-      setDistanceString(distanceString)
-    }, 1000)
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const distanceString = formatDistanceToNowStrict(new Date(time), {
+  //       addSuffix: true,
+  //     })
+  //     setDistanceString(distanceString)
+  //   }, 1000)
 
-    return () => clearInterval(interval)
-  }, [distanceString, time])
+  //   return () => clearInterval(interval)
+  // }, [distanceString, time])
   return (
     <div className="w-full p-[10px] flex gap-[10px] hover:bg-[rgba(0,0,0,0.1)] duration-500">
       <div className="flex w-[99%] gap-[10px] ">
@@ -66,7 +66,7 @@ const BannerComment = ({
               )}
             </div>
             <p className="font-semibold text-[10px] text-indigo">
-              {distanceString}
+              {/* {distanceString} */}
             </p>
           </div>
           <div className="font-semibold">

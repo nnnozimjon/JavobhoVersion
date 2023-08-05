@@ -178,6 +178,13 @@ const DesktopLayout = ({ children }: ILayout) => {
                   <div className="border-t mt-[20px] border-invisible" />
 
                   <Link
+                    href={`/bookmarks`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
+                    <Ico name="bookmarks" />
+                    <p className="select-none">Bookmarks</p>
+                  </Link>
+                  {/* <Link
                     href={`/${user.username}`}
                     className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
                   >
@@ -185,25 +192,30 @@ const DesktopLayout = ({ children }: ILayout) => {
                     <p className="select-none">Profile</p>
                   </Link>
                   <Link
-                    href={`/bookmarks`}
+                    href={`/jobfinder`}
                     className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
                   >
-                    <Ico name="bookmarks" />
-                    <p className="select-none">Bookmarks</p>
-                  </Link>
-                  {/* <Link href={`/jobfinder`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
                     <Ico name="jobfinder" />
                     <p className="select-none">Jobs</p>
-                  </Link> */}
-                  {/* <Link href={`/topics`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link>
+                  <Link
+                    href={`/topics`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
                     <Ico name="topics" />
                     <p className="select-none">Topics</p>
-                  </Link> */}
-                  {/* <Link href={`/courses`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link>
+                  <Link
+                    href={`/courses`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
                     <Ico name="courses" />
                     <p className="select-none">Courses</p>
-                  </Link> */}
-                  {/* <Link href={`/bookshelf`} className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]">
+                  </Link>
+                  <Link
+                    href={`/bookshelf`}
+                    className="flex gap-[10px] px-[20px] py-[10px] hover:bg-main hover:text-white rounded-full mt-[10px]"
+                  >
                     <Ico name="bookshelf" />
                     <p className="select-none">Bookshelf</p>
                   </Link> */}

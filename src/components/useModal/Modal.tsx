@@ -22,7 +22,7 @@ const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
           <p className="font-semibold">{title}</p>
         </div>
         <div className="border-t pb-[5px] border-invisible" />
-        <div className="modal-content">{children}</div>
+        <div className="overflow-scroll scrollbar-hide">{children}</div>
       </div>
     </div>
   ) : null

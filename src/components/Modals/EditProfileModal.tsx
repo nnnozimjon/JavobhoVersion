@@ -72,13 +72,13 @@ const EditProfileModal: React.FC<any> = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-[15px] my-[30px]">
+      <div className="flex flex-col gap-[5px]">
         <div className="flex items-center flex-col gap-[5px]">
           <img src={user.splashImage} alt="header image" />
           <div className="flex gap-[10px]">
             <Button
               bg="main"
-              text="Change Image"
+              text="Change header"
               color="white"
               className="font-normal text-[10px] h-[32px] hover:bg-dGray"
               name="changeImage"
@@ -94,7 +94,7 @@ const EditProfileModal: React.FC<any> = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center gap-[10px]">
+        <div className="flex items-center gap-[10px] p-[10px]">
           <img
             src={user.avatar}
             alt="header image"
@@ -104,7 +104,7 @@ const EditProfileModal: React.FC<any> = () => {
           />
           <Button
             bg="main"
-            text="Change Image"
+            text="Change avatar"
             color="white"
             className="font-normal text-[10px] h-[32px] hover:bg-dGray"
             name="changeImage"
@@ -120,42 +120,56 @@ const EditProfileModal: React.FC<any> = () => {
           )}
         </div>
 
-        <Input
-          type="text"
-          placeholder="Username"
-          onChange={e => {
-            setUsername(e.target.value)
-            setError('')
-          }}
-          value={username}
-        />
-        <Input
-          type="text"
-          placeholder="Fullname"
-          onChange={e => {
-            setFullname(e.target.value)
-            setError('')
-          }}
-          value={fullname}
-        />
-        <textarea
-          ref={textAreaRef}
-          value={description}
-          onChange={handleTextChange}
-          onInput={adjustTextAreaHeight}
-          placeholder="Description"
-          className="border w-full scrollbar-hide overflow-hidden outline-none rounded border-invisible p-[5px] max-h-[400px]"
-        />
+        <div className="p-[10px] gap-[5px] flex flex-col">
+          <div>
+            <span className="text-[12px] text-lighterIndigo pl-[5px]">
+              Username
+            </span>
+            <Input
+              type="text"
+              placeholder="Username"
+              onChange={e => {
+                setUsername(e.target.value)
+                setError('')
+              }}
+              value={username}
+            />
+          </div>
+          <div>
+            <span className="text-[12px] text-lighterIndigo pl-[5px]">
+              Fullname
+            </span>
+            <Input
+              type="text"
+              placeholder="Fullname"
+              onChange={e => {
+                setFullname(e.target.value)
+                setError('')
+              }}
+              value={fullname}
+            />
+          </div>
+          <div>
+            <span className="text-[12px] text-lighterIndigo pl-[5px]">Bio</span>
+            <textarea
+              value={description}
+              onChange={handleTextChange}
+              onInput={adjustTextAreaHeight}
+              placeholder="Description"
+              className="border w-full scrollbar-hide  outline-none rounded border-invisible p-[5px] max-h-[400px] h-[75px]"
+            />
+          </div>
 
-        <Button
-          bg={error ? 'invisible' : 'main'}
-          text="Submit changes"
-          color="white"
-          onClick={error ? () => {} : handleChangeProfile}
-          className={`${
-            !error ? 'hover:bg-dGray' : 'hover:bg-none cursor-default'
-          } text-center`}
-        />
+          <Button
+            bg={error ? 'invisible' : 'main'}
+            text="Submit changes"
+            color="white"
+            onClick={error ? () => {} : handleChangeProfile}
+            className={`${
+              !error ? 'hover:bg-dGray' : 'hover:bg-none cursor-default'
+            } text-center`}
+          />
+        </div>
         <p className="text-darkerRuby text-[12px] p-[0] m-[0] leading-[0px]">
           {error}
         </p>
