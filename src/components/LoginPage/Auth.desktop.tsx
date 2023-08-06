@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 import Image from 'next/image'
-import sky from '@/assets/img/back.jpg'
+import sky from '@/assets/img/wallpaper2.jpg'
 import logo from '@/assets/img/svg-logo.png'
 import Input from '../Input/Input'
 import { useUser } from '@/store/contexts/UserContect'
@@ -129,7 +129,7 @@ const AuthDesktop = () => {
                   Don't have an account?
                   <span
                     onClick={() => setAuthView('register')}
-                    className="text-darkblue"
+                    className="text-darkblue cursor-pointer select-none"
                   >
                     Sign up
                   </span>

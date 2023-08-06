@@ -1,93 +1,88 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import Input from '@/components/Input/Input'
 import Ico from '@/components/icon'
 import { ApiAuth } from '@/api/auth'
 
-interface newUser {
+interface NewUser {
   email: string
   username: string
   password: string
 }
 
 class Reg {
-  User(newUser: newUser) {
+  async registerUser(newUser: NewUser) {
     try {
-      ApiAuth.registration(newUser).then(res => {
-        return res
-      })
+      const res = await ApiAuth.registration(newUser)
+      return res
     } catch (error) {
-      return error
+      throw error
     }
   }
 }
 
 const Register: React.FC<any> = ({ setAuthView }) => {
-  const Register = new Reg()
-  const initailState: newUser = {
+  const registration = new Reg()
+  const initialState: NewUser = {
     email: '',
     username: '',
     password: '',
   }
 
   const [step, setStep] = useState<number>(0)
-  const [newUser, setNewUser] = useState<newUser>(initailState)
+  const [newUser, setNewUser] = useState<NewUser>(initialState)
 
-  const setNewUserState = (
-    key: string,
-    value: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const setNewUserState = (key: string, value: string) => {
     setNewUser(prev => ({
       ...prev,
-      [key]: value.target.value,
+      [key]: value,
     }))
   }
 
-  const view: any = []
-  const func: any = []
-
-  func[0] = () => {
+  const handleNextStep = () => {
     setStep(step + 1)
   }
 
-  func[1] = () => {
-    Register.User(newUser)
-  }
-  func['back'] = () => {
+  const handleBackStep = () => {
     if (step !== 0) {
       setStep(step - 1)
     }
-    return
   }
 
-  view[0] = (
+  const handleRegisterUser = async () => {
+    try {
+      const res = await registration.registerUser(newUser)
+      // Do something with the response if needed
+    } catch (error) {
+      // Handle error if registration fails
+    }
+  }
+
+  const view = [
+    <Input
+      key={0}
+      placeholder="Email"
+      type="text"
+      value={newUser.email}
+      label="Email"
+      onChange={e => setNewUserState('email', e.target.value)}
+    />,
     <>
       <Input
-        placeholder={'Email'}
-        type={'text'}
-        value={newUser.email}
-        label="Email"
-        onChange={e => setNewUserState('email', e)}
-      />
-    </>
-  )
-  view[1] = (
-    <>
-      <Input
-        placeholder={'Username'}
-        type={'text'}
+        placeholder="Username"
+        type="text"
         value={newUser.username}
         label="Username"
-        onChange={e => setNewUserState('username', e)}
+        onChange={e => setNewUserState('username', e.target.value)}
       />
       <Input
-        placeholder={'Password'}
-        type={'password'}
+        placeholder="Password"
+        type="password"
         value={newUser.password}
         label="Password"
-        onChange={e => setNewUserState('password', e)}
+        onChange={e => setNewUserState('password', e.target.value)}
       />
-    </>
-  )
+    </>,
+  ]
 
   return (
     <>
@@ -95,39 +90,38 @@ const Register: React.FC<any> = ({ setAuthView }) => {
         <h1 className="text-[25px] font-medium text-center text-main">
           Sign up
         </h1>
-        {step != 0 && (
+        {step !== 0 && (
           <div className="flex gap-[10px]">
             <Ico
               name="arrowback"
               className="text-main"
-              onClick={func['back']}
+              onClick={handleBackStep}
             />
             <p>Back</p>
           </div>
         )}
         {view[step]}
         <p className="font-medium text-[12px] text-darkerRuby">{''}</p>
-        <div className="flex flex-col-reverse lg:flex-row md:flex-row md:justify-between  lg:justify-between items-start place-items-end"></div>
+        <div className="flex flex-col-reverse lg:flex-row md:flex-row md:justify-between lg:justify-between items-start place-items-end" />
         <button
           className={`p-[10px] rounded-full ${
-            (
-              step === 0
-                ? newUser.email.includes('@') && newUser.email.length > 10
-                : newUser.username.length >= 3 &&
-                  newUser.username &&
-                  newUser.password &&
-                  newUser.password.length >= 8
-            )
+            step === 0
+              ? newUser.email.includes('@') && newUser.email.length > 10
+                ? 'bg-darkblue hover:bg-main'
+                : 'bg-invisible'
+              : newUser.username.length >= 3 && newUser.password.length >= 8
               ? 'bg-darkblue hover:bg-main'
               : 'bg-invisible'
           } text-white transition duration-500 font-bold`}
           onClick={
             (
               step === 0
-                ? newUser.email.includes('@') && newUser.email.length > 10
-                : newUser.username.length > 3 && newUser.password.length > 8
+                ? newUser.email.includes('@')
+                : newUser.username.length >= 3
             )
-              ? func[step]
+              ? step === 1
+                ? handleRegisterUser
+                : handleNextStep
               : () => {}
           }
         >
@@ -135,8 +129,11 @@ const Register: React.FC<any> = ({ setAuthView }) => {
         </button>
 
         <div className="flex justify-center gap-4 text-indigo">
-          You have account?
-          <span onClick={() => setAuthView('login')} className="text-darkblue">
+          You have an account?
+          <span
+            onClick={() => setAuthView('login')}
+            className="text-darkblue cursor-pointer select-none"
+          >
             Login
           </span>
         </div>

@@ -20,11 +20,7 @@ const Input = ({
           {label}
         </h1>
       )}
-      {/* {value && (
-        <span className="absolute top-[-9px] bg-white px-[3px] text-[12px] left-[20px] font-medium text-gray">
-          {placeholder?.toLocaleLowerCase()}
-        </span>
-      )} */}
+
       <div className="flex items-center border-[0.1px] border-border rounded focus:border-darkblue justify-between">
         <input
           autoComplete={type === 'password' ? 'current-password' : ''}
