@@ -29,7 +29,7 @@ const Input = ({
         <input
           autoComplete={type === 'password' ? 'current-password' : ''}
           ref={InputRef}
-          className={`${className} p-[10px] w-full  outline-none`}
+          className={`${className} p-[10px] w-full outline-none`}
           placeholder={placeholder}
           onChange={onChange}
           value={value}
@@ -44,7 +44,7 @@ const Input = ({
         {type === 'password' && (
           <Ico
             name={eye ? 'eye' : 'eyeSlash'}
-            className="mr-[10px] text-indigo"
+            className="mr-[10px] text-indigo absolute right-[2px]"
             onClick={() => setEye(!eye)}
           />
         )}
