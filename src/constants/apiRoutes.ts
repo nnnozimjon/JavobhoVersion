@@ -1,7 +1,7 @@
 const apiPaths = {
   auth: {
     login: '/api/auth/login',
-    registration: '',
+    registration: '/api/auth/register',
     verifyEmail: '',
     checkToken: '',
   },

@@ -19,6 +19,7 @@ export async function middleware(req: NextRequest) {
   }
 
   const tokenValid = checkToken(token)
+
   if (
     !tokenValid &&
     [

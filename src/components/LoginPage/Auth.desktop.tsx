@@ -9,6 +9,7 @@ import { ApiAuth } from '@/api/auth'
 import { cookies } from '@/utils/Cookies'
 import jwtDecode from 'jwt-decode'
 import Link from 'next/link'
+import Register from '@/pages/auth'
 
 interface UserPayloadRespone {
   message: string
@@ -18,6 +19,7 @@ interface UserPayloadRespone {
 
 const AuthDesktop = () => {
   const { setUser } = useUser()
+  const [AuthView, setAuthView] = React.useState('login')
   const [username, setUserName] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
 
@@ -59,83 +61,96 @@ const AuthDesktop = () => {
             A place to share knowledge and better understand the world
           </p>
           <div className="w-full">
-            <div className="flex flex-col gap-[15px] pl-4 border-invisible">
-              <h1 className="border-b pb-4 border-invisible text-[14px] font-medium text-center">
-                Login
-              </h1>
-              <Input
-                placeholder={'Username'}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (error) {
-                    setError('')
-                  }
-                  setUserName(e.target.value)
-                }}
-                type={'text'}
-                value={username}
-                label="Email"
-              />
-              <Input
-                placeholder={'Password'}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (error) {
-                    setError('')
-                  }
-                  setPassword(e.target.value)
-                }}
-                type={'password'}
-                value={password}
-                label="Password"
-              />
-              <p className="font-medium text-[12px] text-darkerRuby">{error}</p>
-              <div className="flex flex-col-reverse lg:flex-row md:flex-row md:justify-between  lg:justify-between items-start place-items-end">
-                <div className="flex items-center p-[5px]">
-                  <input
-                    type="checkbox"
-                    checked={robot}
-                    onChange={() => {
+            {AuthView === 'login' ? (
+              <div className="flex flex-col gap-[15px] pl-4 border-invisible">
+                <h1 className="border-invisible text-[25px] font-medium text-center text-main">
+                  Login
+                </h1>
+                <Input
+                  placeholder={'Username'}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (error) {
                       setError('')
-                      setRobot(!robot)
-                    }}
-                  />
-                  <p className="pb-[4px] pl-[10px]"> I am not Robot</p>
-                </div>
-                <button className="pb-[4px] hover:underline text-[12px]">
-                  Forgot password
-                </button>
-              </div>
-              <button
-                onClick={handleLogin}
-                className={`p-[10px] rounded-full ${
-                  username.length >= 3 &&
-                  username &&
-                  password &&
-                  password.length >= 8
-                    ? 'bg-darkblue hover:bg-main'
-                    : 'bg-invisible'
-                } text-white transition duration-500 font-bold`}
-              >
-                Login
-              </button>
-              <div className="flex justify-center gap-4">
-                Don't have an account?
-                <Link href={'/auth'} className="text-darkblue">
-                  Sign up
-                </Link>
-              </div>
-              {/* <div className='text-center'>
-                <p className="font-normal text-[14px] text-gray">
-                  By continuing you indicate that you agree to Javobho's{' '}
-                  <a href="" className="text-main">
-                    Terms of Service
-                  </a>{' '}
-                  and{' '}
-                  <a href="" className="text-main">
-                    Privacy Policy
-                  </a>
-                  . All rights reserved 2023 Tajcent Entertainment!
+                    }
+                    setUserName(e.target.value)
+                  }}
+                  type={'text'}
+                  value={username}
+                  label="Username"
+                />
+                <Input
+                  placeholder={'Password'}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (error) {
+                      setError('')
+                    }
+                    setPassword(e.target.value)
+                  }}
+                  type={'password'}
+                  value={password}
+                  label="Password"
+                />
+                <p className="font-medium text-[12px] text-darkerRuby">
+                  {error}
                 </p>
-              </div> */}
+                <div className="flex flex-col-reverse lg:flex-row md:flex-row md:justify-between  lg:justify-between items-start place-items-end">
+                  <div className="flex items-center p-[5px]">
+                    <input
+                      type="checkbox"
+                      checked={robot}
+                      onChange={() => {
+                        setError('')
+                        setRobot(!robot)
+                      }}
+                    />
+                    <p className="pb-[4px] pl-[10px] text-indigo">
+                      {' '}
+                      I am not Robot
+                    </p>
+                  </div>
+                  <button className="pb-[4px] hover:underline text-[12px] text-indigo">
+                    Forgot password
+                  </button>
+                </div>
+                <button
+                  onClick={handleLogin}
+                  className={`p-[10px] rounded-full ${
+                    username.length >= 3 &&
+                    username &&
+                    password &&
+                    password.length >= 8
+                      ? 'bg-darkblue hover:bg-main'
+                      : 'bg-invisible'
+                  } text-white transition duration-500 font-bold`}
+                >
+                  Login
+                </button>
+                <div className="flex justify-center gap-4 text-indigo">
+                  Don't have an account?
+                  <span
+                    onClick={() => setAuthView('register')}
+                    className="text-darkblue"
+                  >
+                    Sign up
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <Register setAuthView={setAuthView} />
+            )}
+            <br />
+            <div className="text-center ">
+              <p className="font-normal text-[14px] text-gray">
+                By continuing you indicate that you agree to Javobho's{' '}
+                <a href="" className="text-main">
+                  Terms of Service
+                </a>{' '}
+                and{' '}
+                <a href="" className="text-main">
+                  Privacy Policy
+                </a>
+                . All rights reserved 2023 Tajcent Entertainment!
+              </p>
             </div>
           </div>
         </div>

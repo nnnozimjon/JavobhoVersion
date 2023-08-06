@@ -1,1 +1,1 @@
-export const baseUrl = 'https://api.javobho.com/'
+export const baseUrl = 'http://localhost:8000'
