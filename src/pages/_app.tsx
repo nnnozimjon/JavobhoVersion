@@ -36,17 +36,17 @@ const App = ({ Component, pageProps }: AppProps) => {
     <Provider store={store}>
       <UserContextProvider>
         <SettingsContextProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            {isTokenValid ? (
-              <Login />
-            ) : (
+          {/* <Suspense fallback={<div>Loading...</div>}> */}
+          {/* {isTokenValid ? ( */}
+          <Login />
+          {/* ) : (
               <DesktopLayout>
                 <div className="h-full overflow-y-scroll scrollbar-hide ">
                   <Component {...pageProps} />
                 </div>
               </DesktopLayout>
-            )}
-          </Suspense>
+            )} */}
+          {/* </Suspense> */}
         </SettingsContextProvider>
       </UserContextProvider>
     </Provider>
