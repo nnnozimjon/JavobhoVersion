@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { parseCookies } from 'nookies'
 
 import {
@@ -234,11 +234,11 @@ const UsersProfile: NextPage<any> = ({ params, following, AllUserPosts }) => {
             view={view}
             AllUserPosts={AllUserPosts}
             setIsUserFollowing={setIsUserFollowing}
-            isUserFollowing={isUserFollowing}   
+            isUserFollowing={isUserFollowing}
           />
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
       </div>
       <Modal
         isOpen={editProfileModalState}
